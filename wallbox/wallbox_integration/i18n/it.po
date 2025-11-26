@@ -1,0 +1,2696 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wallbox_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 12:40+0000\n"
+"PO-Revision-Date: 2025-06-26 12:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it\n"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__warranty_period__1_year
+msgid "1 Year"
+msgstr "1 anno"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__charging_power__11
+msgid "11 kW"
+msgstr "11 kW"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__warranty_period__2_years
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__warranty_period__2_years
+msgid "2 Years"
+msgstr "2 anni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__charging_power__22
+msgid "22 kW"
+msgstr "22 kW"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__voltage__230v
+msgid "230V (single-phase)"
+msgstr "230V (monofase)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__charging_power__3_7
+msgid "3.7 kW"
+msgstr "3,7 kW"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__voltage__400v
+msgid "400V (three-phase)"
+msgstr "400V (trifase)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connectivity__4g
+msgid "4G"
+msgstr "4G"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__warranty_period__5_years
+msgid "5 Years"
+msgstr "5 anni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__charging_power__7_4
+msgid "7.4 kW"
+msgstr "7,4 kW"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__access_control_system
+msgid "Access Control System"
+msgstr "Sistema di controllo accessi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__access_type
+msgid "Access Type"
+msgstr "Tipo di accesso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__accessibility_features
+msgid "Accessibility Features (ramps, elevators, etc.)"
+msgstr "Caratteristiche di accessibilità (rampe, ascensori, ecc.)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__accessibility_features
+msgid "Accessibility for People with Disabilities"
+msgstr "Accessibilità per persone con disabilità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__account_status
+msgid "Account Status"
+msgstr "Stato account"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_needaction
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_needaction
+msgid "Action Needed"
+msgstr "Azione richiesta"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__account_status__active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_ids
+msgid "Activities"
+msgstr "Attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_exception_decoration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorazione eccezione attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__activity_logs
+msgid "Activity Logs"
+msgstr "Log attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_state
+msgid "Activity State"
+msgstr "Stato attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_type_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona tipo attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__actual_installation_date
+msgid "Actual Installation Date"
+msgstr "Data effettiva installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__actual_installation_date
+msgid "Actual completion date and time of installation"
+msgstr "Data e ora effettive di completamento dell'installazione"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_installation.py:0
+msgid "Actual installation date is required to complete"
+msgstr "È richiesta la data effettiva di installazione per completare"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_installation.py:0
+msgid "Actual installation must occur after scheduled installation"
+msgstr "L'installazione effettiva deve avvenire dopo quella programmata"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Add installation documentation and manuals..."
+msgstr "Aggiungi documentazione e manuali di installazione..."
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Add technical notes about the installation..."
+msgstr "Aggiungi note tecniche sull'installazione..."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__address
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__address
+msgid "Address"
+msgstr "Indirizzo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__role__admin
+#: model:res.groups,name:wallbox_integration.group_wallbox_admin
+msgid "Admin"
+msgstr "Amministratore"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "Administration"
+msgstr "Amministrazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__user_type__admin
+msgid "Administrator"
+msgstr "Amministratore"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "Allowed Monthly Billing Users"
+msgstr "Utenti abilitati alla fatturazione mensile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__allowed_partner_ids
+msgid "Allowed users for monthly billing"
+msgstr "Utenti abilitati per la fatturazione mensile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__annual_condominium_fees
+msgid "Annual Condominium Fees"
+msgstr "Spese condominiali annuali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__authentication_method__app
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__user_authentication__app
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__payment_method__app
+msgid "App"
+msgstr "App"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__assigned_or_shared__assigned
+msgid "Assigned"
+msgstr "Assegnato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__assigned_or_shared
+msgid "Assigned or Shared"
+msgstr "Assegnato o condiviso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__type_of_ownership__assigner
+msgid "Assigner"
+msgstr "Assegnatore"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_attachment_count
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteggio allegati"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__authentication_method
+msgid "Authentication Method"
+msgstr "Metodo di autenticazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__charging_station_id
+msgid "Automatically created and linked when wallbox order is completed"
+msgstr "Creato e collegato automaticamente al completamento dell'ordine wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__autonomy
+msgid "Autonomy"
+msgstr "Autonomia"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__available
+msgid "Available"
+msgstr "Disponibile"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Basic Details"
+msgstr "Dettagli base"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__battery_capacity
+msgid "Battery Capacity"
+msgstr "Capacità batteria"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__billing_system
+msgid "Billing System"
+msgstr "Sistema di fatturazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__blueprints
+msgid "Blueprints and Architectural Plans"
+msgstr "Progetti e piante architettoniche"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connectivity__bluetooth
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__user_type__both
+msgid "Both"
+msgstr "Entrambi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__brand
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_search
+msgid "Brand"
+msgstr "Marca"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__budget_management
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__budget_management
+msgid "Budget and Expense Management"
+msgstr "Gestione budget e spese"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__building_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__building_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__building_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__building_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__building_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__building_id
+msgid "Building"
+msgstr "Edificio"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_building_building
+msgid "Building Condominium"
+msgstr "Condominio edificio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__insurance_policies
+msgid "Building Insurance Policies"
+msgstr "Polizze assicurative edificio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__building_permits
+msgid "Building Permits and Authorizations"
+msgstr "Permessi e autorizzazioni edificio"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Building Specifications"
+msgstr "Specifiche edificio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__building_name
+msgid "Building name or Code"
+msgstr "Nome o codice edificio"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_building_condominium
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__building_ids
+#: model:ir.ui.menu,name:wallbox_integration.menu_building_condominium
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "Buildings"
+msgstr "Edifici"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_log__direction__c2s
+msgid "C2S"
+msgstr "C2S"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__connector_type__ccs
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connector_type__ccs
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__user_vehicle__connector_type__ccs
+msgid "CCS"
+msgstr "CCS"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__connector_type__chademo
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connector_type__chademo
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__user_vehicle__connector_type__chademo
+msgid "CHAdeMO"
+msgstr "CHAdeMO"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "CMS Server"
+msgstr "Server CMS"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__cable_length
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__cable_length
+msgid "Cable Length (m)"
+msgstr "Lunghezza cavo (m)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__can_complete
+msgid "Can Complete"
+msgstr "Può completare"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__state__cancelled
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__state__cancelled
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__capacity
+msgid "Capacity (Number of Vehicles)"
+msgstr "Capacità (numero veicoli)"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_form
+msgid "Car Name..."
+msgstr "Nome auto..."
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__condominium_condominium__heating_system__centralized
+msgid "Centralized"
+msgstr "Centralizzato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__certifications
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__certifications
+msgid "Certifications"
+msgstr "Certificazioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__charger_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__charger_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__charger_id
+msgid "Charger ID"
+msgstr "ID caricatore"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__charging
+#: model:ir.ui.menu,name:wallbox_integration.menu_charging
+msgid "Charging"
+msgstr "In carica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__charging_power
+msgid "Charging Power"
+msgstr "Potenza di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__charging_power
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__charging_power
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__charging_power
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__charging_power
+msgid "Charging Power (kW)"
+msgstr "Potenza di ricarica (kW)"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "Charging Session"
+msgstr "Sessione di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_charging_session
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__charging_session_ids
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_charging_session
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "Charging Sessions"
+msgstr "Sessioni di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_ev_charging_station
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__charging_station_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__charging_station_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__charging_station_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__charging_station_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__charging_station_id
+#: model:ir.ui.menu,name:wallbox_integration.menu_ev_charging_manager
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Charging Station"
+msgstr "Stazione di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__charging_station_id
+msgid "Charging Station ID"
+msgstr "ID stazione di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__name
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__name
+msgid "Charging Station Name/Code"
+msgstr "Nome/Codice stazione di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__charging_station_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__charging_station_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__charging_station_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_parking_space_form
+msgid "Charging Stations"
+msgstr "Colonnine di Ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_res_partner__charging_station_ids
+#: model:ir.model.fields,help:wallbox_integration.field_res_users__charging_station_ids
+msgid "Charging stations associated with this partner"
+msgstr "Colonnine di ricarica associate a questo partner"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__common_areas
+msgid "Common Areas (gardens, parking, amenities)"
+msgstr "Aree Comuni (giardini, parcheggi, servizi)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__common_property_percentage_per_unit
+msgid "Common Property Percentage Per Unit"
+msgstr "Percentuale di Proprietà Comune per Unità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__communication_protocol
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__communication_protocol
+msgid "Communication Protocol"
+msgstr "Protocollo di Comunicazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__type_of_ownership__company
+msgid "Company"
+msgstr "Azienda"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Complete"
+msgstr "Completa"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__state__completed
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__state__completed
+msgid "Completed"
+msgstr "Completato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__compliance_certificates
+msgid "Compliance Certificates"
+msgstr "Certificati di Conformità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__compliance_documents
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__compliance_documents
+msgid "Compliance Documents"
+msgstr "Documenti di Conformità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__compliance_safety
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__compliance_safety
+msgid "Compliance and Safety Checks"
+msgstr "Controlli di Conformità e Sicurezza"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__condominium_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__condominium_id
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__access_type__condominium
+msgid "Condominium"
+msgstr "Condominio"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_condominium_condominium
+msgid "Condominium Management"
+msgstr "Gestione Condominio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__manager_id
+msgid "Condominium Manager"
+msgstr "Amministratore di Condominio"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_condo_owner
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_condo_owner
+#: model:res.groups,name:wallbox_integration.group_wallbox_condo_owner
+msgid "Condominium Owner"
+msgstr "Proprietario Condominiale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__condominium_regulations
+msgid "Condominium Regulations"
+msgstr "Regolamento Condominiale"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_condominium_management
+#: model:ir.ui.menu,name:wallbox_integration.condominium_menu
+msgid "Condominiums"
+msgstr "Condomini"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_configuration
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__state__confirmed
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__state__confirmed
+msgid "Confirmed"
+msgstr "Confermato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__connectivity
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__connectivity
+msgid "Connectivity"
+msgstr "Connettività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__connector_type
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__connector_type
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__connector_type
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__connector_type
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_search
+msgid "Connector Type"
+msgstr "Tipo di Connettore"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__charging_station_id
+msgid "Consider as a charger - as par ocpp"
+msgstr "Considera come caricatore - secondo OCPP"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__consumption
+msgid "Consumption"
+msgstr "Consumo"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__supplier_contracts
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__supplier_contracts
+msgid "Contracts and Supplier Management"
+msgstr "Gestione Contratti e Fornitori"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__cost
+msgid "Cost"
+msgstr "Costo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__cost_per_session
+msgid "Cost Per Session"
+msgstr "Costo per Sessione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__created_at
+msgid "Created at"
+msgstr "Creato il"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__create_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__created_at
+msgid "Created in CSMS"
+msgstr "Creato in CSMS"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__create_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__payment_method__credit_card
+msgid "Credit Card"
+msgstr "Carta di Credito"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__partner_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__customer_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__customer_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__customer_id
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__user_type__customer
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__customer_confirmation
+msgid "Customer Confirmation"
+msgstr "Conferma Cliente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__customer_confirmation
+msgid "Customer has confirmed the installation"
+msgstr "Il cliente ha confermato l'installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__date_of_birth
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__date_of_birth
+msgid "Date of Birth"
+msgstr "Data di Nascita"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__requested_installation_date
+msgid "Date when admin requested installation scheduling"
+msgstr "Data in cui l'amministratore ha richiesto la pianificazione dell'installazione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Dates"
+msgstr "Date"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__account_status__deactivated
+msgid "Deactivated"
+msgstr "Disattivato"
+
+#. module: wallbox_integration
+#: model:ir.actions.server,name:wallbox_integration.ir_cron_delete_unnecessary_logs_ir_actions_server
+msgid "Delete Unnecessary Wallbox Logs"
+msgstr "Elimina Log Wallbox Non Necessari"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__dimensions
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__dimensions
+msgid "Dimensions (mm)"
+msgstr "Dimensioni (mm)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__direction
+msgid "Direction"
+msgstr "Direzione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Documents"
+msgstr "Documenti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__state__draft
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__state__draft
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__installation_duration
+msgid "Duration between scheduled and actual installation"
+msgstr "Durata tra installazione pianificata e effettiva"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_charging_station
+msgid "EV Charging Station"
+msgstr "Colonnina di Ricarica EV"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__ev_charging_station
+msgid "EV Charging Station Available"
+msgstr "Colonnina di Ricarica EV Disponibile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__elevator_count
+msgid "Elevator Count"
+msgstr "Numero di Ascensori"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__emissions
+msgid "Emissions"
+msgstr "Emissioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__end_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__end_date
+msgid "End Date in Role"
+msgstr "Data Fine Incarico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__end_time
+msgid "End Time"
+msgstr "Ora Fine"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_charging_session__status__ended
+msgid "Ended"
+msgstr "Terminato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__energy_certifications
+msgid "Energy Certifications"
+msgstr "Certificazioni Energetiche"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__energy_class
+msgid "Energy Class"
+msgstr "Classe Energetica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__energy_source
+msgid "Energy Source"
+msgstr "Fonte Energetica"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Enter Building Name"
+msgstr "Inserisci Nome Edificio"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Enter Full Address"
+msgstr "Inserisci Indirizzo Completo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connectivity__ethernet
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__evacuation_safety_plan
+msgid "Evacuation and Safety Plan"
+msgstr "Piano di Evacuazione e Sicurezza"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__residual_current_protection__external
+msgid "External required"
+msgstr "Richiesto esterno"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_charging_session__status__failed
+msgid "Failed"
+msgstr "Fallito"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__wallbox_type__fast
+msgid "Fast"
+msgstr "Veloce"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__service_category__fast
+msgid "Fast Charging"
+msgstr "Ricarica Veloce"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__faulted
+msgid "Faulted"
+msgstr "Guasto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__gender__female
+msgid "Female"
+msgstr "Femmina"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__finishing
+msgid "Finishing"
+msgstr "Completamento"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__fire_prevention_systems
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__fire_prevention_systems
+msgid "Fire Prevention Systems"
+msgstr "Sistemi Antincendio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__user_type__fixed
+msgid "Fixed Customers"
+msgstr "Clienti Fissi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__billing_system__flat_rate
+msgid "Flat Rate"
+msgstr "Tariffa Piana"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__direction
+msgid "Direction"
+msgstr "Direzione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "General Details"
+msgstr "Dettagli Generali"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "General Information"
+msgstr "Informazioni Generali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__energy_source__grid
+msgid "Grid"
+msgstr "Rete Elettrica"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_search
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__role__guest
+msgid "Guest"
+msgstr "Ospite"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__guest_max_amount_limit
+msgid "Guest Max Amount Limit"
+msgstr "Limite Massimo per Ospiti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__user_type__guest
+msgid "Guests"
+msgstr "Ospiti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__handicap_accessibility
+msgid "Handicap Accessibility"
+msgstr "Accessibilità per Disabili"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__has_message
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__has_message
+msgid "Has Message"
+msgstr "Ha Messaggi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__heating_system
+msgid "Heating System"
+msgstr "Sistema di Riscaldamento"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__heating_cooling_system
+msgid "Heating and Cooling System"
+msgstr "Sistema di Riscaldamento e Raffreddamento"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_exception_icon
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__activity_exception_icon
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicare un'attività eccezionale."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__transaction_id
+msgid "Id Comes from wallbox api response when session is created on CSMS."
+msgstr "L'ID proviene dalla risposta API di Wallbox quando la sessione viene creata sul CSMS."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__message_needaction
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selezionato, nuovi messaggi richiedono la tua attenzione."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__message_has_sms_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__message_has_error
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se selezionato, alcuni messaggi hanno un errore di consegna."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__incident_reporting
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__incident_reporting
+msgid "Incident and Issue Reporting"
+msgstr "Segnalazione Incidenti e Problemi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__condominium_condominium__heating_system__independent
+msgid "Independent"
+msgstr "Indipendente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__indicative_price
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__indicative_price
+msgid "Indicative Price (€)"
+msgstr "Prezzo Indicativo (€)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__type_of_ownership__individual
+msgid "Individual"
+msgstr "Individuale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__location__indoor
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__parking_type__indoor
+msgid "Indoor"
+msgstr "Interno"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__installation_id
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Installation"
+msgstr "Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__installation_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__installation_date
+msgid "Installation Date"
+msgstr "Data di Installazione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Installation Details"
+msgstr "Dettagli Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__installation_duration
+msgid "Installation Duration"
+msgstr "Durata Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__installation_method
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__installation_method
+msgid "Installation Method"
+msgstr "Metodo di Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__name
+msgid "Installation Reference"
+msgstr "Riferimento Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__scheduled_installation_date
+msgid "Installation Start Date"
+msgstr "Data Inizio Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__installation_technician_id
+msgid "Installation Technician"
+msgstr "Tecnico Installatore"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_installation_technician
+msgid "Installation Technicians"
+msgstr "Tecnici Installatori"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__documentation
+msgid "Installation documentation and manuals"
+msgstr "Documentazione e manuali di installazione"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_installation
+msgid "Installations"
+msgstr "Installazioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__installed_systems
+msgid "Installed Systems"
+msgstr "Sistemi Installati"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__insurance_coverage
+msgid "Insurance Coverage for Common Areas"
+msgstr "Copertura Assicurativa per Aree Comuni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__residual_current_protection__integrated
+msgid "Integrated"
+msgstr "Integrato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__intended_use
+msgid "Intended Use"
+msgstr "Uso Previsto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__intervention_history
+msgid "Intervention History"
+msgstr "Storico Interventi"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "Invite"
+msgstr "Invita"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__is_allowed
+msgid "Is Allowed"
+msgstr "È Consentito"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__is_condominium_owner
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__is_condominium_owner
+msgid "Is Condominium owner"
+msgstr "È Proprietario Condominiale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_is_follower
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_is_follower
+msgid "Is Follower"
+msgstr "È Follower"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__is_guest
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__is_guest
+msgid "Is Guest"
+msgstr "È Ospite"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__is_technician
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__is_technician
+msgid "Is Technician"
+msgstr "È Tecnico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__is_wallbox_device
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__is_wallbox_device
+msgid "Is Wallbox Device?"
+msgstr "È Dispositivo Wallbox?"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__is_wallbox_user
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__is_wallbox_user
+msgid "Is Wallbox User"
+msgstr "È Utente Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__last_extraordinary_maintenance
+msgid "Last Extraordinary Maintenance Interventions"
+msgstr "Ultimi Interventi di Manutenzione Straordinaria"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__last_inspection_date
+msgid "Last Inspection Date"
+msgstr "Data Ultima Ispezione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__last_login_date
+msgid "Last Login Date"
+msgstr "Data Ultimo Accesso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__last_maintenance_date
+msgid "Last Maintenance Date"
+msgstr "Data Ultima Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__last_password_change
+msgid "Last Password Change"
+msgstr "Ultima Modifica Password"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__write_uid
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__write_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__latitude
+msgid "Latitude"
+msgstr "Latitudine"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__lease_agreement_details
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__lease_agreement_details
+msgid "Lease Agreement Details"
+msgstr "Dettagli del Contratto di Locazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__legal_disputes
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__legal_disputes
+msgid "Legal Disputes"
+msgstr "Controversie Legali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__legal_disputes
+msgid "Legal Disputes (if any)"
+msgstr "Controversie Legali (se presenti)"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Legal Information"
+msgstr "Informazioni Legali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__legal_compliance
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__legal_compliance
+msgid "Legal and Regulatory Compliance"
+msgstr "Conformità Legale e Normativa"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__licence_plate
+msgid "Licence Plate"
+msgstr "Targa"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__load_management
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__load_management
+msgid "Load Management"
+msgstr "Gestione del Carico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__location
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__location
+msgid "Location"
+msgstr "Posizione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Location Details"
+msgstr "Dettagli Posizione"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Location Information"
+msgstr "Informazioni sulla Posizione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__longitude
+msgid "Longitude"
+msgstr "Longitudine"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__main_construction_materials
+msgid "Main Construction Materials"
+msgstr "Materiali di Costruzione Principali"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "Maintenance & Issues"
+msgstr "Manutenzione e Problemi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__maintenance_contracts
+msgid "Maintenance Contracts for Common Areas"
+msgstr "Contratti di Manutenzione per Aree Comuni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__maintenance_coordination
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__maintenance_coordination
+msgid "Maintenance Coordination"
+msgstr "Coordinamento Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__maintenance_fees
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__maintenance_fees
+msgid "Maintenance Fees"
+msgstr "Costi di Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__maintenance_records
+msgid "Maintenance Records"
+msgstr "Registri di Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__maintenance_schedule
+msgid "Maintenance Schedule"
+msgstr "Programma di Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__maintenance_contracts
+msgid "Maintenance and Management Contracts"
+msgstr "Contratti di Manutenzione e Gestione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__gender__male
+msgid "Male"
+msgstr "Maschio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__managed_building_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__managed_building_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Managed Buildings"
+msgstr "Edifici Gestiti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__managed_condominium_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__managed_condominium_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Managed Condominium"
+msgstr "Condominio Gestito"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Manager details"
+msgstr "Dettagli del Responsabile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__manager_id
+msgid "Manager/Maintenance Provider"
+msgstr "Responsabile/Fornitore di Manutenzione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__max_amount_limit
+msgid "Max Amount Limit"
+msgstr "Limite Importo Massimo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__max_current
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__max_current
+msgid "Max Current (A)"
+msgstr "Corrente Max (A)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__max_operating_temp
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__max_operating_temp
+msgid "Max Operating Temperature (°C)"
+msgstr "Temperatura Operativa Max (°C)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__meeting_minutes
+msgid "Meeting Minutes of Condominium Assemblies"
+msgstr "Verbali delle Assemblee Condominiali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__message
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_has_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore di Consegna Messaggio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__start_meter
+msgid "Meter Start Value (Wh)"
+msgstr "Valore Iniziale Contatore (Wh)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__stop_meter
+msgid "Meter Stop Value (Wh)"
+msgstr "Valore Finale Contatore (Wh)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__min_operating_temp
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__min_operating_temp
+msgid "Min Operating Temperature (°C)"
+msgstr "Temperatura Operativa Min (°C)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__building_building__type_of_ownership__mixed
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__energy_source__mixed
+msgid "Mixed"
+msgstr "Misto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__condominium_condominium__type_of_condominium__mixed-use
+msgid "Mixed-Use"
+msgstr "Uso Misto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__model
+msgid "Model"
+msgstr "Modello"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__monthly_fee
+msgid "Monthly Fee (if rented)"
+msgstr "Costo Mensile (se affittato)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__my_activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Scadenza della Mia Attività"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_user_vehicle
+#: model:ir.ui.menu,name:wallbox_integration.menu_user_vehicle
+msgid "My Vehicles"
+msgstr "I Miei Veicoli"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__building_name
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__condominium_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/charging_station.py:0
+#: code:addons/wallbox_integration/models/wallbox_order.py:0
+msgid "New"
+msgstr "Nuovo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_date_deadline
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Scadenza Prossima Attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_summary
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_summary
+msgid "Next Activity Summary"
+msgstr "Riepilogo Prossima Attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_type_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo di Prossima Attività"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__next_scheduled_maintenance
+msgid "Next Scheduled Maintenance"
+msgstr "Prossima Manutenzione Programmata"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__not_necessary
+msgid "Not Necessary"
+msgstr "Non Necessario"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_needaction_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di Azioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__number_of_buildings
+msgid "Number of Buildings"
+msgstr "Numero di Edifici"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__number_of_ports
+msgid "Number of Charging Ports"
+msgstr "Numero di Porte di Ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__number_of_charging_sessions
+msgid "Number of Charging Sessions"
+msgstr "Numero di Sessioni di Ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__number_of_charging_stations
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__number_of_charging_stations
+msgid "Number of Charging Stations"
+msgstr "Numero di Stazioni di Ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__number_of_commercial_units
+msgid "Number of Commercial Units"
+msgstr "Numero di Unità Commerciali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__number_of_floors
+msgid "Number of Floors"
+msgstr "Numero di Piani"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__number_of_parking_spaces
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__number_of_parking_spaces
+msgid "Number of Parking Spaces"
+msgstr "Numero di Posti Auto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__number_of_real_estate_units
+msgid "Number of Real Estate Units"
+msgstr "Numero di Unità Immobiliari"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__number_of_residential_units
+msgid "Number of Residential Units"
+msgstr "Numero di Unità Residenziali"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__number_of_users
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__number_of_users
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__number_of_users
+msgid "Number of Users"
+msgstr "Numero di Utenti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_has_error_counter
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__message_needaction_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Numero di messaggi che richiedono azione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__message_has_error_counter
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__communication_protocol__ocpp1_6
+msgid "OCPP 1.6"
+msgstr "OCPP 1.6"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__communication_protocol__ocpp2_0_1
+msgid "OCPP 2.0.1"
+msgstr "OCPP 2.0.1"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__condominium_condominium__type_of_condominium__office
+msgid "Office"
+msgstr "Ufficio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__ongoing_issues
+msgid "Ongoing Issues and Complaints"
+msgstr "Problemi e Reclami in Corso"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_installation.py:0
+msgid "Only assigned technician can 'complete' this request."
+msgstr "Solo il tecnico assegnato può 'completare' questa richiesta."
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Order Information"
+msgstr "Informazioni sull'Ordine"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__name
+msgid "Order Reference"
+msgstr "Riferimento Ordine"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__charging_power__other
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__gender__other
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Other"
+msgstr "Altro"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__location__outdoor
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__parking_type__outdoor
+msgid "Outdoor"
+msgstr "Esterno"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__rental_status__owned
+msgid "Owned"
+msgstr "Posseduto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__building_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__building_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Owned Buildings"
+msgstr "Edifici Posseduti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__condominium_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__condominium_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Owned Condominium"
+msgstr "Condominio Posseduto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__parking_space_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__parking_space_ids
+msgid "Owned Parking Space"
+msgstr "Posto Auto Posseduto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__owner_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__owner_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__owner_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__owner_id
+msgid "Owner"
+msgstr "Proprietario"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_form
+msgid "Owner Information"
+msgstr "Informazioni Proprietario"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__rental_status__owner_occupied
+msgid "Owner-Occupied"
+msgstr "Occupato dal Proprietario"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__owner_id
+msgid "Owner/Administrator"
+msgstr "Proprietario/Amministratore"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Ownership & Materials"
+msgstr "Proprietà e Materiali"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Ownership Details"
+msgstr "Dettagli Proprietà"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__ownership_percentage
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__ownership_percentage
+msgid "Ownership Percentage"
+msgstr "Percentuale di Proprietà"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__user_authentication__pin
+msgid "PIN"
+msgstr "PIN"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__name
+msgid "Parking Lot Name/Number"
+msgstr "Nome/Numero Parcheggio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__parking_space_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__parking_space_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__parking_space_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__parking_space_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__parking_space_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__parking_space_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__parking_space_id
+msgid "Parking Space"
+msgstr "Posto Auto"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_parking_space
+msgid "Parking Space Management"
+msgstr "Gestione Posto Auto"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_parking_space
+#: model:ir.ui.menu,name:wallbox_integration.parking_space_menu
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Parking Spaces"
+msgstr "Posti Auto"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__allowed_partner_ids
+msgid "Partners associated with this charging station"
+msgstr "Partner associati a questa stazione di ricarica"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__billing_system__pay_per_use
+msgid "Pay-per-Use"
+msgstr "Pagamento a Consumo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__payload
+msgid "Payload"
+msgstr "Payload"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__payment_method
+msgid "Payment Method"
+msgstr "Metodo di Pagamento"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__installation_method__pedestal_mounted
+msgid "Pedestal-mounted"
+msgstr "Montato su Piedistallo"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Personal Information"
+msgstr "Informazioni Personali"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_installation.py:0
+msgid "Please set a scheduled installation date first"
+msgstr "Si prega di impostare prima una data di installazione programmata"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_portal_wizard_user
+msgid "Portal User Config"
+msgstr "Configurazione Utente Portale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__preparing
+msgid "Preparing"
+msgstr "Preparazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__price_per_kwh
+msgid "Price Per KWH"
+msgstr "Prezzo per KWH"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__privacy_policy_acceptance_date
+msgid "Privacy Policy Acceptance Date"
+msgstr "Data di Accettazione Informativa sulla Privacy"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__building_building__type_of_ownership__private
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__access_type__private
+msgid "Private"
+msgstr "Privato"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_product_template
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.property_menu
+msgid "Property"
+msgstr "Proprietà"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__property_tax_information
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__property_tax_information
+msgid "Property Tax Information"
+msgstr "Informazioni Fiscali sulla Proprietà"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "Property details"
+msgstr "Dettagli Proprietà"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__protection_rating
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__protection_rating
+msgid "Protection Rating (IP/IK)"
+msgstr "Grado di Protezione (IP/IK)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__building_building__type_of_ownership__public
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__access_type__public
+msgid "Public"
+msgstr "Pubblico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__authentication_method__rfid
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__user_authentication__rfid
+msgid "RFID"
+msgstr "RFID"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__rfid_tag_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "RFID Tags"
+msgstr "Tag RFID"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__rating_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__rating_ids
+msgid "Ratings"
+msgstr "Valutazioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__recent_renovation_work
+msgid "Recent Renovation Work"
+msgstr "Lavori di Ristrutturazione Recenti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__registration_date
+msgid "Registration Date"
+msgstr "Data di Registrazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__service_category__regular
+msgid "Regular Charging"
+msgstr "Ricarica Regolare"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Renovation & Issues"
+msgstr "Ristrutturazione e Problemi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__rental_status
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__rental_status
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__rental_status
+msgid "Rental Status"
+msgstr "Stato del Noleggio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__rental_status__rented
+msgid "Rented"
+msgstr "Noleggiato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_partner__rental_status__rented_out
+msgid "Rented Out"
+msgstr "Affittato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__reported_issues
+msgid "Reported Issues"
+msgstr "Problemi Segnalati"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__reported_issues
+msgid "Reported Issues and Malfunctions"
+msgstr "Problemi e Malfunzionamenti Segnalati"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__requested_installation_date
+msgid "Requested Installation Date"
+msgstr "Data di Installazione Richiesta"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__rescheduled_date
+msgid "Rescheduled Date"
+msgstr "Data Ripianificata"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Reservation"
+msgstr "Prenotazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__reservation_date
+msgid "Reservation Date"
+msgstr "Data di Prenotazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__reservation_requested
+msgid "Reservation Requested"
+msgstr "Prenotazione Richiesta"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__reservation_required
+msgid "Reservation Required"
+msgstr "Prenotazione Obbligatoria"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__reserved
+msgid "Reserved"
+msgstr "Prenotato"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Reset to Draft"
+msgstr "Ripristina a Bozze"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__condominium_condominium__type_of_condominium__residential
+msgid "Residential"
+msgstr "Residenziale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__residual_current_protection
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__residual_current_protection
+msgid "Residual Current Protection"
+msgstr "Protezione Corrente Residua"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__responsibilities
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__responsibilities
+msgid "Responsibilities"
+msgstr "Responsabilità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__activity_user_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__activity_user_id
+msgid "Responsible User"
+msgstr "Utente Responsabile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__role
+msgid "Role"
+msgstr "Ruolo"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_roles
+msgid "Roles"
+msgstr "Ruoli"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__routine_maintenance
+msgid "Routine and Extraordinary Maintenance Interventions"
+msgstr "Interventi di Manutenzione Ordinaria e Straordinaria"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_log__direction__s2c
+msgid "S2C"
+msgstr "S2C"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__message_has_sms_error
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore di Consegna SMS"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+msgid "Safety & Accessibility"
+msgstr "Sicurezza e Accessibilità"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__safety_inspections
+msgid "Safety Inspections and Certifications"
+msgstr "Ispezioni e Certificazioni di Sicurezza"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__safety_standards
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__safety_standards
+msgid "Safety Standards"
+msgstr "Standard di Sicurezza"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "Safety and Regulations"
+msgstr "Sicurezza e Normative"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_order.py:0
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Schedule Installation"
+msgstr "Pianifica Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_installation__state__scheduled
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_order__state__scheduled
+msgid "Scheduled"
+msgstr "Pianificato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__scheduled_maintenance_plans
+msgid "Scheduled Maintenance Plans"
+msgstr "Piani di Manutenzione Programmata"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Scheduling"
+msgstr "Pianificazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__security_systems
+msgid "Security Systems (surveillance, access control)"
+msgstr "Sistemi di Sicurezza (sorveglianza, controllo accessi)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__service_id
+msgid "Service"
+msgstr "Servizio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__service_category
+msgid "Service Category"
+msgstr "Categoria Servizio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__service_duration
+msgid "Service Duration"
+msgstr "Durata Servizio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__service_info
+msgid "Service Info"
+msgstr "Informazioni Servizio"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_service_management
+#: model:ir.model,name:wallbox_integration.model_service_management
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_service_management_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_service_management_list
+msgid "Service Management"
+msgstr "Gestione Servizi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__name
+msgid "Service Name"
+msgstr "Nome Servizio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__service_notes
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__service_notes
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__service_notes
+msgid "Service Notes"
+msgstr "Note di Servizio"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_list
+msgid "Sessions"
+msgstr "Sessioni"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__assigned_or_shared__shared
+msgid "Shared"
+msgstr "Condiviso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__energy_source__solar
+msgid "Solar"
+msgstr "Solare"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__solar_compatibility
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__solar_compatibility
+msgid "Solar Compatibility"
+msgstr "Compatibilità Solare"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__service_management__wallbox_type__standard
+msgid "Standard"
+msgstr "Standard"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__start_date
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__start_date
+msgid "Start Date in Role"
+msgstr "Data Inizio Ruolo"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_installation_form
+msgid "Start Installation"
+msgstr "Avvia Installazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__start_time
+msgid "Start Time"
+msgstr "Ora di Inizio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__wallbox_charging_session__status__started
+msgid "Started"
+msgstr "Avviato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__status
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__state
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__installation_state
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__state
+msgid "Status"
+msgstr "Stato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__activity_state
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Stato basato sulle attività\n"
+"In scadenza: la data di scadenza è già trascorsa\n"
+"Oggi: la data dell'attività è oggi\n"
+"Pianificato: attività future."
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__user_type__supplier
+msgid "Supplier"
+msgstr "Fornitore"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__account_status__suspended
+msgid "Suspended"
+msgstr "Sospeso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__suspendedev
+msgid "SuspendedEV"
+msgstr "EV Sospeso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__suspendedevse
+msgid "SuspendedEVSE"
+msgstr "EVSE Sospeso"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_rfid_tag__tag_id
+msgid "Tag ID"
+msgstr "ID Tag"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+msgid "Technical Features"
+msgstr "Caratteristiche Tecniche"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__service_notes
+msgid "Technical notes about the installation process"
+msgstr "Note tecniche sul processo di installazione"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_technician
+#: model:res.groups,name:wallbox_integration.group_wallbox_technician
+msgid "Technician"
+msgstr "Tecnico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__scheduled_installation_date
+msgid "Technician-scheduled installation start date and time"
+msgstr "Data e ora di inizio installazione programmata dal tecnico"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__tenant_relations
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__tenant_relations
+msgid "Tenant/Resident Relations"
+msgstr "Relazioni Inquilino/Residente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__terms_acceptance_date
+msgid "Terms Acceptance Date"
+msgstr "Data di Accettazione dei Termini"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/res_partner.py:0
+msgid "The partner \"%s\" already has the portal access."
+msgstr "Il partner \"%s\" ha già l'accesso al portale."
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__total_area
+msgid "Total Area"
+msgstr "Area Totale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__total_area
+msgid "Total Area (sqm)"
+msgstr "Area Totale (mq)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__total_duration
+msgid "Total Duration"
+msgstr "Durata Totale"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__total_energy
+msgid "Total Energy (Wh)"
+msgstr "Energia Totale (Wh)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__total_number_of_occupants
+msgid "Total Number of Occupants"
+msgstr "Numero Totale di Occupanti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__transaction_id
+msgid "Transaction ID"
+msgstr "ID Transazione"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__parking_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connector_type__type1
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__user_vehicle__connector_type__type1
+msgid "Type 1"
+msgstr "Tipo 1"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__connector_type__type2
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connector_type__type2
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__user_vehicle__connector_type__type2
+msgid "Type 2"
+msgstr "Tipo 2"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_search
+msgid "Type 2 Connectors"
+msgstr "Connettori Tipo 2"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__residual_current_protection__type_a
+msgid "Type A"
+msgstr "Tipo A"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__residual_current_protection__type_b
+msgid "Type B"
+msgstr "Tipo B"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__type_of_condominium
+msgid "Type of Condominium"
+msgstr "Tipo di Condominio"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__type_of_ownership
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__type_of_ownership
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__type_of_ownership
+msgid "Type of Ownership"
+msgstr "Tipo di Proprietà"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__activity_exception_decoration
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo di attività di eccezione registrata."
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__status__unavailable
+msgid "Unavailable"
+msgstr "Non disponibile"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__charging_station__location__underground
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__parking_space__parking_type__underground
+msgid "Underground"
+msgstr "Sotterraneo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_log__updated_at
+msgid "Updated at"
+msgstr "Aggiornato il"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__updated_at
+msgid "Updated in CSMS"
+msgstr "Aggiornato in CSMS"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_res_users
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__res_users__role__user
+msgid "User"
+msgstr "Utente"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_activity_logs
+msgid "User Activity Logs"
+msgstr "Log Attività Utente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__user_authentication
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__user_authentication
+msgid "User Authentication"
+msgstr "Autenticazione Utente"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "User Identity"
+msgstr "Identità Utente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__user_type
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__user_type
+msgid "User Type"
+msgstr "Tipo Utente"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_form
+msgid "User Vehicle"
+msgstr "Veicolo Utente"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_user_vehicle
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_list
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_res_partner_form_inherit
+msgid "User Vehicles"
+msgstr "Veicoli Utente"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_partner__vehicle_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_res_users__vehicle_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__vehicle_id
+msgid "Vehicle"
+msgstr "Veicolo"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_user_vehicle_form
+msgid "Vehicle Information"
+msgstr "Informazioni Veicolo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__name
+msgid "Vehicle Name"
+msgstr "Nome Veicolo"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_user_vehicle__vehicle_type
+msgid "Vehicle Type"
+msgstr "Tipo Veicolo"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_charging_session_list
+msgid "View"
+msgstr "Vista"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_charging_session_form
+msgid "View Related Logs"
+msgstr "Visualizza Log Correlati"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "View Scheduled Installation"
+msgstr "Visualizza Installazione Pianificata"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_product__voltage
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__voltage
+msgid "Voltage (V)"
+msgstr "Voltaggio (V)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__ws_url
+msgid "WS URL"
+msgstr "URL WS"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__installation_method__wall_mounted
+msgid "Wall-mounted"
+msgstr "Montaggio a parete"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_main
+msgid "WallBox"
+msgstr "WallBox"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_wallbox_purchase_form
+msgid "Wallbox"
+msgstr "Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_wallbox_log
+msgid "Wallbox API Logs"
+msgstr "Log API Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_wallbox_charging_session
+msgid "Wallbox Charging Session"
+msgstr "Sessione di Ricarica Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__wallbox_features
+msgid "Wallbox Features"
+msgstr "Caratteristiche Wallbox"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_product_wallbox_form
+msgid "Wallbox Information"
+msgstr "Informazioni Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_wallbox_installation
+msgid "Wallbox Installation Management"
+msgstr "Gestione Installazioni Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_installation
+msgid "Wallbox Installations"
+msgstr "Installazioni Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_log
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__wallbox_log_ids
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_log
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_ev_charging_station_form
+msgid "Wallbox Logs"
+msgstr "Log Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.module.category,name:wallbox_integration.module_category_wallbox
+msgid "Wallbox Management"
+msgstr "Gestione Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_purchase
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__wallbox_order_id
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__order_id
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_order
+msgid "Wallbox Order"
+msgstr "Ordine Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_wallbox_order
+msgid "Wallbox Order Management"
+msgstr "Gestione Ordini Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.ui.menu,name:wallbox_integration.service_management_menu
+msgid "Wallbox Services"
+msgstr "Servizi Wallbox"
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_product_wallbox_form
+msgid "Wallbox Technical Features"
+msgstr "Caratteristiche Tecniche Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__wallbox_type
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__product_id
+msgid "Wallbox Type"
+msgstr "Tipo di Wallbox"
+
+#. module: wallbox_integration
+#: model:res.groups,name:wallbox_integration.group_wallbox_user
+msgid "Wallbox User"
+msgstr "Utente Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.actions.act_window,name:wallbox_integration.action_wallbox_user
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__wallbox_user_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__wallbox_user_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__wallbox_user_ids
+#: model:ir.ui.menu,name:wallbox_integration.menu_wallbox_user
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_building_condominium_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_condominium_management_form
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.view_parking_space_form
+msgid "Wallbox Users"
+msgstr "Utenti Wallbox"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__warranty_period
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__warranty_period
+msgid "Warranty Period"
+msgstr "Periodo di Garanzia"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__waste_management_system
+msgid "Waste Management System"
+msgstr "Sistema di Gestione Rifiuti"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_condominium_condominium__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_parking_space__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_service_management__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_charging_session__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_installation__website_message_ids
+#: model:ir.model.fields,field_description:wallbox_integration.field_wallbox_order__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi Sito Web"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_building_building__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_condominium_condominium__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_parking_space__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_service_management__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_charging_session__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_installation__website_message_ids
+#: model:ir.model.fields,help:wallbox_integration.field_wallbox_order__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_product_template__weight
+msgid "Weight (kg)"
+msgstr "Peso (kg)"
+
+#. module: wallbox_integration
+#: model:ir.model.fields.selection,name:wallbox_integration.selection__product_template__connectivity__wifi
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_building_building__year_of_construction
+msgid "Year of Construction"
+msgstr "Anno di Costruzione"
+
+#. module: wallbox_integration
+#. odoo-python
+#: code:addons/wallbox_integration/models/wallbox_installation.py:0
+msgid "You must have to add charger id for complete this installation."
+msgstr "Per completare l'installazione è necessario aggiungere l'ID del caricabatterie."
+
+#. module: wallbox_integration
+#: model:ir.model,name:wallbox_integration.model_rfid_tag
+msgid "rfid.tag"
+msgstr "tag RFID"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,field_description:wallbox_integration.field_charging_station__status
+msgid "status"
+msgstr "stato"
+
+#. module: wallbox_integration
+#: model:ir.model.fields,help:wallbox_integration.field_charging_station__guest_max_amount_limit
+msgid ""
+"this amount is used for block amount in customers account for guest "
+"scenario."
+msgstr ""
+"Questo importo viene utilizzato per bloccare un importo nell'account del cliente per lo scenario ospite."
+
+#. module: wallbox_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_integration.wallbox_view_users_activity_form_inherit
+msgid "wallbox"
+msgstr "wallbox"

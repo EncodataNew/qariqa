@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wallbox_stripe
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 13:38+0000\n"
+"PO-Revision-Date: 2025-06-26 13:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wallbox_stripe
+#: model:ir.model.fields,field_description:wallbox_stripe.field_sale_order__wallbox_amount_to_capture
+msgid "Amount to capture"
+msgstr "Importo da catturare"
+
+#. module: wallbox_stripe
+#: model:ir.model,name:wallbox_stripe.model_payment_provider
+msgid "Payment Provider"
+msgstr "Fornitore di pagamenti"
+
+#. module: wallbox_stripe
+#: model:ir.model,name:wallbox_stripe.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transazione di pagamento"
+
+#. module: wallbox_stripe
+#: model:ir.model,name:wallbox_stripe.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"

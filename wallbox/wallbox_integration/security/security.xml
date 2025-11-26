@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record model="ir.module.category" id="module_category_wallbox">
+            <field name="name">Wallbox Management</field>
+        </record>
+
+        <record id="group_wallbox_technician" model="res.groups">
+            <field name="name">Technician</field>
+            <field name="category_id" ref="wallbox_integration.module_category_wallbox"/>
+            <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_wallbox_user" model="res.groups">
+            <field name="name">Wallbox User</field>
+            <field name="category_id" ref="wallbox_integration.module_category_wallbox"/>
+            <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_wallbox_condo_owner" model="res.groups">
+            <field name="name">Condominium Owner</field>
+            <field name="category_id" ref="wallbox_integration.module_category_wallbox"/>
+            <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_wallbox_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="wallbox_integration.module_category_wallbox"/>
+            <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+    </data>
+
+    <!-- Rules for wallbox Installation Technicians -->
+    <record id="technician_own_installation_record" model="ir.rule">
+        <field name="name">Installation Technication: read own records</field>
+        <field name="model_id" ref="model_wallbox_installation"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_technician'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('installation_technician_id', '=', user.partner_id.id), ('state', '!=', 'draft')]</field>
+    </record>
+
+    <!-- Rules for wallbox Users -->
+    <record id="user_own_condominium_record" model="ir.rule">
+        <field name="name">Wallbox User: read own Condominium records</field>
+        <field name="model_id" ref="model_condominium_condominium"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- <record id="user_own_vehicle_record" model="ir.rule">
+        <field name="name">Wallbox User: read own Vehicle records</field>
+        <field name="model_id" ref="model_user_vehicle"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+    </record> -->
+
+    <record id="user_own_building_record" model="ir.rule">
+        <field name="name">Wallbox User: read own Building records</field>
+        <field name="model_id" ref="model_building_building"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="user_own_parking_space_record" model="ir.rule">
+        <field name="name">Wallbox User: read own parking space records</field>
+        <field name="model_id" ref="model_parking_space"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="wallbox_user_charging_station_rule" model="ir.rule">
+        <field name="name">Wallbox User: access to own and allowed charging stations</field>
+        <field name="model_id" ref="model_charging_station"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>  <!-- keep write True, otherwise no one can write -->
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[
+            '|',
+            ('owner_id', '=', user.partner_id.id),
+            ('allowed_partner_ids', 'in', [user.partner_id.id])
+        ]</field>
+    </record>
+
+    <record id="user_own_wallbox_order_record" model="ir.rule">
+        <field name="name">Wallbox User: read own wallbox order records</field>
+        <field name="model_id" ref="model_wallbox_order"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="user_own_wallbox_installation_record" model="ir.rule">
+        <field name="name">Wallbox User: read own wallbox installation records</field>
+        <field name="model_id" ref="model_wallbox_installation"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="user_own_wallbox_session_record" model="ir.rule">
+        <field name="name">Wallbox User: read own wallbox Session records</field>
+        <field name="model_id" ref="model_wallbox_charging_session"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- See OWN Vehicles data -->
+    <record id="user_own_vehicle_record" model="ir.rule">
+        <field name="name">User: read own vehicle records</field>
+        <field name="model_id" ref="model_user_vehicle"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- See ALL Vehicles data -->    
+    <record id="user_all_vehicle_record" model="ir.rule">
+        <field name="name">User: read all vehicle records</field>
+        <field name="model_id" ref="model_user_vehicle"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_erp_manager')), Command.link(ref('wallbox_integration.group_wallbox_admin'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

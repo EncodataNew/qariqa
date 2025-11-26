@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_request_charging_list" model="ir.ui.view">
+        <field name="name">request.charging.list</field>
+        <field name="model">request.charging</field>
+        <field name="arch" type="xml">
+            <list string="Request Charging Sessions">
+                <field name="name" string="Reference"/>
+                <field name="request_user_id" string="Customer"/>
+                <field name="charging_station_id"/>
+                <field name="wallbox_owner_id"/>
+                <field name="service_requested_date" string="Request Date"/>
+                <field name="service_scheduled_date" string="Scheduled Date"/>
+                <field name="request_status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_request_charging_form" model="ir.ui.view">
+        <field name="name">request.charging.form</field>
+        <field name="model">request.charging</field>
+        <field name="arch" type="xml">
+            <form string="Request Charging Session">
+                <header>
+                    <!-- this button is used by request user -->
+                    <button name="action_request_charging" string="Request Charging" type="object" invisible="not can_request_charging"/>
+
+                    <!-- <button name="action_schedule_charging" string="Schedule Charging" type="object" invisible="request_status not in ('draft') and is_request_user"/> -->
+                    <button name="action_schedule_charging" string="Schedule Charging" type="object" invisible="not visible_schedule_charging_btn"/>
+
+                    <button name="action_authorized_transaction" string="Authorize Transaction" type="object" icon="fa-money" invisible="not visible_payment_link_btn"/>
+
+                    <!-- this buttons is used by wallbox owner -->
+                    <button name="action_approve" string="Approve" type="object" 
+                        class="oe_highlight" invisible="request_status not in ('requested') or not is_wallbox_owner"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="request_status not in ('requested') or not is_wallbox_owner"/>
+
+                    <!-- this button is used by request user -->
+                    <button name="action_start_charging" string="Start Charging" type="object" invisible="not can_start_charging"/>
+
+                    <button name="action_complete_charging" string="Complete" type="object" invisible="request_status not in ('in_progress') or not is_request_user"/>
+
+                    <field name="request_status" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+
+                    <group>
+                        <group string="Basic Information">
+                            <field name="request_user_id"/>
+                            <field name="vehicle_id" domain="[('partner_id', '=', request_user_id)]" readonly="request_status not in ('draft')"/>
+                            <field name="service_id"/>
+                            <field name="service_requested_date"/>
+                            <field name="reservation_requested"/>
+                            <field name="reservation_date" invisible="not reservation_requested"/>
+                        </group>
+
+                        <group string="Charging Details">
+                            <field name="wallbox_serial_id"/>
+                            <field name="charging_station_id"/>
+                            <field name="wallbox_device_id"/>
+                            <field name="parking_space_id"/>
+                            <field name="building_id"/>
+                            <field name="wallbox_owner_id"/>
+                            <field name="condominium_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Technical Details">
+                            <group>
+                                <group>
+                                    <field name="service_scheduled_date"/>
+                                    <field name="service_completion_date"/>
+                                    <field name="request_charging_session_id" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="charging_power"/>
+                                    <field name="energy_consumed"/>
+                                    <field name="charging_duration"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Financial Information">
+                            <group>
+                                <group>
+                                    <field name="payment_method" readonly="request_status not in ('draft', 'requested')"/>
+                                    <field name="sale_order_id"/>
+                                    <field name="payment_link"/>
+                                    <field name="authorized_transaction_id"/>
+                                    <field name="transaction_state"/>
+                                </group>
+                                <group>
+                                    <field name="amount_total"/>
+                                    <field name="amount_paid"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Notes and Documentation">
+                            <group>
+                                <field name="service_notes"/>
+                                <field name="customer_confirmation"/>
+                                <field name="documentation" filename="documentation_filename"/>
+                                <field name="service_feedback"/>
+                                <field name="rating"/>
+                            </group>
+                        </page>
+                        <page string="Flags">
+                            <group>
+                                <field name="can_request_charging"/>
+                                <field name="can_start_charging"/>
+                                <field name="is_request_user"/>
+                                <field name="is_wallbox_owner"/>
+                                <field name="visible_payment_link_btn"/>
+                                <field name="visible_schedule_charging_btn"/>
+                                <field name="is_guest_user_request"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_request_charging_search" model="ir.ui.view">
+        <field name="name">request.charging.search</field>
+        <field name="model">request.charging</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Reference"/>
+                <field name="request_user_id" string="Customer"/>
+                <field name="request_status"/>
+                <!-- <field name="payment_status"/> -->
+                <filter string="Today's Requests" name="today" domain="[('service_requested_date','>=',context_today())]"/>
+                <filter string="Pending Approval" name="pending" domain="[('request_status','=','requested')]"/>
+                <filter string="In Progress" name="in_progress" domain="[('request_status','=','in_progress')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_by_status" context="{'group_by':'request_status'}"/>
+                    <!-- <filter string="Payment Status" name="group_by_payment" context="{'group_by':'payment_status'}"/> -->
+                    <filter string="Building" name="group_by_building" context="{'group_by':'building_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_request_charging" model="ir.actions.act_window">
+        <field name="name">Charging Request</field>
+        <field name="res_model">request.charging</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No request charging sessions found. Click to create a new one.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_request_charging"
+        parent="wallbox_integration.menu_wallbox_main"
+        name="Charging Request"
+        action="action_request_charging"
+        groups="wallbox_integration.group_wallbox_user,wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"
+        sequence="98"/>
+
+</odoo>

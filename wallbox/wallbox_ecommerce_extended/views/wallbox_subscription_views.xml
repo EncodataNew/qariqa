@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_wallbox_subscription_list" model="ir.ui.view">
+        <field name="name">wallbox.subscription.list</field>
+        <field name="model">wallbox.subscription</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="duration_display"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wallbox_subscription_form" model="ir.ui.view">
+        <field name="name">wallbox.subscription.form</field>
+        <field name="model">wallbox.subscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="sale_order_id" readonly="0"/>
+                            <field name="wallbox_order_id" readonly="0"/>
+                            <field name="sale_order_line_id" readonly="0"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="duration_display"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallbox_user_subscription" model="ir.actions.act_window">
+        <field name="name">Wallbox Subscriptions</field>
+        <field name="res_model">wallbox.subscription</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="object_wallbox_user_subscription" name="Wallbox Subscriptions" parent="wallbox_integration.menu_wallbox" action="action_wallbox_user_subscription" sequence="2"/>
+
+</odoo>

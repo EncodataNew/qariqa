@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <!-- Default template user for new reseller signing in -->
+    <record id="template_wallbox_user_account" model="res.users">
+        <field name="name">Wallbox User Template</field>
+        <field name="login">wallboxusertemplate</field>
+        <field name="active" eval="False"/>
+        <field name="groups_id" eval="[
+            (4,ref('base.group_user')),
+            (4,ref('wallbox_integration.group_wallbox_user')),
+            (4,ref('sales_team.group_sale_salesman'))
+        ]"/>
+    </record>
+
+    <record id="default_template_user_config" model="ir.config_parameter">
+        <field name="key">wallbox_user_account.template_wallbox_user_account</field>
+        <field name="value" ref="template_wallbox_user_account"/>
+    </record>
+
+    <record id="template_wallbox_technician_account" model="res.users">
+        <field name="name">Wallbox Technician User Template</field>
+        <field name="login">wallboxtechnicianusertemplate</field>
+        <field name="active" eval="False"/>
+        <field name="groups_id" eval="[
+            (4,ref('base.group_user')),
+            (4,ref('wallbox_integration.group_wallbox_technician'))
+        ]"/>
+    </record>
+
+    <record id="default_template_technician_user_config" model="ir.config_parameter">
+        <field name="key">wallbox_user_account.template_wallbox_technician_account</field>
+        <field name="value" ref="template_wallbox_technician_account"/>
+    </record>
+
+    <record id="template_wallbox_condominium_account" model="res.users">
+        <field name="name">Wallbox Condominium Owner Template</field>
+        <field name="login">wallboxcondominiumusertemplate</field>
+        <field name="active" eval="False"/>
+        <field name="groups_id" eval="[
+            (4,ref('base.group_user')),
+            (4,ref('wallbox_integration.group_wallbox_condo_owner'))
+        ]"/>
+    </record>
+
+    <record id="default_template_condominium_owner_config" model="ir.config_parameter">
+        <field name="key">wallbox_user_account.template_wallbox_condominium_account</field>
+        <field name="value" ref="template_wallbox_condominium_account"/>
+    </record>
+
+</odoo>

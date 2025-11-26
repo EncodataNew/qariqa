@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_report_wallbox_order" model="ir.actions.report">
+        <field name="name">Wallbox Order</field>
+        <field name="model">wallbox.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wallbox_reports.report_wallbox_order</field>
+        <field name="report_file">wallbox_reports.report_wallbox_order</field>
+        <field name="binding_model_id" ref="wallbox_integration.model_wallbox_order"/>
+        <field name="binding_type">report</field>
+        <!-- <field name="paperformat_id" ref="base.paperformat_euro"/> -->
+    </record>
+
+</odoo>

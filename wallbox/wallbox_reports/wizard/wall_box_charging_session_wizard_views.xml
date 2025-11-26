@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wall_box_charging_session_wizard_view_form" model="ir.ui.view">
+        <field name="name">wall.box.charging.session.wizard.view.form</field>
+        <field name="model">wall.box.charging.session.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="start_date"></field>
+                            <field name="end_date"></field>
+                            <field name="customer_ids" widget="many2many_tags"></field>
+                        </group>
+                    </group>
+                    <footer>
+                        <button class="btn-primary" name="action_print" type="object" string="Print"/>
+                        <button string="Discard" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wall_box_charging_session_wizard_action" model="ir.actions.act_window">
+        <field name="name">wall.box.charging.session.report</field>
+        <field name="res_model">wall.box.charging.session.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_form_view_inherit_wallbox" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.wallbox</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="is_wallbox_device"/>
+                <field name="is_subscription"/>
+                <field name="is_guest_subscription"/>
+                <field name="subscription_duration"/>
+                <field name="subscription_unit"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="wallbox_product_menu" name="Products" parent="wallbox_integration.menu_configuration"/>
+
+    <!-- Wallbox Product -->
+    <record id="action_wallbox_product" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_wallbox_device', '=', True)]</field>
+        <field name="context">{'default_is_wallbox_device': True, 'default_type': 'combo'}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_product" name="Product" parent="wallbox_ecommerce_extended.wallbox_product_menu" action="action_wallbox_product" sequence="15" groups="wallbox_integration.group_wallbox_admin"/>
+
+    <!-- Wallbox Subscription -->
+    <record id="action_wallbox_subscription" model="ir.actions.act_window">
+        <field name="name">Subscription</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_subscription', '=', True)]</field>
+        <field name="context">{'default_is_subscription': True, 'default_type': 'service'}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_subscription" name="Subscription" parent="wallbox_ecommerce_extended.wallbox_product_menu" action="action_wallbox_subscription" sequence="16" groups="wallbox_integration.group_wallbox_admin"/>
+
+    <!-- Guest Subscription -->
+    <record id="action_wallbox_guest_subscription" model="ir.actions.act_window">
+        <field name="name">Guest Subscription</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_guest_subscription', '=', True)]</field>
+        <field name="context">{'default_is_guest_subscription': True, 'default_type': 'service'}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_guest_subscription" name="Guest Subscription" parent="wallbox_ecommerce_extended.wallbox_product_menu" action="action_wallbox_guest_subscription" sequence="17" groups="wallbox_integration.group_wallbox_admin"/>
+
+</odoo>

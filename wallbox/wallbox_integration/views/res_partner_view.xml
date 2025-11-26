@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wallbox_view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" invisible="not user_ids"
+                    name="action_show_users"
+                    class="oe_stat_button" icon="fa-user">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">User</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="General Details">
+                    <group string="User Identity" invisible="True">
+                        <group>
+                            <field name="is_wallbox_user"/>
+                            <field name="is_technician"/>
+                        </group>
+                        <group>
+                            <field name="is_condominium_owner"/>
+                            <field name="is_guest"/>
+                        </group>
+                    </group>
+                    <group string="Property">
+                        <group>
+                            <field name="condominium_id"/>
+                            <field name="building_id"/>
+                        </group>
+                        <group>
+                            <field name="parking_space_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Property details">
+                            <field name="property_tax_information"/>
+                            <field name="maintenance_fees"/>
+                            <field name="lease_agreement_details"/>
+                        </group>
+                        <group string="Legal Information">
+                            <field name="legal_disputes"/>
+                            <field name="compliance_documents"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Personal Information">
+                            <field name="date_of_birth"/>
+                            <field name="gender"/>
+                        </group>
+                        <group string="Ownership Details">
+                            <field name="type_of_ownership"/>
+                            <field name="ownership_percentage"/>
+                            <field name="rental_status"/>
+                        </group>
+                    </group>
+
+                    <separator string="Manager details" colspan="4"/>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="supplier_contracts"/>
+                            <field name="incident_reporting"/>
+                            <field name="legal_compliance"/>
+                        </group>
+                        <group>
+                            <field name="responsibilities"/>
+                            <field name="maintenance_coordination"/>
+                            <field name="budget_management"/>
+                            <field name="compliance_safety"/>
+                            <field name="tenant_relations"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Owned Condominium" invisible="not is_condominium_owner">
+                    <field name="condominium_ids" widget="one2many_list"/>
+                </page>
+                <page string="Managed Condominium" invisible="not is_condominium_owner">
+                    <field name="managed_condominium_ids" widget="one2many_list"/>
+                </page>
+
+                <page string="Owned Buildings" invisible="not is_condominium_owner">
+                    <field name="building_ids" widget="one2many_list"/>
+                </page>
+                <page string="Managed Buildings" invisible="not is_condominium_owner">
+                    <field name="managed_building_ids" widget="one2many_list"/>
+                </page>
+
+                <page string="Parking Spaces">
+                    <field name="parking_space_ids" widget="one2many_list"/>
+                </page>
+
+                <page string="User Vehicles">
+                    <field name="vehicle_ids" widget="one2many_list"/>
+                </page>
+
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_list" model="ir.ui.view">
+        <field name="name">res.partner.list</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date_of_birth"/>
+                <field name="gender"/>
+                <field name="type_of_ownership"/>
+                <field name="rental_status"/>
+                <field name="ownership_percentage"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_configuration" name="Configuration" parent="wallbox_integration.menu_wallbox_main" groups="wallbox_integration.group_wallbox_admin" sequence="300"/>
+
+    <menuitem id="menu_roles" name="Roles" parent="menu_configuration"/>
+
+    <record id="action_installation_technician" model="ir.actions.act_window">
+        <field name="name">Installation Technicians</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_technician', '=', True)]</field>
+        <field name="context">{'default_is_technician': True, 'is_technician': True}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_technician" name="Technician" parent="wallbox_integration.menu_roles" action="action_installation_technician" sequence="1"/>
+
+    <record id="action_wallbox_user" model="ir.actions.act_window">
+        <field name="name">Wallbox Users</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_wallbox_user', '=', True)]</field>
+        <field name="context">{'default_is_wallbox_user': True, 'is_wallbox_user': True}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_user" name="Wallbox Users" parent="wallbox_integration.menu_roles" action="action_wallbox_user" sequence="2"/>
+
+    <record id="action_wallbox_condo_owner" model="ir.actions.act_window">
+        <field name="name">Condominium Owner</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_condominium_owner', '=', True)]</field>
+        <field name="context">{'default_is_condominium_owner': True, 'is_condominium_owner': True}</field>
+    </record>
+
+    <menuitem id="menu_wallbox_condo_owner" name="Condominium Owner" parent="wallbox_integration.menu_roles" action="action_wallbox_condo_owner" sequence="3"/>
+
+</odoo>

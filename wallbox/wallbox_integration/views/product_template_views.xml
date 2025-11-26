@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_product_wallbox_form" model="ir.ui.view">
+        <field name="name">product.template.wallbox.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Wallbox Information">
+                    <group string="Wallbox Technical Features">
+                        <group>
+                            <field name="charging_power"/>
+                            <field name="voltage"/>
+                            <field name="max_current"/>
+                            <field name="connector_type"/>
+                            <field name="cable_length"/>
+                            <field name="connectivity"/>
+                            <field name="communication_protocol"/>
+                            <field name="user_authentication"/>
+                            <field name="load_management"/>
+                            <field name="solar_compatibility"/>
+                        </group>
+                        <group>
+                            <field name="residual_current_protection"/>
+                            <field name="protection_rating"/>
+                            <field name="min_operating_temp"/>
+                            <field name="max_operating_temp"/>
+                            <field name="dimensions"/>
+                            <field name="weight"/>
+                            <field name="installation_method"/>
+                            <field name="safety_standards"/>
+                            <field name="certifications"/>
+                            <field name="indicative_price"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

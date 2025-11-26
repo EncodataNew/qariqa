@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_wallbox_installation">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+
+                        <div class="row text-center pb-3">
+                            <h2>Wallbox Installation Reciept</h2>
+                        </div>
+
+                        <div class="row pb-5">
+                            <div class="col">
+                                <h5>Customer:</h5>
+                                <div t-field="o.customer_id.street"/>
+                                <div t-field="o.customer_id.street2"/>
+                                <div t-field="o.customer_id.city"/>
+                            </div>
+                            <div class="col">
+                                <h5>Technician</h5>
+                                <div t-field="o.installation_technician_id.street"/>
+                                <div t-field="o.installation_technician_id.street2"/>
+                                <div t-field="o.installation_technician_id.city"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4" id="informations">
+                            <div class="col">
+                                <strong>Requested Installation Date</strong>
+                                <div t-field="o.requested_installation_date"/>
+                            </div>
+                            <div class="col">
+                                <strong>Scheduled Installation Date</strong>
+                                <div t-field="o.scheduled_installation_date"/>
+                            </div>
+                            <div class="col">
+                                <strong>Actual Installation Date</strong>
+                                <div t-field="o.actual_installation_date"/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="pb-3">
+                            <strong>Installation Reference</strong>
+                            <div t-field="o.name"/>
+                            </div>
+
+                            <div>
+                            <strong>Wallbox Order</strong>
+                            <div t-field="o.order_id.name"/>
+                            </div>                              
+
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+        
+    <record id="action_report_wallbox_installation" model="ir.actions.report">
+        <field name="name">wallbox installation</field>
+        <field name="model">wallbox.installation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wallbox_reports.report_wallbox_installation</field>
+        <field name="report_file">wallbox_reports.report_wallbox_installation</field>
+        <field name="binding_model_id" ref="wallbox_integration.model_wallbox_installation"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

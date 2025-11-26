@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wall_box_charging_session_wizard,wall.box.charging.session.wizard,model_wall_box_charging_session_wizard,wallbox_integration.group_wallbox_admin,1,1,1,1

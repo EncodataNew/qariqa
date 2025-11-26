@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_condominium_management_list" model="ir.ui.view">
+        <field name="name">condominium.condominium.list</field>
+        <field name="model">condominium.condominium</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="condominium_name"/>
+                <field name="address"/>
+                <field name="number_of_buildings"/>
+                <field name="number_of_residential_units"/>
+                <field name="total_number_of_occupants"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_condominium_management_form" model="ir.ui.view">
+        <field name="name">condominium.condominium.form</field>
+        <field name="model">condominium.condominium</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_view_buildings" type="object"
+                            class="oe_stat_button" icon="fa-building-o">
+                            <field name="number_of_buildings" widget="statinfo"
+                                string="Buildings"/>
+                        </button>
+                        <button name="action_view_parking_spaces" type="object"
+                            class="oe_stat_button" icon="fa-car">
+                            <field name="number_of_parking_spaces" widget="statinfo"
+                                string="Parking Spaces"/>
+                        </button>
+                        <button name="action_view_wallbox_users" type="object"
+                            class="oe_stat_button" icon="fa-user">
+                            <field name="number_of_users" widget="statinfo"
+                                string="Wallbox Users"/>
+                        </button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="condominium_name"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="General Information">
+                            <field name="address"/>
+                            <field name="number_of_buildings"/>
+                            <field name="number_of_residential_units"/>
+                            <field name="number_of_commercial_units"/>
+                            <field name="total_number_of_occupants"/>
+                        </group>
+
+                        <group string="Administration">
+                            <field name="manager_id"/>
+                            <field name="owner_id"/>
+                            <field name="type_of_condominium"/>
+                            <field name="annual_condominium_fees"/>
+                            <field name="common_areas"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Buildings">
+                            <field name="building_ids"/>
+                        </page>
+                        <page string="Parking Spaces">
+                            <field name="parking_space_ids"/>
+                        </page>
+                        <page string="Technical Features">
+                            <group>
+                                <group>
+                                    <field name="elevator_count"/>
+                                    <field name="waste_management_system"/>
+                                    <field name="heating_system"/>
+                                </group>
+                                <group>
+                                    <field name="security_systems"/>
+                                    <field name="fire_prevention_systems"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Documentation">
+                            <group>
+                                <group>
+                                    <field name="insurance_coverage"/>
+                                    <field name="condominium_regulations"/>
+                                    <field name="meeting_minutes"/>
+                                </group>
+                                <group>
+                                    <field name="maintenance_contracts"/>
+                                    <field name="legal_disputes"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Safety and Regulations">
+                            <group>
+                                <group>
+                                    <field name="safety_inspections"/>
+                                    <field name="accessibility_features"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Maintenance &amp; Issues">
+                            <group>
+                                <group>
+                                    <field name="scheduled_maintenance_plans"/>
+                                    <field name="last_extraordinary_maintenance"/>
+                                    <field name="ongoing_issues"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_condominium_management" model="ir.actions.act_window">
+        <field name="name">Condominiums</field>
+        <field name="res_model">condominium.condominium</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_wallbox_main" name="WallBox"/>
+
+    <menuitem id="property_menu" name="Property" parent="wallbox_integration.menu_wallbox_main" sequence="2" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner,wallbox_integration.group_wallbox_user"/>
+
+    <menuitem id="condominium_menu" name="Condominiums" parent="wallbox_integration.property_menu" action="action_condominium_management" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"/>
+
+</odoo>

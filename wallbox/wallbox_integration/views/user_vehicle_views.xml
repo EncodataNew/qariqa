@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_user_vehicle_list" model="ir.ui.view">
+        <field name="name">user.vehicle.list</field>
+        <field name="model">user.vehicle</field>
+        <field name="arch" type="xml">
+            <list string="User Vehicles">
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="model"/>
+                <field name="licence_plate"/>
+                <field name="charging_power"/>
+                <field name="connector_type"/>
+                <field name="is_default"/>
+                <field name="partner_id" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_user_vehicle_form" model="ir.ui.view">
+        <field name="name">user.vehicle.form</field>
+        <field name="model">user.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="User Vehicle">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Car Name..."/></h1>
+                    </div>
+                    <group string="Vehicle Information" name="vehicle_info">
+                        <group>
+                            <field name="brand"/>
+                            <field name="model"/>
+                            <field name="licence_plate"/>
+                            <field name="charging_power"/>
+                            <field name="connector_type"/>
+                            <field name="is_default"/>
+                        </group>
+
+                        <group>
+                            <field name="emissions"/>
+                            <field name="consumption"/>
+                            <field name="autonomy"/>
+                            <field name="battery_capacity"/>
+                            <field name="vehicle_type"/>
+                            <field name="fuel_type"/>
+                            <field name="partner_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_user_vehicle_search" model="ir.ui.view">
+        <field name="name">user.vehicle.search</field>
+        <field name="model">user.vehicle</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="licence_plate"/>
+                <field name="partner_id"/>
+                <filter string="Type 2 Connectors" name="type2" domain="[('connector_type','=','type2')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Brand" name="group_by_brand" context="{'group_by':'brand'}"/>
+                    <filter string="Connector Type" name="group_by_connector" context="{'group_by':'connector_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_user_vehicle" model="ir.actions.act_window">
+        <field name="name">My Vehicles</field>
+        <field name="res_model">user.vehicle</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Menu Items -->    
+    <menuitem id="menu_user_vehicle" parent="wallbox_integration.menu_wallbox" 
+        name="My Vehicles" action="action_user_vehicle" sequence="10"/>
+</odoo>

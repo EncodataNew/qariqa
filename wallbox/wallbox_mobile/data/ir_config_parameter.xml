@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="jwt_secret" model="ir.config_parameter">
+        <field name="key">jwt.secret</field>
+        <field name="value">xK8-4qF$3jL#pW9*mZ2@bN7!cV1-hG5</field>
+    </record>
+    <record id="jwt_algorithm" model="ir.config_parameter">
+        <field name="key">jwt.algorithm</field>
+        <field name="value">HS256</field>
+    </record>
+    <record id="jwt_expiration" model="ir.config_parameter">
+        <field name="key">jwt.expiration_minutes</field>
+        <field name="value">1440</field>
+    </record>
+</odoo>

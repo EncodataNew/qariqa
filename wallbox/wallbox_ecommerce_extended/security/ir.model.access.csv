@@ -1,0 +1,32 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_wallbox_subscription_admin,wallbox.subscription.admin,model_wallbox_subscription,wallbox_integration.group_wallbox_admin,1,1,1,0
+access_wallbox_subscription_user,wallbox.subscription.user,model_wallbox_subscription,wallbox_integration.group_wallbox_user,1,0,0,0
+access_wallbox_subscription_condo_owner,wallbox.subscription.condo_owner,model_wallbox_subscription,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_request_charging,request_charging,model_request_charging,base.group_user,1,1,1,1
+
+access_stock_lot_report,stock_lot_report_wallbox_user,stock.model_stock_lot_report,wallbox_integration.group_wallbox_user,1,0,0,0
+access_stock_lot_report_condo_owner,stock_lot_report_condo_owner,stock.model_stock_lot_report,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_stock_lot_wallbox_user,stock.lot.wallbox.user,stock.model_stock_lot,wallbox_integration.group_wallbox_user,1,0,0,0
+access_stock_lot_condo_owner,stock.lot.condo.owner,stock.model_stock_lot,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_payment_transaction_wallbox_user,payment.transaction.wallbox.user,payment.model_payment_transaction,wallbox_integration.group_wallbox_user,1,0,0,0
+
+access_sale_order_wallbox_user,sale.order.wallbox.user,sale.model_sale_order,wallbox_integration.group_wallbox_user,1,0,0,0
+
+access_sale_order_condo_owner,sale.order.condo.owner,sale.model_sale_order,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_sale_order_line_condo_owner,sale.order.line.condo.owner,sale.model_sale_order_line,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_trip_trip_user,trip.trip user,model_trip_trip,base.group_user,1,1,1,1
+access_trip_trip_manager,trip.trip manager,model_trip_trip,base.group_system,1,1,1,1
+
+access_trip_advised_evehicle_user,trip.advised_evehicle user,model_trip_advised_evehicle,base.group_user,1,1,1,1
+access_trip_advised_evehicle_manager,trip.advised_evehicle manager,model_trip_advised_evehicle,base.group_system,1,1,1,1
+
+access_trip_location_user,trip.location user,model_trip_location,base.group_user,1,1,1,1
+access_trip_location_manager,trip.location manager,model_trip_location,base.group_system,1,1,1,1
+
+access_charging_station_invitation,charging_station_invitation_user,model_charging_station_invitation,base.group_user,1,1,1,1

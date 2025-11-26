@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wallbox_cms_server_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 13:35+0000\n"
+"PO-Revision-Date: 2025-06-26 13:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model.fields,help:wallbox_cms_server_integration.field_res_config_settings__cms_api_token
+msgid "Authentication token for CMS API"
+msgstr "Token di autenticazione per API CMS"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model.fields,help:wallbox_cms_server_integration.field_res_config_settings__cms_api_url
+msgid "Base URL for CMS API endpoint"
+msgstr "URL di base per l'endpoint API CMS"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model.fields,field_description:wallbox_cms_server_integration.field_res_config_settings__cms_api_token
+msgid "CMS API Token"
+msgstr "Token API CMS"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model.fields,field_description:wallbox_cms_server_integration.field_res_config_settings__cms_api_url
+msgid "CMS API URL"
+msgstr "URL API CMS"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "CMS API credentials not configured in settings"
+msgstr "Credenziali API CMS non configurate nelle impostazioni"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "CMS Server Integration"
+msgstr "Integrazione Server CMS"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model,name:wallbox_cms_server_integration.model_csms_api
+msgid "CSMS API Client"
+msgstr "Client API CSMS"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "CSMS API Error: %s"
+msgstr "Errore API CSMS: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "CSMS API Validation Error: %s"
+msgstr "Errore di Convalida API CSMS: %s"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "CSMS Server Configuration"
+msgstr "Configurazione Server CSMS"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "CSMS Server Token"
+msgstr "Token Server CSMS"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "CSMS Server URL"
+msgstr "URL Server CSMS"
+
+#. module: wallbox_cms_server_integration
+#: model:ir.model,name:wallbox_cms_server_integration.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "Enter your API token"
+msgstr "Inserisci il tuo token API"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Failed to create charger: %s"
+msgstr "Impossibile creare il caricabatterie: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Failed to reset charger: %s"
+msgstr "Impossibile reimpostare il caricabatterie: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Failed to start charging session: %s"
+msgstr "Impossibile avviare la sessione di ricarica: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Failed to stop charging session: %s"
+msgstr "Impossibile interrompere la sessione di ricarica: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Failed to unlock connector: %s"
+msgstr "Impossibile sbloccare il connettore: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Invalid date format for subscription_exp_date. Use DD-MM-YYYY"
+msgstr "Formato data non valido per subscription_exp_date. Usa GG-MM-AAAA"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Invalid reset type. Must be 'Soft' or 'Hard'"
+msgstr "Tipo di reset non valido. Deve essere 'Soft' o 'Hard'"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Missing required field: %s"
+msgstr "Campo obbligatorio mancante: %s"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "Missing required fields for charger creation"
+msgstr "Campi obbligatori mancanti per la creazione del caricabatterie"
+
+#. module: wallbox_cms_server_integration
+#. odoo-python
+#: code:addons/wallbox_cms_server_integration/models/csms_api.py:0
+msgid "No response received from CSMS API"
+msgstr "Nessuna risposta ricevuta dall'API CSMS"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "Set URL"
+msgstr "Imposta URL"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "Wallbox Settings"
+msgstr "Impostazioni Wallbox"
+
+#. module: wallbox_cms_server_integration
+#: model_terms:ir.ui.view,arch_db:wallbox_cms_server_integration.res_config_settings_view_form
+msgid "https://api.example.com/v1/"
+msgstr "https://api.example.com/v1/"

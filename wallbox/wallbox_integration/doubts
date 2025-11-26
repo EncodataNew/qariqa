@@ -1,0 +1,11 @@
+Wallbox doubts:
+
+** condo owner **
+
+- Which sale order is visible ?
+
+  - sale order in which request_id.condo_id.owner_id = condo owner id
+  - from 'request charging' all sale order is created by owner of the wallbox.
+  - give salesperson access to condo owner and wallbox user.
+  - restrict product deletion and updation.
+  - hide contact which is not related to condo owner.

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_wallbox_log_list" model="ir.ui.view">
+        <field name="name">wallbox.log.list</field>
+        <field name="model">wallbox.log</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="charger_id"/>
+                <field name="charging_station_id"/>
+                <field name="message"/>
+                <field name="payload"/>
+                <field name="direction"/>
+                <field name="created_at"/>
+                <field name="updated_at"/>
+                <field name="not_necessary" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wallbox_log_form" model="ir.ui.view">
+        <field name="name">wallbox.log.form</field>
+        <field name="model">wallbox.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="message"/>
+                            <field name="payload"/>
+                            <field name="charger_id"/>
+                            <field name="charging_station_id"/>
+                        </group>
+                        <group>
+                            <field name="direction"/>
+                            <field name="created_at"/>
+                            <field name="updated_at"/>
+                            <!-- <field name="not_necessary"/> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallbox_log" model="ir.actions.act_window">
+        <field name="name">Wallbox Logs</field>
+        <field name="res_model">wallbox.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_wallbox_log" name="Wallbox Logs" parent="wallbox_integration.menu_charging" action="action_wallbox_log" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"/>
+
+</odoo>

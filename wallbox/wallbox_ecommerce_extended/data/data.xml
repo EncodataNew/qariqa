@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="website.default_website" model="website">
+        <field name="account_on_checkout">mandatory</field>
+    </record>
+
+    <record id="product_product_wallbox_charging" model="product.product">
+        <field name="name">Wallbox Charging Service</field>
+        <field name="default_code">WBCS</field>
+        <field name="type">service</field>
+        <field name="categ_id" ref="product.product_category_1"/>
+        <field name="list_price">300</field>
+        <field name="invoice_policy">order</field>
+        <field name="description">Charging service for electric vehicles using wallbox stations</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">False</field>
+        <field name="taxes_id" eval="False"/>
+        <field name="supplier_taxes_id" eval="False"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record id="seq_charging_station_invitation" model="ir.sequence">
+        <field name="name">Charging Station Invitation</field>
+        <field name="code">charging.station.invitation</field>
+        <field name="prefix">INV</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>

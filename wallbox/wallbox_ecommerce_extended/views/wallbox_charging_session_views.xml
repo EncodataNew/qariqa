@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_wallbox_charging_session_form_inherit_request" model="ir.ui.view">
+        <field name="name">wallbox.charging.session.form.inherit.request</field>
+        <field name="model">wallbox.charging.session</field>
+        <field name="inherit_id" ref="wallbox_integration.view_wallbox_charging_session_form"/>
+        <field name="arch" type="xml">
+            <field name="charging_station_id" position="after">
+                <field name="request_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

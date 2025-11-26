@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wallbox_view_users_activity_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.activity.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="wallbox">
+                    <group>
+                        <group>
+                            <field name="registration_date"/>
+                            <field name="last_login_date"/>
+                            <field name="last_password_change"/>
+                        </group>
+                        <group>
+                            <field name="terms_acceptance_date"/>
+                            <field name="privacy_policy_acceptance_date"/>
+                            <field name="activity_logs" widget="text"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="user_type"/>
+                            <field name="account_status"/>
+                            <field name="role"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Custom List View -->
+    <record id="view_users_activity_list" model="ir.ui.view">
+        <field name="name">res.users.activity.list</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="registration_date"/>
+                <field name="last_login_date"/>
+                <field name="last_password_change"/>
+                <field name="terms_acceptance_date"/>
+                <field name="privacy_policy_acceptance_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_activity_logs" model="ir.actions.act_window">
+        <field name="name">User Activity Logs</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

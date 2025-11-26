@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="0"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Wallbox" string="Wallbox Settings" name="wallbox_settings" logo="/wallbox_cms_server_integration/static/src/img/logo.jpeg">
+                     <!-- logo="/base/static/description/settings.png" -->
+                    <div class="app_wallbox_settings_block" data-string="CMS Integration" string="CMS Server Integration" data-key="cms_integration">
+                        <block title="CSMS Server Configuration" id="cms_api_config">
+                            <setting string="CSMS Server URL" help="Set URL" title="CSMS Server URL" id="csms_server_url">
+                                <div class="content-group">
+                                    <field name="cms_api_url" placeholder="https://api.example.com/v1/"/>
+                                </div>
+                            </setting>
+                            <setting string="CSMS Server Token" help="CSMS Server Token" title="CSMS Server Token" id="csms_server_token">
+                                <div class="content-group">
+                                    <field name="cms_api_token" password="True" placeholder="Enter your API token"/>
+                                </div>
+                            </setting>
+                        </block>
+                    </div>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

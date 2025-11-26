@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_wallbox_charging_list" model="ir.ui.view">
+        <field name="name">wallbox.charging.list</field>
+        <field name="model">wallbox.charging</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="charge_id"/>
+                <field name="service_id"/>
+                <field name="customer_id"/>
+                <field name="request_status"/>
+                <field name="service_scheduled_date"/>
+                <field name="service_completion_date"/>
+                <field name="service_cost"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wallbox_charging_form" model="ir.ui.view">
+        <field name="name">wallbox.charging.form</field>
+        <field name="model">wallbox.charging</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="charge_id"/>
+                        <field name="service_id"/>
+                        <field name="reservation_requested"/>
+                        <field name="reservation_date"/>
+                        <field name="service_requested_date"/>
+                        <field name="service_scheduled_date"/>
+                        <field name="service_completion_date"/>
+                        <field name="charging_duration"/>
+                    </group>
+                    <group>
+                        <field name="service_cost"/>
+                        <field name="payment_method"/>
+                        <field name="payment_status"/>
+                        <field name="request_status"/>
+                    </group>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="wallbox_model_id"/>
+                        <field name="building_id"/>
+                        <field name="parking_space_id"/>
+                        <field name="condominium_id"/>
+                    </group>
+                    <group>
+                        <field name="charging_power"/>
+                        <field name="energy_consumed"/>
+                    </group>
+                    <group>
+                        <field name="documentation"/>
+                        <field name="service_notes"/>
+                        <field name="customer_confirmation"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallbox_charging" model="ir.actions.act_window">
+        <field name="name">Wallbox Charging</field>
+        <field name="res_model">wallbox.charging</field>
+        <field name="state">manual</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_wallbox_charging" name="Charging Sessions" parent="wallbox_integration.menu_wallbox_main" action="action_wallbox_charging"/>
+
+</odoo>

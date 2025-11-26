@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_service_management_form" model="ir.ui.view">
+        <field name="name">service.management.form</field>
+        <field name="model">service.management</field>
+        <field name="arch" type="xml">
+            <form string="Service Management">
+                <sheet>
+                    <group>
+                        <group>
+                            <!-- <field name="service_id"/> -->
+                            <field name="name"/>
+                            <field name="service_category"/>
+                            <field name="service_info"/>
+                            <field name="reservation_required"/>
+                            <field name="cost_per_session"/>
+                            <field name="payment_method"/>
+                            <field name="user_type"/>
+                        </group>
+                        <group>
+                            <field name="service_duration"/>
+                            <field name="location"/>
+                            <field name="wallbox_type"/>
+                            <field name="charging_power"/>
+                            <field name="documentation"/>
+                            <field name="service_notes"/>
+                            <field name="maintenance_schedule"/>
+                            <field name="intervention_history"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_service_management_list" model="ir.ui.view">
+        <field name="name">service.management.list</field>
+        <field name="model">service.management</field>
+        <field name="arch" type="xml">
+            <list string="Service Management">
+                <!-- <field name="service_id"/> -->
+                <field name="name"/>
+                <field name="service_category"/>
+                <field name="location"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_service_management" model="ir.actions.act_window">
+        <field name="name">Service Management</field>
+        <field name="res_model">service.management</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="service_management_menu" name="Wallbox Services" parent="wallbox_integration.menu_wallbox" action="action_service_management" sequence="10" groups="wallbox_integration.group_wallbox_user,wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"/>
+
+</odoo>

@@ -1,0 +1,42 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_building_building,building.building,model_building_building,base.group_user,1,1,1,1
+access_condominium_user,access_condominium_user,model_condominium_condominium,base.group_user,1,1,1,1
+access_condominium_condominium,access_condominium_condominium,model_condominium_condominium,base.group_system,1,1,1,1
+access_parking_space_user,Parking Space User,model_parking_space,base.group_user,1,1,1,1
+access_parking_space_manager,Parking Space Manager,model_parking_space,base.group_system,1,1,1,1
+
+charging_station_user,charging.station.user,model_charging_station,base.group_user,1,1,0,0
+charging_station_manager,Manager,model_charging_station,base.group_system,1,1,1,1
+
+access_wallbox_order_admin,wallbox.order.admin,model_wallbox_order,wallbox_integration.group_wallbox_admin,1,1,1,1
+access_wallbox_order_user,wallbox.order.user,model_wallbox_order,wallbox_integration.group_wallbox_user,1,0,0,0
+access_wallbox_order_technician,wallbox.order.technician,model_wallbox_order,wallbox_integration.group_wallbox_technician,1,0,0,0
+access_wallbox_order_condo_owner,wallbox.order.user,model_wallbox_order,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_wallbox_installation_technician,wallbox_installation_technician,model_wallbox_installation,wallbox_integration.group_wallbox_technician,1,1,0,0
+access_wallbox_installation_user,wallbox_installation_user,model_wallbox_installation,wallbox_integration.group_wallbox_user,1,0,0,0
+access_wallbox_installation_condo_owner,wallbox_installation_condo_owner,model_wallbox_installation,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+access_wallbox_installation_admin,wallbox_installation_admin,model_wallbox_installation,wallbox_integration.group_wallbox_admin,1,1,1,1
+
+access_service_management_admin,service.management.admin,model_service_management,wallbox_integration.group_wallbox_admin,1,1,1,1
+access_service_management_user,service.management.user,model_service_management,wallbox_integration.group_wallbox_user,1,0,0,0
+access_service_management_technician,service.management.technician,model_service_management,wallbox_integration.group_wallbox_technician,1,0,0,0
+access_service_management_condo_owner,service.management.condo_owner,model_service_management,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_res_users_logs,res.users.logs,model_res_users,base.group_system,1,1,1,1
+access_res_partner_property,res.partner.property,model_res_partner,base.group_system,1,1,1,1
+
+access_wallbox_charging_session_user,wallbox.charging.session.user,model_wallbox_charging_session,wallbox_integration.group_wallbox_user,1,1,1,1
+access_wallbox_charging_session_manager,wallbox.charging.session.manager,model_wallbox_charging_session,wallbox_integration.group_wallbox_admin,1,1,1,1
+access_wallbox_charging_session_condo_owner,wallbox.charging.session.condo_owner,model_wallbox_charging_session,wallbox_integration.group_wallbox_condo_owner,1,0,0,0
+
+access_wallbox_log,wallbox_log,model_wallbox_log,base.group_user,1,0,0,0
+access_wallbox_log_admin,wallbox_log_admin,model_wallbox_log,wallbox_integration.group_wallbox_admin,1,0,0,1
+
+access_user_vehicle_wallbox_user,user.vehicle.user,model_user_vehicle,wallbox_integration.group_wallbox_user,1,1,1,1
+access_user_vehicle_wallbox_admin,user.vehicle.admin,model_user_vehicle,wallbox_integration.group_wallbox_admin,1,1,1,1
+access_user_vehicle_wallbox_condo_owner,user.vehicle.condo.owner,model_user_vehicle,wallbox_integration.group_wallbox_condo_owner,1,1,1,1
+
+access_rfid_tag,rfid.tag,model_rfid_tag,base.group_user,1,1,1,1
+access_error_log_user,Error Log User Access,model_error_log,base.group_user,1,0,0,0
+access_error_log_manager,Error Log Manager Access,model_error_log,base.group_system,1,1,1,1

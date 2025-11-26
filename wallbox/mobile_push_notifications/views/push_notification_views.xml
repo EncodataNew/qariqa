@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View -->
+    <record id="view_push_notification_list" model="ir.ui.view">
+        <field name="name">push.notification.list</field>
+        <field name="model">push.notification</field>
+        <field name="arch" type="xml">
+            <list string="Push Notifications" default_order="sent_at desc">
+                <header>
+                    <button name="check_expo_receipts" string="Check Expo Reciepts" type="object"/>
+                </header>
+                <field name="sent_at"/>
+                <field name="user_id"/>
+                <field name="message"/>
+                <field name="status"/>
+                <field name="ticket_id"/>
+                <field name="error_message"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_push_notification_form" model="ir.ui.view">
+        <field name="name">push.notification.form</field>
+        <field name="model">push.notification</field>
+        <field name="arch" type="xml">
+            <form string="Push Notification">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="sent_at" readonly="1"/>
+                        <field name="status" readonly="1"/>
+                        <field name="ticket_id" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="message" nolabel="1"/>
+                        <field name="error_message" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_push_notification" model="ir.actions.act_window">
+        <field name="name">Mobile Notification Logs</field>
+        <field name="res_model">push.notification</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No push notifications have been logged yet.
+            </p>
+            <p>
+                All Expo push notifications sent to users will be logged here.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_push_notification_log"
+              name="Notification Logs"
+              parent="wallbox_integration.menu_configuration"
+              action="action_push_notification"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_trip_list" model="ir.ui.view">
+        <field name="name">trip.trip.list</field>
+        <field name="model">trip.trip</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="vehicle_id"/>
+                <field name="date"/>
+                <field name="distance"/>
+                <field name="duration"/>
+                <field name="is_simulated"/>
+                <field name="is_electric"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_trip_form" model="ir.ui.view">
+        <field name="name">trip.trip.form</field>
+        <field name="model">trip.trip</field>
+        <field name="arch" type="xml">
+            <form string="Trip">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="vehicle_identifier"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="is_simulated"/>
+                            <field name="is_electric"/>
+                            <field name="start_autonomy"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Route Tab -->
+                        <page string="Route">
+                            <group>
+                                <group string="Origin">
+                                    <field name="origin_latitude"/>
+                                    <field name="origin_longitude"/>
+                                </group>
+                                <group string="Destination">
+                                    <field name="destination_latitude"/>
+                                    <field name="destination_longitude"/>
+                                </group>
+                            </group>
+                            <!-- <group string="Waypoints"> -->
+                            <notebook>
+                                <page string="Waypoints">
+                                    <field name="waypoint_ids" nolabel="1">
+                                        <list editable="bottom">
+                                            <field name="latitude"/>
+                                            <field name="longitude"/>
+                                        </list>
+                                    </field>
+                                </page>
+                            </notebook>
+                            <!-- </group> -->
+                        </page>
+
+                        <!-- Trip Info Tab -->
+                        <page string="Trip Info">
+                            <group>
+                                <field name="distance"/>
+                                <field name="duration"/>
+                                <field name="pee"/>
+                            </group>
+                        </page>
+
+                        <!-- Savings Tab -->
+                        <page string="Savings">
+                            <group>
+                                <field name="saving_co2"/>
+                                <field name="saving_economics"/>
+                                <field name="saving_tep"/>
+                            </group>
+                        </page>
+
+                        <!-- Suggested EVs Tab -->
+                        <page string="Suggested E-Vehicles">
+                            <field name="advised_evehicle_ids">
+                                <list editable="bottom">
+                                    <field name="make"/>
+                                    <field name="model"/>
+                                    <field name="name"/>
+                                    <field name="autonomy"/>
+                                    <field name="mileage_perc"/>
+                                    <field name="advise_perc"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_trip" model="ir.actions.act_window">
+        <field name="name">Trips</field>
+        <field name="res_model">trip.trip</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_qariqa_trips" name="Trips" parent="wallbox_integration.menu_configuration" action="action_trip"/>
+
+</odoo>

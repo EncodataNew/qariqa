@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_wallbox_invoices" model="ir.actions.act_window">
+        <field name="name">Wallbox Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="context">{
+            'list_view_ref': 'account.view_invoice_tree',
+            'default_move_type': 'out_invoice',
+        }</field>
+    </record>
+
+    <menuitem id="wallbox_invoice_menu" name="Wallbox Invoices" parent="wallbox_integration.menu_wallbox_main" action="action_wallbox_invoices" sequence="250"/>
+
+</odoo>

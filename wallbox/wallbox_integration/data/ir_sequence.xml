@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="seq_wallbox_order" model="ir.sequence">
+        <field name="name">Wallbox Order Sequence</field>
+        <field name="code">wallbox.order</field>
+        <field name="prefix">WO/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_wallbox_installation" model="ir.sequence">
+        <field name="name">Wallbox Installation Sequence</field>
+        <field name="code">wallbox.installation</field>
+        <field name="prefix">WI/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_charging_station" model="ir.sequence">
+        <field name="name">Charging Station Sequence</field>
+        <field name="code">charging.station</field>
+        <field name="prefix">CS/</field>
+        <field name="padding">4</field>
+    </record>
+
+<!--     <record id="seq_charging_session" model="ir.sequence">
+        <field name="name">Charging Session Sequence</field>
+        <field name="code">wallbox.charging.session</field>
+        <field name="prefix">Session/</field>
+        <field name="padding">4</field>
+    </record>
+ -->
+    <record id="seq_request_charging" model="ir.sequence">
+        <field name="name">Request Charging Sequence</field>
+        <field name="code">request.charging</field>
+        <field name="prefix">RCH/</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>

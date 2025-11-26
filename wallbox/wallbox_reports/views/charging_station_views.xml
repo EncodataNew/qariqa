@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_ev_charging_station_form_inherit_rport" model="ir.ui.view">
+        <field name="name">charging.station.form.inherit.report</field>
+        <field name="model">charging.station</field>
+        <field name="inherit_id" ref="wallbox_integration.view_ev_charging_station_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(wallbox_reports.wall_box_charging_session_wizard_action)d" type="action" class="oe_stat_button" icon="fa-bolt">
+                    Session Report
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

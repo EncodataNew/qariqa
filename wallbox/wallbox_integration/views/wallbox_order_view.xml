@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_wallbox_purchase_list" model="ir.ui.view">
+        <field name="name">wallbox.order.list</field>
+        <field name="model">wallbox.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wallbox_purchase_form" model="ir.ui.view">
+        <field name="name">wallbox.order.form</field>
+        <field name="model">wallbox.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-danger"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_schedule_installation" string="Schedule Installation" type="object"
+                            class="oe_highlight" icon="fa-tasks"
+                            invisible="state != 'confirmed' or installation_id" groups="wallbox_integration.group_wallbox_admin"/>
+
+                    <button name="action_reset_to_draft" string="Reset to Draft" type="object" class="btn-secondary"
+                            invisible="state in ('draft', 'scheduled', 'confirmed', 'completed')"/>
+
+                    <button name="action_complete" string="Complete" type="object" class="btn-success"
+                            invisible="not can_complete" groups="wallbox_integration.group_wallbox_admin"/>
+
+                    <button name="action_view_scheduled_installation" string="View Scheduled Installation"
+                            type="object" class="oe_highlight" invisible="state != 'scheduled'"/>
+
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <group>
+                        <group string="Customer">
+                            <field name="can_complete" invisible="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="customer_id"/>
+                            <field name="condominium_id"/>
+                            <field name="building_id"/>
+                            <field name="parking_space_id"/>
+                            <field name="charging_station_id" readonly="1"/>
+                        </group>
+                        <group string="Wallbox">
+                            <field name="product_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Installation">
+                            <field name="installation_id" readonly="1"/>
+                            <field name="installation_state" readonly="1"/>
+                            <field name="installation_date" readonly="1"/>
+                        </group>
+                        <group string="Other">
+                            <field name="owner_id"/>
+                            <field name="documentation"/>
+                            <field name="service_notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallbox_purchase" model="ir.actions.act_window">
+        <field name="name">Wallbox Order</field>
+        <field name="res_model">wallbox.order</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_wallbox" name="Wallbox" parent="wallbox_integration.menu_wallbox_main" sequence="2"/>
+
+    <menuitem id="menu_wallbox_order" name="Wallbox Order" parent="wallbox_integration.menu_wallbox" action="action_wallbox_purchase" sequence="1" groups="wallbox_integration.group_wallbox_user,wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"/>
+
+    <!-- invisible discuss menu -->
+    <record id="mail.menu_root_discuss" model="ir.ui.menu">
+        <!-- <field name="active" eval="False"></field> -->
+        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]"/>
+    </record>
+
+    <!-- invisible APPS menu -->
+    <record id="base.menu_management" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]"/>
+    </record>
+
+</odoo>

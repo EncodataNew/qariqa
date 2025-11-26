@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_ev_charging_station_form_inherit_ecom" model="ir.ui.view">
+        <field name="name">charging.station.form.inherit</field>
+        <field name="model">charging.station</field>
+        <field name="inherit_id" ref="wallbox_integration.view_ev_charging_station_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="sync_with_csms" string="Sync With CSMS" type="object" icon="fa-refresh"/>
+                <button name="reset_charger" string="Reset Charger" type="object"/>
+            </xpath>
+            <field name="reported_issues" position="after">
+                <field name="serial_number"/>
+            </field>
+            <xpath expr="//button[@name='action_view_charging_station_logs']" position="after">
+                <button name="action_view_charging_requests" type="object"
+                    class="oe_stat_button" icon="fa-tasks">
+                    Charging Requests
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

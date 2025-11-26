@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_wallbox_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Header Section -->
+                        <div class="oe_structure"/>
+                        <div class="row mb-4">
+                            <div class="col-8">
+                                <h2 class="mt0">Order # <span t-field="doc.name"/></h2>
+                                <div t-if="doc.state">
+                                    <strong>Status:</strong> <span t-field="doc.state"/>
+                                </div>
+                                <div t-if="doc.date_order">
+                                    <strong>Order Date:</strong> <span t-field="doc.date_order" t-options='{"widget": "datetime"}'/>
+                                </div>
+                            </div>
+                            <div class="col-4 text-right">
+                                <div t-if="doc.customer_id">
+                                    <h3>Customer Address</h3>
+                                    <address t-field="doc.customer_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt32">
+                            <!-- Installation Details -->
+                            <div class="col-6">
+                                <h3>Installation Details</h3>
+                                <table class="table table-sm o_main_table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Condominium:</strong></td>
+                                            <td><span t-field="doc.condominium_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Building:</strong></td>
+                                            <td><span t-field="doc.building_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Parking Space:</strong></td>
+                                            <td><span t-field="doc.parking_space_id"/></td>
+                                        </tr>
+                                        <tr t-if="doc.installation_date">
+                                            <td><strong>Installation Date:</strong></td>
+                                            <td><span t-field="doc.installation_date" t-options='{"widget": "date"}'/></td>
+                                        </tr>
+                                        <tr t-if="doc.charging_station_id">
+                                            <td><strong>Charging Station:</strong></td>
+                                            <td><span t-field="doc.charging_station_id.display_name"/></td>
+                                        </tr>
+                                        <tr t-if="doc.serial_number">
+                                            <td><strong>Serial Number:</strong></td>
+                                            <td><span t-field="doc.serial_number"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Empty column for layout balance, if needed. Removed Wallbox Product Details here -->
+                            <div class="col-6"></div>
+                        </div>
+
+                        <!-- Product Table Section -->
+                        <div class="oe_structure"/>
+                        <table class="o_has_total_table table o_main_table table-borderless mt32">
+                            <thead>
+                                <tr>
+                                    <th name="th_product" class="text-start">Product</th>
+                                    <th name="th_description" class="text-start">Description</th>
+                                    <th name="th_quantity" class="text-end text-nowrap">Quantity</th>
+                                    <th name="th_priceunit" class="text-end text-nowrap">Unit Price</th>
+                                    <th name="th_subtotal" class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="doc.sale_order_id.order_line.filtered(lambda l: l.product_id.is_wallbox_device or l.product_id.is_subscription)" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id.display_name"/></td>
+                                        <td><span t-field="line.name"/></td>
+                                        <td class="text-end"><span t-field="line.product_uom_qty"/> <span t-field="line.product_uom"/></td>
+                                        <td class="text-end text-nowrap">
+                                            <span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-end o_price_total">
+                                            <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure"/>
+
+                        <!-- Related Sale Order Information (Optional, if you want to keep this section separate) -->
+                        <div class="row mt32" t-if="doc.sale_order_id">
+                            <div class="col-12">
+                                <h3>Related Sale Order Details</h3>
+                                <table class="table table-sm o_main_table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Sale Order Reference:</strong></td>
+                                            <td><span t-field="doc.sale_order_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Invoice Status:</strong></td>
+                                            <td><span t-field="doc.invoice_status"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Subscription Information -->
+                        <div class="row mt32" t-if="doc.has_active_subscription">
+                            <div class="col-12">
+                                <h3>Subscription Information</h3>
+                                <table class="table table-sm o_main_table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Active Subscription:</strong></td>
+                                            <td><span t-field="doc.active_subscription_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Expiration Date:</strong></td>
+                                            <td><span t-field="doc.active_subscription_id.end_date" t-options='{"widget": "date"}'/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Totals Section -->
+                        <div class="clearfix pt-3" name="wallbox_total_summary">
+                            <div id="total" class="row" name="total">
+                                <div class="col-6 offset-6">
+                                    <table class="o_total_table table table-borderless">
+                                        <tr class="text-right">
+                                            <td><strong>Wallbox Device Total:</strong></td>
+                                            <td class="text-right">
+                                                <span t-esc="sum(line.price_subtotal for line in doc.sale_order_id.order_line)" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                        <t t-set="subscription_total" t-value="0"/>
+                                        <t t-if="doc.has_active_subscription and doc.active_subscription_id">
+                                            <t t-set="subscription_total" t-value="doc.active_subscription_id.product_id.list_price"/>
+                                            <tr class="text-right">
+                                                <td><strong>Subscription Total:</strong></td>
+                                                <td class="text-right">
+                                                    <span t-esc="subscription_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr class="border-black o_total_amount">
+                                            <td><strong>Grand Total:</strong></td>
+                                            <td class="text-right">
+                                                <t t-set="grand_total" t-value="sum(line.price_subtotal for line in doc.sale_order_id.order_line) + subscription_total"/>
+                                                <span t-esc="grand_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure"/>
+
+                        <!-- Service Notes -->
+                        <div class="row mt32" t-if="doc.service_notes">
+                            <div class="col-12">
+                                <h3>Service Notes</h3>
+                                <p t-field="doc.service_notes"/>
+                            </div>
+                        </div>
+
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

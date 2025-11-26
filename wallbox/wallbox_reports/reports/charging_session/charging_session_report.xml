@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_charging_session_pdf">
+        <t t-call="web.external_layout">
+            <main>
+                <div class="page">
+                    <h3 class="text-center">Charging Session Report</h3>
+                    <div class="row">
+                        <div class="col-4">
+                            <ul>
+                              <li><strong>Charging Station:</strong> <t t-esc="data.get('charging_station_name')"/></li>
+                              <li><strong>Charger id:</strong> <t t-esc="data.get('charger_id')"/></li>
+                              <li><strong>Total Charging Session:</strong> <t t-esc="data.get('session_count')"/></li>
+                              
+                            </ul>
+
+                        </div>
+                        <div class="col-4"/>
+                        <div class="col-4">
+                             <ul>
+                              <li><strong>Owner:</strong> <t t-esc="data.get('owner')"/></li>
+                              <li><strong>Serial Number:</strong> <t t-esc="data.get('serial_number')"/></li>
+                              <li><strong>Price Per KWH:</strong> <t t-esc="data.get('price_per_kwh')"/></li>
+                              
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <br/>
+                    <t t-if="data.get('grouped_sessions')">
+                        <t t-foreach="data.get('grouped_sessions').items()" t-as="item">
+                            <t t-set="customer_name" t-value="item[0]"/>
+                            <t t-set="sessions" t-value="item[1]"/>
+
+                            <p><strong>Customer Name : </strong><t t-esc="customer_name"/></p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Start Meter</th>
+                                        <th>Stop Meter</th>
+                                        <th>Total Energy</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Total Duration</th>
+                                        <th>Status</th>
+                                        <th>Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="total_cost" t-value="0"/>
+                                    <t t-foreach="sessions" t-as="s">
+                                        <tr>
+                                            <td><t t-esc="s.get('transaction_id')"/></td>
+                                            <td><t t-esc="s.get('start_meter')"/></td>
+                                            <td><t t-esc="s.get('stop_meter')"/></td>
+                                            <td><t t-esc="s.get('total_energy')"/></td>
+                                            <td><t t-esc="s.get('start_time')"/></td>
+                                            <td><t t-esc="s.get('end_time')"/></td>
+                                            <td><t t-esc="s.get('total_duration')"/></td>
+                                            <td><t t-esc="s.get('status')"/></td>
+                                            <td><t t-esc="s.get('cost')"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <p style="text-align: right;">
+                                <strong>Total Cost: <t t-esc="sum([s['cost'] for s in sessions])"/></strong>
+                            </p>
+
+                            <br/>
+                        </t>
+                    </t>
+                </div>
+            </main>
+        </t>
+    </template>
+
+    <record id="action_report_charging_session" model="ir.actions.report">
+        <field name="name">Charging Session Report</field>
+        <field name="model">wall.box.charging.session.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wallbox_reports.report_charging_session_pdf</field>
+        <field name="report_file">wallbox_reports.report_charging_session_pdf</field>
+        <field name="print_report_name">'Charging_Session_Report_%s' % (object.id)</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+   <!-- Condominium Owner: Own Condominium -->
+    <record id="owner_own_condominium_record" model="ir.rule">
+        <field name="name">Condominium Owner: Read own Condominium records</field>
+        <field name="model_id" ref="model_condominium_condominium"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Wallbox Order - own condominium -->
+    <record id="condo_owner_own_wallbox_order_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Wallbox Orders</field>
+        <field name="model_id" ref="model_wallbox_order"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Wallbox Installation -->
+    <record id="condo_owner_own_wallbox_installation_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Wallbox Installations</field>
+        <field name="model_id" ref="model_wallbox_installation"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Building -->
+    <record id="owner_own_building_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Buildings</field>
+        <field name="model_id" ref="model_building_building"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Parking Space -->
+    <record id="owner_own_parking_space_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Parking Spaces</field>
+        <field name="model_id" ref="model_parking_space"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Charging Station -->
+    <record id="condo_owner_own_charging_station_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Charging Stations</field>
+        <field name="model_id" ref="model_charging_station"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Charging Session -->
+    <record id="condo_owner_own_charging_session_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Charging Sessions</field>
+        <field name="model_id" ref="model_wallbox_charging_session"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('charging_station_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+</odoo>

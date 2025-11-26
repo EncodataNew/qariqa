@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_ev_charging_station_list" model="ir.ui.view">
+        <field name="name">charging.station.list</field>
+        <field name="model">charging.station</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="charger_id"/>
+                <field name="owner_id"/>
+                <field name="status"/>
+                <field name="building_id"/>
+                <field name="parking_space_id"/>
+                <field name="installation_date"/>
+                <field name="number_of_charging_sessions" string="Sessions"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ev_charging_station_form" model="ir.ui.view">
+        <field name="name">charging.station.form</field>
+        <field name="model">charging.station</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_view_charging_sessions" type="object"
+                            class="oe_stat_button" icon="fa-bolt">
+                            <field name="number_of_charging_sessions" widget="statinfo"
+                                string="Charging Sessions"/>
+                        </button>
+                        <button name="action_view_charging_station_logs" type="object"
+                            class="oe_stat_button" icon="fa-book">
+                            Wallbox Logs
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="wallbox_order_id" readonly="1"/>
+                            <field name="condominium_id"/>
+                            <field name="building_id"/>
+                            <field name="parking_space_id"/>
+                            <field name="installation_date" readonly="1"/>
+                            <field name="location"/>
+                            <field name="charging_power" readonly="1"/>
+                            <field name="guest_max_amount_limit"/>
+                            <field name="connector_type" readonly="1"/>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                        </group>
+                        <group>
+                            <field name="number_of_ports"/>
+                            <field name="owner_id"/>
+                            <field name="access_type" readonly="1"/>
+                            <field name="authentication_method" readonly="1"/>
+                            <field name="energy_source" readonly="1"/>
+                            <field name="billing_system" readonly="1"/>
+                            <field name="last_maintenance_date" readonly="1"/>
+                            <field name="next_scheduled_maintenance" readonly="1"/>
+                            <field name="reported_issues" readonly="1"/>
+                            <field name="total_energy" readonly="1"/>
+                            <field name="total_recharged_cost" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Charging Session">
+                            <field name="charging_session_ids"/>
+                        </page>
+                        <page string="CMS Server">
+                            <group>
+                                <group>
+                                    <field name="charger_id"/>
+                                    <field name="owner_id"/>
+                                    <field name="price_per_kwh"/>
+                                </group>
+                                <group>
+                                    <field name="status"  readonly="1"/>
+                                    <field name="ws_url"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Allowed Monthly Billing Users">
+                            <field name="allowed_partner_ids" widget="one2many_list" context="{'default_condominium_id':condominium_id, 'default_building_id': building_id, 'default_parking_space_id':parking_space_id, 'default_is_wallbox_user': 1}">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="condominium_id"/>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="city"/>
+                                    <field name="state_id"/>
+                                    <button name="invite_wallbox_user" string="Invite" type="object" icon="fa-send" invisible="not user_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <!-- <page string="Wallbox Logs">
+                            <field name="wallbox_log_ids"/>
+                        </page> -->
+                        <page string="RFID Tags">
+                            <field name="rfid_tag_ids">
+                                <list editable="bottom">
+                                    <field name="tag_id"/>
+                                    <field name="is_allowed"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ev_charging_station" model="ir.actions.act_window">
+        <field name="name">Charging Station</field>
+        <field name="res_model">charging.station</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_charging" name="Charging" parent="wallbox_integration.menu_wallbox_main" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner,wallbox_integration.group_wallbox_user"/>
+
+    <!-- Menu -->
+    <menuitem id="menu_ev_charging_manager" name="Charging Station" parent="wallbox_integration.menu_charging" action="action_ev_charging_station" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner,wallbox_integration.group_wallbox_user"/>
+
+</odoo>

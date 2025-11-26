@@ -1,0 +1,95 @@
+||=====================
+|| Wallbox Mobile Flow
+||=====================
+
+	** Wallbox User :
+		- user will register and login.
+		- can see the wallbox order which he buy from the website.
+		- can see the subscription which he buy from the website.
+		- can see the installation records.
+
+		- can see the charging station (means charger).
+		- can see the session records.
+		- can see the logs records.
+
+		- can see the own 'request charging' records and 'request charging' in which he is set as a 
+		  wallbox owner.
+
+		- can see own 'sale order' records and 'sale orders' in which he is set as salesperson.
+
+		- can see own invoices and invoices which is created by the user.
+
+		** For Charging request
+			- select a serial number or scan a serial number or manually enter a serial number.
+			- select a vehicle. 
+			- and click on confirm, it will create a charging request in odoo.
+
+			if in the charging request, user select it's own wallbox serial
+				- user need to add the schedule datetime for start the charging.
+
+			- user will click on start charging.
+
+			- if 'start charging' then request status = 'in_progress'
+				if in_progress - visible 'Complete charging' btn for stop charging.
+
+			- when the charging stop request status = 'completed'
+
+	** Guest User :
+		** For Charging request
+			- select a serial number or scan a serial number or manually enter a serial number.
+			- select a vehicle. 
+			- and click on confirm, it will create a charging request in odoo.
+
+
+			if in the charging request, user select wallbox serial and wallbox is not it's own and user is not in allowed_partner_ids.
+				- user need to request approval from wallbox owner
+
+			- user will click on 'request charging'.
+				- request status will become - 'requested'
+
+			- this request is visible to wallbox owner
+				owner will select the payment method (cash or pre-authorized)
+
+				if pre-authorized:
+					- one payment link is generated and linked with that 'charging request'
+
+					- user have to authorize that payment transaction.
+
+					- if authorized transaction then user can see 'schedule charging' btn.
+
+					- user will add schedule date time and after that 'start charging' btn is visible.
+
+					- user will start the charging 
+						- request status = 'in_progress'
+						- visible 'Complete charging' btn for stop charging
+
+					- after completion of charging it will automatically deduct the actual amount from pre-authorize transaction.
+
+					- after this 'charging status' = 'completed'
+
+				if cash:
+					- it will not generate any payment link and it will not check the transaction status.
+
+					- visible 'start charging' btn.
+
+					- when user click on it request_status = 'in_progress'
+
+						- visible 'complete chargign' btn for stop charging
+
+					- when charging stop, request_status = 'completed'
+
+	** Condominium Owner :
+		- can see condominium records, in which user is set as a owner
+		- can see building records, in which user is set as a owner
+		- can see parking space records, in which user is set as a owner
+
+		- can see all the users in which condominium is set and user is condominium owner.
+		- can see all the Wallbox Order in which condominium is set and user is condominium owner.
+		- can see all the subscription records in which wallbox_order.condominium is set and user is condominium owner.
+		- can see all the 'installation records' in which condominium is set and user is condominium owner.
+		- can see all the 'request charging' records in which condominium is set and user is condominium owner.
+		- can see all the 'Sale Orders' records in which request_charging_id.condominium is set and user is condominium owner.
+		- can see all the 'Invoices' records in which sale_order_id.request_charging_id.condominium is set and user is condominium owner.
+
+	** System Admin : 
+		- can see all the things of all table records.

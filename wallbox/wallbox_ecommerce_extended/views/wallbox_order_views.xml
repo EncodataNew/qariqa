@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_wallbox_purchase_form_subscription" model="ir.ui.view">
+        <field name="name">wallbox.order.form</field>
+        <field name="model">wallbox.order</field>
+        <field name="inherit_id" ref="wallbox_integration.view_wallbox_purchase_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_subscriptions" type="object"
+                    class="oe_stat_button" icon="fa-file-o">
+                    <field name="subscription_count" widget="statinfo"
+                        string="Subscriptions"/>
+                </button>
+            </xpath>
+            <field name="product_id" position="after">
+                <field name="sale_order_id" readonly="1" options="{'no_open': True, 'no_create': True}"/>
+                <field name="partner_shipping_id" readonly="1"/>
+                <field name="active_subscription_id" readonly="0"/>
+                <field name="subscription_exp_date" readonly="1"/>
+                <field name="invoice_status"/>
+                <field name="date_order"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount_total" widget="monetary"/>
+                <field name="serial_number" readonly="0"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- invisible Dashboard menu -->
+    <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('base.group_no_one'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,1104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wallbox_ecommerce_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 13:26+0000\n"
+"PO-Revision-Date: 2025-06-26 13:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/product_template.py:0
+msgid "A Subscription product must have 'Duration Unit'"
+msgstr "Un prodotto in abbonamento deve avere una 'Unità di durata'"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/product_template.py:0
+msgid ""
+"A product cannot be both a regular subscription and a guest subscription"
+msgstr "Un prodotto non può essere contemporaneamente un abbonamento regolare e un abbonamento ospite"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/product_template.py:0
+msgid "A product cannot be both a wallbox device and a subscription"
+msgstr "Un prodotto non può essere contemporaneamente un dispositivo wallbox e un abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_needaction
+msgid "Action Needed"
+msgstr "Azione Necessaria"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__wallbox_subscription__state__active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__active_subscription_id
+msgid "Active Subscription"
+msgstr "Abbonamento Attivo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_ids
+msgid "Activities"
+msgstr "Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorazione Eccezione Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_state
+msgid "Activity State"
+msgstr "Stato Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona Tipo Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__amount_paid
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.wallbox_sale_order_view_list_custom
+msgid "Amount Paid"
+msgstr "Importo Pagato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__amount_total
+msgid "Amount Total"
+msgstr "Importo Totale"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Approve"
+msgstr "Approva"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__approved
+msgid "Approved"
+msgstr "Approvato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_attachment_count
+msgid "Attachment Count"
+msgstr "Numero Allegati"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Authorize Transaction"
+msgstr "Autorizza Transazione"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Authorized payment transaction is required for guest charging."
+msgstr "Per la ricarica ospite è richiesta una transazione di pagamento autorizzata."
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Basic Information"
+msgstr "Informazioni di Base"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__building_id
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Building"
+msgstr "Edificio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__can_request_charging
+msgid "Can Request Charging"
+msgstr "Può Richiedere Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__can_start_charging
+msgid "Can Start Charging"
+msgstr "Può Iniziare la Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__cancelled
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__wallbox_subscription__state__cancelled
+msgid "Cancelled"
+msgstr "Annullato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__payment_method__cash
+msgid "Cash or Manual"
+msgstr "Contanti o Manuale"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Charging Details"
+msgstr "Dettagli Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__charging_duration
+msgid "Charging Duration (hours)"
+msgstr "Durata Ricarica (ore)"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__charging_power
+msgid "Charging Power (kW)"
+msgstr "Potenza Ricarica (kW)"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_request_charging
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.menu_request_charging
+msgid "Charging Request"
+msgstr "Richiesta di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_ev_charging_station_form_inherit_ecom
+msgid "Charging Requests"
+msgstr "Richieste di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__charging_station_id
+msgid "Charging Station"
+msgstr "Stazione di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:product.template,description:wallbox_ecommerce_extended.product_product_wallbox_charging_product_template
+msgid "Charging service for electric vehicles using wallbox stations"
+msgstr "Servizio di ricarica per veicoli elettrici tramite stazioni wallbox"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Charging station not properly configured with CSMS ID."
+msgstr "Stazione di ricarica non configurata correttamente con ID CSMS."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.server,name:wallbox_ecommerce_extended.ir_cron_check_expired_subscriptions_ir_actions_server
+msgid "Check Expired Wallbox Subscriptions"
+msgstr "Verifica Abbonamenti Wallbox Scaduti"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_sale_order__has_subscription
+msgid "Check in current order for has subscription or not."
+msgstr "Verifica nell'ordine corrente se è presente un abbonamento."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_sale_order__has_wallbox_device
+msgid "Check in current order for has wallbox or not."
+msgstr "Verifica nell'ordine corrente se è presente un wallbox."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_product_product__is_guest_subscription
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_product_template__is_guest_subscription
+msgid "Check this if the subscription is for guest users"
+msgstr "Selezionare questa opzione se l'abbonamento è per utenti ospiti"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Complete"
+msgstr "Completa"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__completed
+msgid "Completed"
+msgstr "Completato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_completion_date
+msgid "Completion Date"
+msgstr "Data Completamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__condominium_id
+msgid "Condominium"
+msgstr "Condominio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__create_uid
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__create_date
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_wallbox_order__date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"Data di creazione degli ordini in bozza/inviati,\n"
+"Data di conferma degli ordini confermati."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__currency_id
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__request_user_id
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_list
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__customer_confirmation
+msgid "Customer Confirmation"
+msgstr "Conferma Cliente"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__product_template__subscription_unit__days
+msgid "Days"
+msgstr "Giorni"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__display_name
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__display_name
+msgid "Display Name"
+msgstr "Nome Visualizzato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__documentation
+msgid "Documentation"
+msgstr "Documentazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__documentation_filename
+msgid "Documentation Filename"
+msgstr "Nome File Documentazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__draft
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__duration_display
+msgid "Duration"
+msgstr "Durata"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_product__subscription_unit
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_template__subscription_unit
+msgid "Duration Unit"
+msgstr "Unità di Durata"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_product__subscription_duration
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_template__subscription_duration
+msgid "Duration Value"
+msgstr "Valore Durata"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_product_product__subscription_duration
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_product_template__subscription_duration
+msgid "Duration of the subscription period"
+msgstr "Durata del periodo di abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_charging_station
+msgid "EV Charging Station"
+msgstr "Stazione di Ricarica EV"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__end_date
+msgid "End Date"
+msgstr "Data Fine"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__energy_consumed
+msgid "Energy Consumed (kWh)"
+msgstr "Energia Consumata (kWh)"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__wallbox_subscription__state__expired
+msgid "Expired"
+msgstr "Scaduto"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Failed to complete charging session: %s"
+msgstr "Impossibile completare la sessione di ricarica: %s"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Failed to start charging: %s"
+msgstr "Impossibile avviare la ricarica: %s"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Financial Information"
+msgstr "Informazioni Finanziarie"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/sale_order.py:0
+msgid "First purchase must include a Wallbox device"
+msgstr "Il primo acquisto deve includere un dispositivo Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/sale_order.py:0
+msgid "First purchase must include a subscription"
+msgstr "Il primo acquisto deve includere un abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/sale_order.py:0
+msgid "First purchase must include both a Wallbox device and subscription"
+msgstr "Il primo acquisto deve includere sia un dispositivo Wallbox che un abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Flags"
+msgstr "Flag"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_follower_ids
+msgid "Followers"
+msgstr "Follower"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Follower (Partner)"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona Font awesome es. fa-tasks"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_guest_subscription
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.menu_wallbox_guest_subscription
+msgid "Guest Subscription"
+msgstr "Abbonamento Ospite"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Guest User Must require an approval for charging."
+msgstr "L'utente ospite deve richiedere un'approvazione per la ricarica."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Guest charging must be approved or scheduled before starting."
+msgstr "La ricarica ospite deve essere approvata o programmata prima dell'avvio."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/charging_station.py:0
+msgid "Guest max amount limit is not set."
+msgstr "Il limite massimo dell'importo per l'ospite non è impostato."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__has_active_subscription
+msgid "Has Active Subscription"
+msgstr "Ha un Abbonamento Attivo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__has_message
+msgid "Has Message"
+msgstr "Ha un Messaggio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_sale_order__has_subscription
+msgid "Has Subscription"
+msgstr "Ha Abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_sale_order__has_wallbox_device
+msgid "Has Wallbox Device"
+msgstr "Ha Dispositivo Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__id
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__id
+msgid "ID"
+msgstr "ID"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicare un'attività di eccezione."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selezionato, i nuovi messaggi richiedono la tua attenzione."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__message_has_error
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__in_progress
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "In Progress"
+msgstr "In Corso"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__partner_shipping_id
+msgid "Installation Address"
+msgstr "Indirizzo di Installazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__invoice_status
+msgid "Invoice Status"
+msgstr "Stato Fattura"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_sale_order__is_first_purchase
+msgid "Is First Purchase"
+msgstr "È il Primo Acquisto"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_is_follower
+msgid "Is Follower"
+msgstr "È Follower"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_product__is_guest_subscription
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_template__is_guest_subscription
+msgid "Is Guest Subscription?"
+msgstr "È un Abbonamento Ospite?"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__is_guest_user_request
+msgid "Is Guest User Request"
+msgstr "È una Richiesta Utente Ospite"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__is_request_user
+msgid "Is Requested User"
+msgstr "È Utente Richiesto"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_product__is_subscription
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_product_template__is_subscription
+msgid "Is Subscription?"
+msgstr "È un Abbonamento?"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__is_wallbox_owner
+msgid "Is Wallbox Owner"
+msgstr "È Proprietario Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_sale_order__is_first_purchase
+msgid "Is this the customer's first purchase?"
+msgstr "È il primo acquisto del cliente?"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__write_uid
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo Aggiornamento di"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__write_date
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__write_date
+msgid "Last Updated on"
+msgstr "Ultimo Aggiornamento il"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_wallbox_order__subscription_exp_date
+msgid "Latest expiration date among all active subscriptions"
+msgstr "Ultima data di scadenza tra tutti gli abbonamenti attivi"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore di Consegna Messaggio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Monthly billing user charging must be scheduled before starting."
+msgstr "La ricarica dell'utente con fatturazione mensile deve essere programmata prima dell'avvio."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__product_template__subscription_unit__months
+msgid "Months"
+msgstr "Mesi"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Scadenza Mia Attività"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+#: code:addons/wallbox_ecommerce_extended/models/sale_order.py:0
+#: code:addons/wallbox_ecommerce_extended/models/wallbox_subscription.py:0
+msgid "New"
+msgstr "Nuovo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Scadenza Prossima Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_summary
+msgid "Next Activity Summary"
+msgstr "Riepilogo Prossima Attività"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo Prossima Attività"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "No active charging session found to complete"
+msgstr "Nessuna sessione di ricarica attiva trovata da completare"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.actions.act_window,help:wallbox_ecommerce_extended.action_request_charging
+msgid "No request charging sessions found. Click to create a new one."
+msgstr "Nessuna sessione di ricarica richiesta trovata. Clicca per crearne una nuova."
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Notes and Documentation"
+msgstr "Note e Documentazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di Azioni"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Numero di messaggi che richiedono azione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/wallbox_subscription.py:0
+msgid "Only active subscriptions can be cancelled"
+msgstr "Solo gli abbonamenti attivi possono essere annullati"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Only in-progress charges can be completed."
+msgstr "Solo le ricariche in corso possono essere completate."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Only the requesting user can complete charging."
+msgstr "Solo l'utente che ha richiesto può completare la ricarica."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Only the requesting user can start charging."
+msgstr "Solo l'utente che ha richiesto può avviare la ricarica."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__date_order
+msgid "Order Date"
+msgstr "Data Ordine"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Owner charging must be scheduled before starting."
+msgstr "La ricarica del proprietario deve essere programmata prima dell'avvio."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__parking_space_id
+msgid "Parking Space"
+msgstr "Posto Auto"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__payment_link
+msgid "Payment Link"
+msgstr "Link di Pagamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__payment_method
+msgid "Payment Method"
+msgstr "Metodo di Pagamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__authorized_transaction_id
+msgid "Payment Transaction"
+msgstr "Transazione di Pagamento"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Pending Approval"
+msgstr "In Attesa di Approvazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__payment_method__pre-authorize
+msgid "Pre-Authorize Transaction"
+msgstr "Pre-autorizza Transazione"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/charging_station.py:0
+msgid "Price Per KWH is not set."
+msgstr "Il prezzo per KWH non è impostato."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_product
+#: model:ir.model,name:wallbox_ecommerce_extended.model_product_template
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.menu_wallbox_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.wallbox_product_menu
+msgid "Products"
+msgstr "Prodotti"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__rating
+msgid "Rating"
+msgstr "Valutazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__rating_ids
+msgid "Ratings"
+msgstr "Valutazioni"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__name
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__name
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_list
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Reference"
+msgstr "Riferimento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_request_charging
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_sale_order__request_charging_id
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Request Charging"
+msgstr "Richiesta di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Request Charging Session"
+msgstr "Richiedi Sessione di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_list
+msgid "Request Charging Sessions"
+msgstr "Richieste Sessioni di Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_requested_date
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_list
+msgid "Request Date"
+msgstr "Data Richiesta"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_charging_session__request_id
+msgid "Request Ref"
+msgstr "Rif. Richiesta"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__request_status
+msgid "Request Status"
+msgstr "Stato Richiesta"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__requested
+msgid "Requested"
+msgstr "Richiesto"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__request_charging_session_id
+msgid "Requested Charging Session"
+msgstr "Sessione di Ricarica Richiesta"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__reservation_date
+msgid "Reservation Date"
+msgstr "Data di Prenotazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__reservation_requested
+msgid "Reservation Requested"
+msgstr "Prenotazione Richiesta"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_ev_charging_station_form_inherit_ecom
+msgid "Reset Charger"
+msgstr "Reimposta Caricabatterie"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__activity_user_id
+msgid "Responsible User"
+msgstr "Utente Responsabile"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore di Consegna SMS"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__sale_order_id
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__sale_order_id
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__sale_order_id
+msgid "Sale Order"
+msgstr "Ordine di Vendita"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__sale_order_line_id
+msgid "Sale Order Line"
+msgstr "Riga Ordine di Vendita"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Sale order is required to start charging."
+msgstr "L'ordine di vendita è richiesto per avviare la ricarica."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di Vendita"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Schedule Charging"
+msgstr "Programma Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__request_charging__request_status__scheduled
+msgid "Scheduled"
+msgstr "Programmato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_scheduled_date
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_list
+msgid "Scheduled Date"
+msgstr "Data Programmata"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Scheduled date is required for schedule the charging."
+msgstr "La data programmata è necessaria per programmare la ricarica."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_charging_station__serial_number
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__serial_number
+msgid "Serial Number"
+msgstr "Numero di Serie"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_feedback
+msgid "Service Feedback"
+msgstr "Feedback del Servizio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_id
+msgid "Service ID"
+msgstr "ID Servizio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__service_notes
+msgid "Service Notes"
+msgstr "Note di Servizio"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Start Charging"
+msgstr "Avvia Ricarica"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__start_date
+msgid "Start Date"
+msgstr "Data Inizio"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__state
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Status"
+msgstr "Stato"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Stato basato sulle attività\n"
+"Scaduto: La data di scadenza è già trascorsa\n"
+"Oggi: La data dell'attività è oggi\n"
+"Pianificato: Attività future."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_subscription
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__product_id
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.menu_wallbox_subscription
+msgid "Subscription"
+msgstr "Abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__subscription_exp_date
+msgid "Subscription Expiration Date"
+msgstr "Data di Scadenza Abbonamento"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/product_template.py:0
+msgid "Subscription products must have a positive duration value"
+msgstr "I prodotti in abbonamento devono avere un valore di durata positivo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__subscription_ids
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_wallbox_purchase_form_subscription
+msgid "Subscriptions"
+msgstr "Abbonamenti"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__subscription_count
+msgid "Subscriptions Count"
+msgstr "Conteggio Abbonamenti"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__amount_paid
+msgid ""
+"Sum of transactions made in through the online payment form that are in the "
+"state 'done' or 'authorized' and linked to this order."
+msgstr ""
+"Somma delle transazioni effettuate tramite il modulo di pagamento online che sono nello stato 'fatto' o 'autorizzato' e collegate a questo ordine."
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_ev_charging_station_form_inherit_ecom
+msgid "Sync With CSMS"
+msgstr "Sincronizza con CSMS"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_form
+msgid "Technical Details"
+msgstr "Dettagli Tecnici"
+
+#. module: wallbox_ecommerce_extended
+#: model_terms:ir.ui.view,arch_db:wallbox_ecommerce_extended.view_request_charging_search
+msgid "Today's Requests"
+msgstr "Richieste di Oggi"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_order__amount_total
+msgid "Total Amount"
+msgstr "Importo Totale"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__transaction_state
+msgid "Transaction State"
+msgstr "Stato Transazione"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_stock_picking
+msgid "Transfer"
+msgstr "Trasferimento"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo di attività di eccezione registrata."
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__vehicle_id
+msgid "Vehicle"
+msgstr "Veicolo"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__visible_schedule_charging_btn
+msgid "Visible Schedule Charging button"
+msgstr "Pulsante 'Programma Ricarica' visibile"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__visible_payment_link_btn
+msgid "Visible payment button"
+msgstr "Pulsante di pagamento visibile"
+
+#. module: wallbox_ecommerce_extended
+#: model:product.template,name:wallbox_ecommerce_extended.product_product_wallbox_charging_product_template
+msgid "Wallbox Charging Service"
+msgstr "Servizio di Ricarica Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_wallbox_charging_session
+msgid "Wallbox Charging Session"
+msgstr "Sessione di Ricarica Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__wallbox_device_id
+msgid "Wallbox Device"
+msgstr "Dispositivo Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_wallbox_installation
+msgid "Wallbox Installation Management"
+msgstr "Gestione Installazioni Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_invoices
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.wallbox_invoice_menu
+msgid "Wallbox Invoices"
+msgstr "Fatture Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_sale_order__wallbox_order_id
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_wallbox_subscription__wallbox_order_id
+msgid "Wallbox Order"
+msgstr "Ordine Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_wallbox_order
+msgid "Wallbox Order Management"
+msgstr "Gestione Ordini Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__wallbox_owner_id
+msgid "Wallbox Owner"
+msgstr "Proprietario Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_sale_order
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.wallbox_sale_order_menu
+msgid "Wallbox Sale Orders"
+msgstr "Ordini di Vendita Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__wallbox_serial_id
+msgid "Wallbox Serial"
+msgstr "Seriale Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model,name:wallbox_ecommerce_extended.model_wallbox_subscription
+msgid "Wallbox Subscription"
+msgstr "Abbonamento Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.actions.act_window,name:wallbox_ecommerce_extended.action_wallbox_user_subscription
+#: model:ir.ui.menu,name:wallbox_ecommerce_extended.object_wallbox_user_subscription
+msgid "Wallbox Subscriptions"
+msgstr "Abbonamenti Wallbox"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,field_description:wallbox_ecommerce_extended.field_request_charging__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi Sito Web"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields,help:wallbox_ecommerce_extended.field_request_charging__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__product_template__subscription_unit__weeks
+msgid "Weeks"
+msgstr "Settimane"
+
+#. module: wallbox_ecommerce_extended
+#: model:ir.model.fields.selection,name:wallbox_ecommerce_extended.selection__product_template__subscription_unit__years
+msgid "Years"
+msgstr "Anni"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/controllers/main.py:0
+msgid ""
+"You already have a wallbox at this address. Please purchase only "
+"subscriptions or choose a different installation address."
+msgstr ""
+"Hai già un wallbox a questo indirizzo. Acquista solo abbonamenti o scegli un indirizzo di installazione diverso."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/sale_order.py:0
+msgid ""
+"You can not delete the sale order which is created from Charging Request."
+msgstr ""
+"Non è possibile eliminare l'ordine di vendita creato dalla richiesta di ricarica."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/controllers/main.py:0
+msgid ""
+"You must purchase a wallbox device before buying subscriptions. Please add a"
+" wallbox to your cart first."
+msgstr ""
+"Devi acquistare un dispositivo wallbox prima di acquistare abbonamenti. Aggiungi prima un wallbox al carrello."
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/models/request_charging.py:0
+msgid "Your charging session has been completed successfully"
+msgstr "La tua sessione di ricarica è stata completata con successo"
+
+#. module: wallbox_ecommerce_extended
+#. odoo-python
+#: code:addons/wallbox_ecommerce_extended/controllers/main.py:0
+msgid ""
+"Your first wallbox purchase requires a subscription. Please add a "
+"subscription to your cart."
+msgstr ""
+"Il tuo primo acquisto di wallbox richiede un abbonamento. Aggiungi un abbonamento al carrello."

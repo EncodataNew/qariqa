@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_building_condominium_list" model="ir.ui.view">
+        <field name="name">building.building.list</field>
+        <field name="model">building.building</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- <field name="identification_code"/> -->
+                <field name="building_name"/>
+                <field name="owner_id"/>
+                <field name="manager_id"/>
+                <field name="number_of_floors"/>
+                <field name="year_of_construction"/>
+                <field name="total_area"/>
+                <field name="condominium_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_building_condominium_form" model="ir.ui.view">
+        <field name="name">building.building.form</field>
+        <field name="model">building.building</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_view_parking_spaces" type="object"
+                            class="oe_stat_button" icon="fa-car">
+                            <field name="number_of_parking_spaces" widget="statinfo"
+                                string="Parking Spaces"/>
+                        </button>
+                        <button name="action_view_charging_stations" type="object"
+                            class="oe_stat_button" icon="fa-plug">
+                            <field name="number_of_charging_stations" widget="statinfo"
+                                string="Charging Stations"/>
+                        </button>
+                        <button name="action_view_wallbox_users" type="object"
+                            class="oe_stat_button" icon="fa-user">
+                            <field name="number_of_users" widget="statinfo"
+                                string="Wallbox Users"/>
+                        </button>
+                    </div>
+
+                    <group>
+                        <group string="Basic Details">
+                            <!-- <field name="identification_code" required="1"/> -->
+                            <field name="condominium_id" required="1"/>
+                            <field name="building_name" placeholder="Enter Building Name"/>
+                        </group>
+
+                        <group string="Location Details">
+                            <field name="address" placeholder="Enter Full Address" colspan="2"/>
+                            <field name="gps_coordinates"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Building Specifications">
+                            <field name="year_of_construction"/>
+                            <field name="total_area"/>
+                            <field name="number_of_floors"/>
+                            <field name="owner_id"/>
+                            <field name="manager_id" required="1"/>
+                        </group>
+
+                        <group string="Ownership &amp; Materials">
+                            <field name="type_of_ownership"/>
+                            <field name="intended_use"/>
+                            <field name="main_construction_materials"/>
+                            <field name="energy_class"/>
+                            <field name="heating_cooling_system"/>
+                            <field name="installed_systems"/>
+                            <field name="number_of_real_estate_units"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Parking Spaces">
+                            <field name="parking_space_ids"/>
+                        </page>
+                        <page string="Charging Station">
+                            <field name="charging_station_ids"/>
+                        </page>
+                        <page string="Documents">
+                            <group>
+                                <group>
+                                    <field name="blueprints"/>
+                                    <field name="energy_certifications"/>
+                                    <field name="building_permits"/>
+                                </group>
+                                <group>
+                                    <field name="insurance_policies"/>
+                                    <field name="maintenance_contracts"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Safety &amp; Accessibility">
+                            <group>
+                                <group>
+                                    <field name="compliance_certificates"/>
+                                    <field name="evacuation_safety_plan"/>
+                                </group>
+                                <group>
+                                    <field name="fire_prevention_systems"/>
+                                    <field name="accessibility_features"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Renovation &amp; Issues">
+                            <group>
+                                <group>
+                                    <field name="recent_renovation_work"/>
+                                    <field name="routine_maintenance"/>
+                                    <field name="reported_issues"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_building_condominium" model="ir.actions.act_window">
+        <field name="name">Buildings</field>
+        <field name="res_model">building.building</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_building_condominium" name="Buildings" parent="wallbox_integration.property_menu" action="action_building_condominium" groups="wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner"/>
+
+</odoo>

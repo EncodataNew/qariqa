@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_user_vehicle_form_inherit_ecommerce_extended" model="ir.ui.view">
+        <field name="name">user.vehicle.form.inherit.ecom</field>
+        <field name="model">user.vehicle</field>
+        <field name="inherit_id" ref="wallbox_integration.view_user_vehicle_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//group[@name='vehicle_info']" position="after">
+        		<notebook>
+        			<page string="Charging Requests">
+        				<field name="request_charging_ids" readonly="1" options="{'no_create_edit': True}"/>
+        			</page>
+        		</notebook>
+        	</xpath>
+        </field>
+    </record>
+
+</odoo>

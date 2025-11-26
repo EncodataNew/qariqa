@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_wallbox_installation_list" model="ir.ui.view">
+        <field name="name">wallbox.installation.list</field>
+        <field name="model">wallbox.installation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="order_id"/>
+                <field name="customer_id"/>
+                <field name="scheduled_installation_date"/>
+                <field name="actual_installation_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wallbox_installation_form" model="ir.ui.view">
+        <field name="name">wallbox.installation.form</field>
+        <field name="model">wallbox.installation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+
+                    <!-- Confirm Button: Only visible in Draft stage -->
+                    <button name="action_confirm" string="Confirm" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'draft'"/>
+
+                    <!-- Cancel Button: Only visible in Draft stage -->
+                    <button name="action_cancel" string="Cancel" type="object"
+                            class="btn-danger"
+                            invisible="state != 'draft'"/>
+
+                    <!-- Schedule Button: Only visible in Confirmed stage -->
+                    <button name="action_schedule" string="Start Installation" type="object"
+                            class="oe_highlight"
+                            groups="wallbox_integration.group_wallbox_technician"
+                            invisible="state != 'confirmed'"/>
+
+                    <!-- Send to Draft Button: Visible in Scheduled and Cancelled stages -->
+                    <button name="action_reset_to_draft" string="Reset to Draft" type="object"
+                            class="btn-secondary"
+                            invisible="state not in ('cancelled')"/>
+
+                    <!-- Complete Button: Only visible in Scheduled stage -->
+                    <button name="action_complete" string="Complete" type="object"
+                            class="btn-success"
+                            groups="wallbox_integration.group_wallbox_technician"
+                            invisible="state != 'scheduled'"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+
+                    <notebook>
+                        <!-- First Tab: Installation Details -->
+                        <page string="Installation Details">
+                            <group>
+                                <group string="Order Information">
+                                    <field name="order_id"/>
+                                    <field name="customer_id"/>
+                                    <field name="installation_technician_id"/>
+                                    <field name="warranty_period"/>
+                                    <field name="charger_id"/>
+                                </group>
+                                <group string="Location Information">
+                                    <field name="condominium_id"/>
+                                    <field name="building_id"/>
+                                    <field name="parking_space_id"/>
+                                    <field name="charging_station_id"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Second Tab: Scheduling -->
+                        <page string="Scheduling">
+                            <group>
+                                <group string="Dates">
+                                    <field name="requested_installation_date" readonly="1"/>
+                                    <field name="scheduled_installation_date"/>
+                                    <field name="actual_installation_date"/>
+                                    <field name="installation_duration" readonly="1"/>
+                                </group>
+                                
+                                <group string="Reservation">
+                                    <field name="reservation_requested"/>
+                                    <field name="reservation_date"/>
+                                    <field name="rescheduled_date"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Third Tab: Documentation -->
+                        <page string="Documentation">
+                            <group>
+                                <field name="service_notes" placeholder="Add technical notes about the installation..."/>
+                                <field name="customer_confirmation"/>
+                                <field name="documentation" placeholder="Add installation documentation and manuals..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_wallbox_installation_form_wizard" model="ir.ui.view">
+        <field name="name">wallbox.installation.form.wizard</field>
+        <field name="model">wallbox.installation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="scheduled_installation_date" required="1"/>
+                            <field name="installation_technician_id" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallbox_installation" model="ir.actions.act_window">
+        <field name="name">Wallbox Installations</field>
+        <field name="res_model">wallbox.installation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_wallbox_installation" name="Installations" parent="wallbox_integration.menu_wallbox" action="action_wallbox_installation" sequence="5" groups="wallbox_integration.group_wallbox_user,wallbox_integration.group_wallbox_admin,wallbox_integration.group_wallbox_condo_owner,wallbox_integration.group_wallbox_technician"/>
+
+</odoo>

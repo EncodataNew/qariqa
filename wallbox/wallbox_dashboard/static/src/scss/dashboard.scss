@@ -1,0 +1,80 @@
+.wallbox_dashboard {
+    /* static/src/css/dashboard.css */
+    .clickable-row {
+        cursor: pointer;
+    }
+
+    .clickable-row:hover {
+        background-color: #f8f9fa;
+    }
+
+    .chart-container {
+        min-height: 300px;
+    }
+
+    .sticky-top {
+        z-index: 1020;
+    }
+
+    .card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+        background-color: #f1f1f1;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 1rem;
+    }
+
+    .card-header h6 {
+        font-weight: 600;
+        color: #2980b9;
+    }
+    .pulse-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #28a745;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .pulse-dot::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(40, 167, 69, 0.5);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+}

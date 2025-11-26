@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_wallbox_charging_session_list" model="ir.ui.view">
+        <field name="name">wallbox.charging.session.list</field>
+        <field name="model">wallbox.charging.session</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- <field name="name"/> -->
+                <field name="transaction_id"/>
+                <field name="charging_station_id"/>
+                <field name="customer_id"/>
+                <field name="max_amount_limit"/>
+                <field name="start_meter"/>
+                <field name="stop_meter"/>
+                <field name="total_energy"/>
+                <field name="cost"/>
+                <field name="status"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="total_duration"/>
+                <button name="view_charging_session" string="View" type="object"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_wallbox_charging_session_form" model="ir.ui.view">
+        <field name="name">wallbox.charging.session.form</field>
+        <field name="model">wallbox.charging.session</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <div name="button_box" class="oe_button_box">
+                        <button name="action_view_related_logs" type="object" string="View Related Logs" class="oe_stat_button" icon="fa-list"/>
+                    </div>
+
+                    <group>
+                        <group>
+                            <!-- <field name="name"/> -->
+                            <field name="transaction_id"/>
+                            <field name="charging_station_id"/>
+                            <field name="customer_id"/>
+                            <field name="max_amount_limit"/>
+                        </group>
+                        <group>
+                            <field name="start_meter"/>
+                            <field name="stop_meter"/>
+                            <field name="total_energy"/>
+                            <field name="cost"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="created_at"/>
+                            <field name="updated_at"/>
+                            <field name="vehicle_id"/>
+                        </group>
+                        <group>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="total_duration"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_wallbox_charging_session" model="ir.actions.act_window">
+        <field name="name">Charging Sessions</field>
+        <field name="res_model">wallbox.charging.session</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_wallbox_charging_session" name="Charging Sessions"
+        parent="wallbox_integration.menu_charging" action="action_wallbox_charging_session"/>
+
+</odoo>

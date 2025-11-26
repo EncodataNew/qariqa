@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wallbox_user_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-26 13:40+0000\n"
+"PO-Revision-Date: 2025-06-26 13:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wallbox_user_account
+#: model:ir.model.fields,field_description:wallbox_user_account.field_res_users__reseller
+msgid "Is Reseller"
+msgstr "È Rivenditore"
+
+#. module: wallbox_user_account
+#: model:ir.model.fields,field_description:wallbox_user_account.field_res_users__wallbox_user
+msgid "Is Wallbox User"
+msgstr "È Utente Wallbox"
+
+#. module: wallbox_user_account
+#. odoo-python
+#: code:addons/wallbox_user_account/models/res_users.py:0
+msgid "Signup: invalid template user"
+msgstr "Registrazione: utente modello non valido"
+
+#. module: wallbox_user_account
+#. odoo-python
+#: code:addons/wallbox_user_account/models/res_users.py:0
+msgid "Signup: no login given for new user"
+msgstr "Registrazione: nessun login fornito per il nuovo utente"
+
+#. module: wallbox_user_account
+#. odoo-python
+#: code:addons/wallbox_user_account/models/res_users.py:0
+msgid "Signup: no name or partner given for new user"
+msgstr "Registrazione: nessun nome o partner fornito per il nuovo utente"
+
+#. module: wallbox_user_account
+#: model:ir.model,name:wallbox_user_account.model_res_users
+msgid "User"
+msgstr "Utente"

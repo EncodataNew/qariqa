@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_cron_delete_unnecessary_logs" model="ir.cron">
+        <field name="name">Delete Unnecessary Wallbox Logs</field>
+        <field name="model_id" ref="model_wallbox_log"/>
+        <field name="state">code</field>
+        <field name="code">model._delete_unnecessary_logs(limit=5000)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="active" eval="True"/>
+    </record>
+
+</odoo>

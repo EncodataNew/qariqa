@@ -1,0 +1,1451 @@
+openapi: 3.0.1
+info:
+  title: Wallbox Project API
+  description: API for Wallbox mobile applications (Odoo v18 backend)
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: munafkhan732@gmail.com
+servers:
+  - url: http://46.101.120.205:8069/v1
+    description: Production server
+  - url: http://46.101.120.205:9090/v1
+    description: Staging server
+
+tags:
+  - name: Authentication
+    description: User authentication and authorization
+  - name: Vehicle Management
+    description: Manage user vehicles
+  - name: Wallbox
+    description: Wallbox related operations
+  - name: Charging Requests
+    description: Manage charging requests and sessions
+  - name: Charging Sessions
+    description: Charging session management
+
+paths:
+  # Authentication Endpoints
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: Authenticate user
+      description: Authenticates user credentials and returns JWT tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register new user
+      description: Creates a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/me:
+    get:
+      tags: [Authentication]
+      summary: Get authenticated user profile
+      description: Returns profile information for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token
+      description: Generates new access token using refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Tokens refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/logout:
+    post:
+      tags: [Authentication]
+      summary: Log out user
+      description: Invalidates the current authentication token
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/forgot-password:
+    post:
+      tags: [Authentication]
+      summary: Request password reset
+      description: Initiates password reset process
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+      responses:
+        '200':
+          description: Password reset email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForgotPasswordResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /auth/delete:
+    delete:
+      tags: [Authentication]
+      summary: Delete user account
+      description: Archives the authenticated user account
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Account deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAccountResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  # Vehicle Management Endpoints
+  /vehicles:
+    get:
+      tags: [Vehicle Management]
+      summary: List all vehicles
+      description: Returns a list of all vehicles belonging to the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+    post:
+      tags: [Vehicle Management]
+      summary: Add a new vehicle
+      description: Creates a new vehicle for the authenticated user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleCreateRequest'
+      responses:
+        '201':
+          description: Vehicle created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /vehicles/{id}:
+    get:
+      tags: [Vehicle Management]
+      summary: Get vehicle details
+      description: Returns detailed information about a specific vehicle
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/VehicleId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+    put:
+      tags: [Vehicle Management]
+      summary: Update vehicle
+      description: Updates information for a specific vehicle
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/VehicleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleUpdateRequest'
+      responses:
+        '200':
+          description: Vehicle updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+    delete:
+      tags: [Vehicle Management]
+      summary: Delete vehicle
+      description: Removes a vehicle from the user's account
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/VehicleId'
+      responses:
+        '200':
+          description: Vehicle deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  # Wallbox Endpoints
+  /my/wallbox/orders:
+    get:
+      tags: [Wallbox]
+      summary: Get Wallbox Orders
+      description: Returns all wallbox orders for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WallboxOrderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /my/wallbox/subscriptions:
+    get:
+      tags: [Wallbox]
+      summary: Get Wallbox Subscriptions
+      description: Returns all wallbox subscriptions for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WallboxSubscriptionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /my/wallbox/installations:
+    get:
+      tags: [Wallbox]
+      summary: Get Wallbox Installations
+      description: Returns all installations for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WallboxInstallationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /my/wallbox/charging_stations:
+    get:
+      tags: [Wallbox]
+      summary: Get Charging Stations
+      description: Returns all charging stations for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingStationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  # Charging Requests Endpoints
+  /charging/requests/create:
+    post:
+      tags: [Charging Requests]
+      summary: Create charging request
+      description: Creates a new charging request
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargingRequestCreate'
+      responses:
+        '200':
+          description: Charging request created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/update:
+    put:
+      tags: [Charging Requests]
+      summary: Update charging request
+      description: Updates an existing charging request
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargingRequestUpdate'
+      responses:
+        '200':
+          description: Charging request updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/request:
+    post:
+      tags: [Charging Requests]
+      summary: Submit charging request for approval
+      description: Submits a draft charging request for approval (guest users only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/approve:
+    post:
+      tags: [Charging Requests]
+      summary: Approve charging request
+      description: Approves a charging request (wallbox owner only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargingRequestApprove'
+      responses:
+        '200':
+          description: Request approved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/schedule:
+    post:
+      tags: [Charging Requests]
+      summary: Schedule charging session
+      description: Schedules a charging session
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargingRequestSchedule'
+      responses:
+        '200':
+          description: Session scheduled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/start:
+    post:
+      tags: [Charging Requests]
+      summary: Start charging session
+      description: Starts a scheduled charging session
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Session started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/complete:
+    post:
+      tags: [Charging Requests]
+      summary: Complete charging session
+      description: Completes an active charging session
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Session completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/{request_id}/status:
+    get:
+      tags: [Charging Requests]
+      summary: Get charging request status
+      description: Returns the current status of a charging request
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/my-requests:
+    get:
+      tags: [Charging Requests]
+      summary: List my charging requests
+      description: Returns all charging requests for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /charging/requests/other-requests:
+    get:
+      tags: [Charging Requests]
+      summary: List other charging requests
+      description: Returns all charging requests for wallboxes owned by the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingRequestListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  # Charging Sessions Endpoints
+  /wallbox/sessions:
+    get:
+      tags: [Charging Sessions]
+      summary: Get charging sessions
+      description: Returns all charging sessions for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingSessionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  schemas:
+    # Authentication Schemas
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          example: securepassword123
+        device_token:
+          type: string
+          description: Expo push notification token
+          example: ExpoPushToken[AbCdEfGhIjKlMnOpQrStUvWx]
+      required: [email, password]
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: JWT access token
+        tokenExp:
+          type: integer
+          description: Token expiration timestamp
+        refresh:
+          type: string
+          description: JWT refresh token
+        user:
+          $ref: '#/components/schemas/UserProfile'
+
+    RegisterRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: newuser@example.com
+        password:
+          type: string
+          minLength: 8
+          example: securepassword123
+        phone:
+          type: string
+          example: "+1234567890"
+        device_token:
+          type: string
+          description: Expo push notification token
+      required: [name, email, password]
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        profile_image:
+          type: string
+          format: uri
+          nullable: true
+
+    RefreshTokenRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          description: Valid refresh token
+      required: [refresh_token]
+
+    RefreshTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: New JWT access token
+        tokenExp:
+          type: integer
+          description: Token expiration timestamp
+        refresh:
+          type: string
+          description: New JWT refresh token
+
+    LogoutResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "Logged out"
+
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+      required: [email]
+
+    ForgotPasswordResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Password reset instructions sent to your email"
+
+    DeleteAccountResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+          example: "Account deleted successfully"
+
+    # Vehicle Management Schemas
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        brand:
+          type: string
+        model:
+          type: string
+        licence_plate:
+          type: string
+        charging_power:
+          type: number
+          nullable: true
+        connector_type:
+          type: string
+          nullable: true
+        emissions:
+          type: number
+          nullable: true
+        consumption:
+          type: number
+          nullable: true
+        autonomy:
+          type: number
+          nullable: true
+        battery_capacity:
+          type: number
+          nullable: true
+        vehicle_type:
+          type: string
+          nullable: true
+        fuel_type:
+          type: string
+          nullable: true
+
+    VehicleCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        brand:
+          type: string
+          minLength: 2
+        model:
+          type: string
+          minLength: 1
+        licence_plate:
+          type: string
+          minLength: 4
+        charging_power:
+          type: number
+          nullable: true
+        connector_type:
+          type: string
+          nullable: true
+        emissions:
+          type: number
+          nullable: true
+        consumption:
+          type: number
+          nullable: true
+        autonomy:
+          type: number
+          nullable: true
+        battery_capacity:
+          type: number
+          nullable: true
+        vehicle_type:
+          type: string
+          nullable: true
+        fuel_type:
+          type: string
+          nullable: true
+      required: [name, brand, model, licence_plate]
+
+    VehicleUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        brand:
+          type: string
+          minLength: 2
+        model:
+          type: string
+          minLength: 1
+        licence_plate:
+          type: string
+          minLength: 4
+        charging_power:
+          type: number
+          nullable: true
+        connector_type:
+          type: string
+          nullable: true
+        emissions:
+          type: number
+          nullable: true
+        consumption:
+          type: number
+          nullable: true
+        autonomy:
+          type: number
+          nullable: true
+        battery_capacity:
+          type: number
+          nullable: true
+        vehicle_type:
+          type: string
+          nullable: true
+        fuel_type:
+          type: string
+          nullable: true
+
+    VehicleListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        vehicles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vehicle'
+        count:
+          type: integer
+
+    VehicleResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+
+    DeleteResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+
+    # Wallbox Schemas
+    WallboxOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+        order_reference:
+          type: string
+        state:
+          type: string
+        customer:
+          type: string
+        condominium:
+          type: string
+        building:
+          type: string
+        parking_space:
+          type: string
+        charging_station:
+          type: string
+        product_id:
+          type: string
+        service_notes:
+          type: string
+        installation_date:
+          type: string
+        installation_state:
+          type: string
+        subscription_exp_date:
+          type: string
+        sale_order_id:
+          type: string
+        date_order:
+          type: string
+        amount_total:
+          type: number
+        currency_id:
+          type: string
+        serial_number:
+          type: string
+        invoice_status:
+          type: string
+
+    WallboxOrderListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/WallboxOrder'
+        count:
+          type: integer
+
+    WallboxSubscription:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        wallbox_order_id:
+          type: integer
+        product_id:
+          type: integer
+        sale_order_id:
+          type: integer
+        product:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        state:
+          type: string
+
+    WallboxSubscriptionListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/WallboxSubscription'
+        count:
+          type: integer
+
+    WallboxInstallation:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        state:
+          type: string
+        wallbox_order_id:
+          type: integer
+        customer_id:
+          type: integer
+        installation_technician:
+          type: string
+        charger_id:
+          type: string
+        condominium_id:
+          type: integer
+        building_id:
+          type: integer
+        parking_space_id:
+          type: integer
+        charging_station:
+          type: string
+        requested_installation_date:
+          type: string
+        scheduled_installation_date:
+          type: string
+        actual_installation_date:
+          type: string
+        installation_duration:
+          type: string
+        reservation_requested:
+          type: boolean
+        reservation_date:
+          type: string
+        service_notes:
+          type: string
+        customer_confirmation:
+          type: boolean
+        documentation:
+          type: string
+        warranty_period:
+          type: string
+        rescheduled_date:
+          type: string
+
+    WallboxInstallationListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        installations:
+          type: array
+          items:
+            $ref: '#/components/schemas/WallboxInstallation'
+        count:
+          type: integer
+
+    ChargingStation:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        building:
+          type: string
+        parking_space:
+          type: string
+        installation_date:
+          type: string
+        location:
+          type: string
+        charging_power:
+          type: number
+        guest_max_amount_limit:
+          type: number
+        connector_type:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        number_of_ports:
+          type: integer
+        owner_id:
+          type: integer
+        owner_name:
+          type: string
+        access_type:
+          type: string
+        authentication_method:
+          type: string
+        energy_source:
+          type: string
+        billing_system:
+          type: string
+        last_maintenance_date:
+          type: string
+        next_scheduled_maintenance:
+          type: string
+        reported_issues:
+          type: string
+        wallbox_order_id:
+          type: integer
+        number_of_charging_sessions:
+          type: integer
+        total_allowed_users:
+          type: integer
+        total_rfid_tags:
+          type: integer
+        charger_id:
+          type: string
+        price_per_kwh:
+          type: number
+        status:
+          type: string
+        ws_url:
+          type: string
+
+    ChargingStationListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        charging_stations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingStation'
+        count:
+          type: integer
+
+    # Charging Request Schemas
+    ChargingRequestCreate:
+      type: object
+      properties:
+        wallbox_serial_id:
+          type: string
+          description: Serial number of the wallbox
+        vehicle_id:
+          type: integer
+          description: ID of the vehicle to charge
+        service_scheduled_date:
+          type: string
+          format: date-time
+          description: Required for owners/monthly users
+      required: [wallbox_serial_id, vehicle_id]
+
+    ChargingRequestUpdate:
+      type: object
+      properties:
+        vehicle_id:
+          type: integer
+        service_scheduled_date:
+          type: string
+          format: date-time
+        charging_power:
+          type: number
+        reservation_requested:
+          type: boolean
+        reservation_date:
+          type: string
+          format: date-time
+        service_notes:
+          type: string
+
+    ChargingRequestApprove:
+      type: object
+      properties:
+        payment_method:
+          type: string
+          enum: [cash, pre-authorize]
+      required: [payment_method]
+
+    ChargingRequestSchedule:
+      type: object
+      properties:
+        service_scheduled_date:
+          type: string
+          format: date-time
+      required: [service_scheduled_date]
+
+    ChargingRequestStatus:
+      type: object
+      properties:
+        request_status:
+          type: string
+          enum: [draft, requested, approved, scheduled, in_progress, completed, cancelled]
+        can_start:
+          type: boolean
+        can_complete:
+          type: boolean
+        energy_consumed:
+          type: number
+          nullable: true
+        payment_status:
+          type: string
+          nullable: true
+        payment_link:
+          type: string
+          nullable: true
+
+    ChargingRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        wallbox_serial_id:
+          type: integer
+        vehicle_id:
+          type: integer
+        request_user_id:
+          type: integer
+        request_status:
+          type: string
+          enum: [draft, requested, approved, scheduled, in_progress, completed, cancelled]
+        service_scheduled_date:
+          type: string
+          format: date-time
+          nullable: true
+        payment_method:
+          type: string
+          nullable: true
+        transaction_state:
+          type: string
+          nullable: true
+        payment_link:
+          type: string
+          nullable: true
+        energy_consumed:
+          type: number
+          nullable: true
+        can_start_charging:
+          type: boolean
+          nullable: true
+        visible_payment_link_btn:
+          type: boolean
+          nullable: true
+
+    ChargingRequestResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
+        charging_request:
+          $ref: '#/components/schemas/ChargingRequest'
+
+    ChargingRequestStatusResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        charging_request:
+          $ref: '#/components/schemas/ChargingRequestStatus'
+
+    ChargingRequestListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        charging_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingRequest'
+        count:
+          type: integer
+
+    # Charging Session Schemas
+    ChargingSession:
+      type: object
+      properties:
+        id:
+          type: integer
+        transaction_id:
+          type: string
+        charging_station_id:
+          type: string
+        customer_id:
+          type: string
+        max_amount_limit:
+          type: number
+        start_meter:
+          type: number
+        stop_meter:
+          type: number
+        total_energy:
+          type: number
+        cost:
+          type: number
+        status:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        start_time:
+          type: string
+          nullable: true
+        end_time:
+          type: string
+          nullable: true
+        total_duration:
+          type: string
+        request_id:
+          type: string
+
+    ChargingSessionListResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        charging_sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargingSession'
+        count:
+          type: integer
+
+    # Common Schemas
+    ErrorResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          description: Additional error details
+          nullable: true
+      required: [error_code, message]
+
+  parameters:
+    VehicleId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Vehicle ID
+
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Charging Request ID
+
+  responses:
+    BadRequest:
+      description: Bad request (invalid input)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            missingFields:
+              value:
+                error_code: "MISSING_FIELDS"
+                message: "Required fields: name, brand, model, licence_plate"
+            invalidConnectorType:
+              value:
+                error_code: "INVALID_CONNECTOR_TYPE"
+                message: "Connector type must be one of: type1, type2, ccs, chademo"
+
+    Unauthorized:
+      description: Unauthorized (invalid or missing token)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error_code: "INVALID_TOKEN"
+            message: "Invalid or expired authentication token"
+
+    Forbidden:
+      description: Forbidden (insufficient permissions)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error_code: "ACCESS_DENIED"
+            message: "You don't have permission to perform this action"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error_code: "RES"
+            message: "You don't have permission to perform this action"
+
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error_code: "INTERNAL_ERROR"
+            message: "An unexpected error occurred"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

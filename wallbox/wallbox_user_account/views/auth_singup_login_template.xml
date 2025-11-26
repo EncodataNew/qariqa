@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- pass wallbox_user perameter by default in signup url -->
+    <template id="wallbox_user_register" inherit_id="auth_signup.login" name="Wallbox user sign up">
+        <xpath expr="//a[@t-if='signup_enabled']" position="attributes">
+            <attribute name="t-attf-href">/web/signup?wallbox_user=True?{{ keep_query() }}</attribute>
+        </xpath>
+    </template>
+
+</odoo>

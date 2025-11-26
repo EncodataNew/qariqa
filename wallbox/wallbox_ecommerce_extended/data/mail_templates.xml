@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Invitation Request -->
+    <record id="email_template_request_invitation" model="mail.template">
+        <field name="name">Charging Station Request</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">New Charging Station Access Request for {{object.charging_station_name if object.charging_station_id else object.charging_station_name}}</field>
+        <field name="email_from">{{ object.sender_id.email or object.sender_id.user_id.email }}</field>
+        <field name="email_to">{{ object.receiver_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.receiver_id.name">
+            <t t-out="object.receiver_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        You have received a new access request from <b><t t-out="object.sender_id.name or ''">Azere Interior</t></b>
+        for your Charging Station with Charger ID: <b><t t-out="object.charging_station_name or ''">123</t></b>.
+    </p>
+
+    <p>
+        <b>Requester Details:</b><br/>
+        Name: <t t-out="object.sender_id.name or ''"></t><br/>
+        Email: <t t-out="object.sender_id.email or ''"></t><br/>
+        Mobile: <t t-out="object.sender_id.mobile or ''"></t>
+    </p>
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+    <!-- Invitation Request : Accept -->
+    <record id="email_template_request_invitation_accept" model="mail.template">
+        <field name="name">Charging Station Request Accepted</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">Your Invitation to {{object.receiver_id.name or object.email}} was Accepted</field>
+        <field name="email_from">{{ object.receiver_id.email or object.receiver_id.user_id.email }}</field>
+        <field name="email_to">{{ object.sender_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.sender_id.name">
+            <t t-out="object.sender_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        Good news! Your Request to <b><t t-out="object.receiver_id.name or ''">Azere Interior</t></b>
+        for the Charging Station with Charger ID: <b><t t-out="object.charging_station_name or ''">123</t></b>.
+    </p><br/>
+
+        has been<b style="color:green;"> accepted</b>.
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+    <!-- Invitation Request : Reject -->
+    <record id="email_template_request_invitation_reject" model="mail.template">
+        <field name="name">Charging Station Request Rejected</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">Your Request to {{object.receiver_id.name or object.email}} was Rejected</field>
+        <field name="email_from">{{ object.receiver_id.email or object.receiver_id.user_id.email }}</field>
+        <field name="email_to">{{ object.sender_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.sender_id.name">
+            <t t-out="object.sender_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        We regret to inform you that your Request to 
+        <b><t t-out="object.receiver_id.name or ''">Azere Interior</t></b>
+        for the Charger ID : <b><t t-out="object.charging_station_name or ''">CS/000123</t></b> has been<b style="color:red;"> declined</b>.
+    </p>
+    <br/>
+    <p>You may send another Request at a later time if you wish.</p>
+
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+    <!-- Send Invitation -->
+    <record id="email_template_send_invitation" model="mail.template">
+        <field name="name">Charging Station Invitation</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">New Charging Station Access Invitation for {{object.charging_station_name if object.charging_station_id else object.charging_station_name}}</field>
+        <field name="email_from">{{ object.sender_id.email or object.sender_id.user_id.email }}</field>
+        <field name="email_to">{{ object.receiver_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.receiver_id.name">
+            <t t-out="object.receiver_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        You have been invited by <b><t t-out="object.sender_id.name or ''">Azere Interior</t></b>
+        to join and use their Charging Station <b><t t-out="object.charging_station_id.name or ''">CS/000123</t></b>.
+    </p>
+        <br />
+        Please Login to the system using browser or Mobile app and Accept/Reject the invitation.
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+    <!-- Invitation : Accept -->
+    <record id="email_template_send_invitation_accept" model="mail.template">
+        <field name="name">Charging Station Invitation Accepted</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">Your Invitation to {{object.receiver_id.name or object.email}} was Accepted</field>
+        <field name="email_from">{{ object.receiver_id.email or object.receiver_id.user_id.email }}</field>
+        <field name="email_to">{{ object.sender_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.sender_id.name">
+            <t t-out="object.sender_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        Good news! Your invitation to <b><t t-out="object.receiver_id.name or ''">Azere Interior</t></b>
+        for the Charging Station <b><t t-out="object.charging_station_id.name or ''">CS/000123</t></b>
+    </p> has been<b style="color:green;"> accepted</b>.
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+    <!-- Invitation : Reject -->
+    <record id="email_template_send_invitation_reject" model="mail.template">
+        <field name="name">Charging Station Invitation Rejected</field>
+        <field name="model_id" ref="model_charging_station_invitation"/>
+        <field name="subject">Your Invitation to {{object.receiver_id.name or object.email}} was Rejected</field>
+        <field name="email_from">{{ object.receiver_id.email or object.receiver_id.user_id.email }}</field>
+        <field name="email_to">{{ object.sender_id.email or object.email }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family:Arial, sans-serif; font-size:14px;">
+    <p>Hello 
+        <t t-if="object.sender_id.name">
+            <t t-out="object.sender_id.name or ''">Brandon Freeman</t>,
+        </t>
+    </p>
+
+    <p>
+        We regret to inform you that your invitation to 
+        <b><t t-out="object.receiver_id.name or ''">Azere Interior</t></b>
+        for your Charging Station <b><t t-out="object.charging_station_id.name or ''">CS/000123</t></b> has been<b style="color:red;"> declined</b>.
+    </p>
+    <br/>
+    <p>You may send another invitation at a later time if you wish.</p>
+
+    <br />
+    Click to Login : <a href="https://qariqa.qariqa.com" target="new">qariqa.qariqa.com</a>
+    <br /><br />
+
+    Thanks &amp; Regards.
+</div>
+        </field>
+    </record>
+
+</odoo>

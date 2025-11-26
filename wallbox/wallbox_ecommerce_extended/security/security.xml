@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- record rule for wallbox subscriptions -->
+    <record id="user_own_wallbox_subscription_record" model="ir.rule">
+        <field name="name">Wallbox User: read own wallbox subscription records</field>
+        <field name="model_id" ref="model_wallbox_subscription"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('wallbox_order_id.customer_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="admin_all_wallbox_subscription_record" model="ir.rule">
+        <field name="name">Wallbox Admin: read ALL wallbox subscription records</field>
+        <field name="model_id" ref="model_wallbox_subscription"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_admin'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <!-- wallbox user can see the own request charging records -->
+    <record id="user_own_request_charging_record" model="ir.rule">
+        <field name="name">Wallbox User: read OWN Request Charging records</field>
+        <field name="model_id" ref="model_request_charging"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('request_user_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- wallbox user can see the request in which he is set as an owner -->
+    <record id="user_own_request_charging_requested_record" model="ir.rule">
+        <field name="name">Wallbox User: read OWN Charging requested records</field>
+        <field name="model_id" ref="model_request_charging"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('wallbox_owner_id', '=', user.partner_id.id), ('request_status', 'not in', ['draft'])]</field>
+    </record>
+
+    <!-- Condominium Owner: Wallbox Subscription - via order's condo -->
+    <record id="condo_owner_own_wallbox_subscription_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Wallbox Subscriptions</field>
+        <field name="model_id" ref="model_wallbox_subscription"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[('wallbox_order_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- Condominium Owner: Wallbox Sale Order -->
+    <record id="condo_owner_all_wallbox_sale_order_record" model="ir.rule">
+        <field name="name">Condominium Owner: Own Wallbox user's sale orders</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('request_charging_id.condominium_id.owner_id', '=', user.partner_id.id), ('request_charging_id', '!=', False)]</field>
+    </record>
+
+    <!-- wallbox user can see sale orders in which he is set as customer or user_id (salesperson) -->
+    <record id="wallbox_user_own_related_sale_order_record" model="ir.rule">
+        <field name="name">Wallbox User: Own Wallbox user's sale orders</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">['|', '|', ('partner_id', '=', user.partner_id.id), ('user_id', '=', user.id), ('create_uid', '=', user.id)]</field>
+    </record>
+
+    <record id="sale.sale_order_personal_rule" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="condo_owner_all_wallbox_logs_record" model="ir.rule">
+        <field name="name">Condominium Owner: all Own user's Wallbox Charger logs</field>
+        <field name="model_id" ref="wallbox_integration.model_wallbox_log"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('charging_station_id.owner_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="condo_owner_all_wallbox_request_charging_record" model="ir.rule">
+        <field name="name">Condominium Owner: all user's Wallbox charging Requests</field>
+        <field name="model_id" ref="wallbox_ecommerce_extended.model_request_charging"/>
+        <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_condo_owner'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+</odoo>

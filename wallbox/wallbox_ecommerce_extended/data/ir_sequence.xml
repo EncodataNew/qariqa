@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="seq_wallbox_subscription" model="ir.sequence">
+        <field name="name">Wallbox Subscription Sequence</field>
+        <field name="code">wallbox.subscription</field>
+        <field name="prefix">WSUB/</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>
