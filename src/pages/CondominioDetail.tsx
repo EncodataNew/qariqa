@@ -2,11 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileDown, ArrowLeft } from "lucide-react";
-import {
-  getCondominioById,
-  getStazioniByCondominio,
-} from "@/data/mockData";
+import { FileDown, ArrowLeft, MapPin, Building2 } from "lucide-react";
 import { toast } from "sonner";
 import {
   Select,
@@ -15,20 +11,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useCondominium } from "@/hooks/useCondominiums";
+import { useChargingStations, useUpdateChargingStation } from "@/hooks/useChargingStations";
+import LoadingState from "@/components/LoadingState";
+import ErrorState from "@/components/ErrorState";
+import { formatPower, formatStationStatus, formatAddress } from "@/lib/formatters";
 
 export default function CondominioDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const condominio = getCondominioById(id!);
-  const stazioni = getStazioniByCondominio(id!);
 
-  const [statiCP, setStatiCP] = useState<Record<string, string>>(
-    stazioni.reduce((acc, cp) => ({ ...acc, [cp.id]: cp.stato }), {})
-  );
+  const { data: condominio, isLoading: condominioLoading, error: condominioError, refetch: refetchCondominium } = useCondominium(Number(id));
+  const { data: stations, isLoading: stationsLoading, error: stationsError, refetch: refetchStations } = useChargingStations(Number(id));
+  const updateStation = useUpdateChargingStation();
 
-  if (!condominio) {
-    return <div>Building non trovato</div>;
+  if (condominioLoading || stationsLoading) {
+    return <LoadingState type="details" message="Caricamento dettagli condominio..." />;
+  }
+
+  if (condominioError || !condominio) {
+    return (
+      <ErrorState
+        title="Condominio non trovato"
+        message="Impossibile caricare i dettagli del condominio."
+        onRetry={() => refetchCondominium()}
+        showHomeButton
+      />
+    );
   }
 
   const handleEsportaReport = () => {
@@ -39,22 +48,31 @@ export default function CondominioDetail() {
 
   const getBadgeVariant = (stato: string) => {
     switch (stato) {
-      case "In uso":
+      case "in_uso":
         return "in-uso";
-      case "Libero":
+      case "disponibile":
         return "libero";
-      case "Manutenzione":
+      case "manutenzione":
         return "manutenzione";
-      case "Non attivo":
+      case "offline":
         return "non-attivo";
       default:
         return "default";
     }
   };
 
-  const handleStatoChange = (cpId: string, nuovoStato: string) => {
-    setStatiCP(prev => ({ ...prev, [cpId]: nuovoStato }));
+  const handleStatoChange = async (stationId: number, nuovoStato: string) => {
+    try {
+      await updateStation.mutateAsync({
+        id: stationId,
+        updates: { stato: nuovoStato as any },
+      });
+    } catch (error) {
+      console.error('Error updating station status:', error);
+    }
   };
+
+  const fullAddress = formatAddress(condominio.indirizzo, condominio.citta, condominio.provincia, condominio.cap);
 
   return (
     <div className="space-y-6">
@@ -64,74 +82,107 @@ export default function CondominioDetail() {
         </Button>
         <div className="flex-1">
           <h1 className="text-3xl font-bold">{condominio.nome}</h1>
-          <p className="text-muted-foreground">{condominio.indirizzo}</p>
+          <div className="flex items-center gap-2 text-muted-foreground mt-1">
+            <MapPin className="h-4 w-4" />
+            <p>{fullAddress}</p>
+          </div>
         </div>
         <Button onClick={handleEsportaReport}>
           <FileDown className="h-4 w-4 mr-2" />
-          Esporta report trimestrale
+          Esporta report
         </Button>
       </div>
 
+      {condominio.buildings && condominio.buildings.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Building2 className="h-5 w-5" />
+              Edifici
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {condominio.buildings.map((building) => (
+                <div key={building.id} className="p-4 border rounded-lg">
+                  <p className="font-medium">{building.name}</p>
+                  {building.address && (
+                    <p className="text-sm text-muted-foreground mt-1">{building.address}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <Card>
         <CardHeader>
-          <CardTitle>Charging Points installati</CardTitle>
+          <CardTitle>Stazioni di Ricarica</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left p-4 font-medium">ID Charging Point</th>
-                  <th className="text-left p-4 font-medium">Posizione fisica</th>
-                  <th className="text-left p-4 font-medium">Posto Auto</th>
-                  <th className="text-left p-4 font-medium">Potenza Max</th>
-                  <th className="text-left p-4 font-medium">Stato</th>
-                  <th className="text-left p-4 font-medium">Consumi Trimestre (kWh)</th>
-                  <th className="text-left p-4 font-medium">Valore Consumi (€)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stazioni.map((stazione) => (
-                  <tr
-                    key={stazione.id}
-                    className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
-                    onClick={() => navigate(`/condominio/${id}/stazione/${stazione.id}`)}
-                  >
-                    <td className="p-4 font-medium">{stazione.id}</td>
-                    <td className="p-4">{stazione.posizione}</td>
-                    <td className="p-4">{stazione.postoAuto}</td>
-                    <td className="p-4">{stazione.potenza} kW</td>
-                    <td className="p-4" onClick={(e) => e.stopPropagation()}>
-                      <Select 
-                        value={statiCP[stazione.id]} 
-                        onValueChange={(value) => handleStatoChange(stazione.id, value)}
-                      >
-                        <SelectTrigger className="w-[140px]">
-                          <Badge variant={getBadgeVariant(statiCP[stazione.id]) as any}>{statiCP[stazione.id]}</Badge>
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="In uso">
-                            <Badge variant="in-uso">In uso</Badge>
-                          </SelectItem>
-                          <SelectItem value="Libero">
-                            <Badge variant="libero">Libero</Badge>
-                          </SelectItem>
-                          <SelectItem value="Manutenzione">
-                            <Badge variant="manutenzione">Manutenzione</Badge>
-                          </SelectItem>
-                          <SelectItem value="Non attivo">
-                            <Badge variant="non-attivo">Non attivo</Badge>
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </td>
-                    <td className="p-4">{stazione.consumoTrimestre.toFixed(1)}</td>
-                    <td className="p-4">€ {stazione.valoreTrimestre.toFixed(2)}</td>
+          {stationsError ? (
+            <ErrorState
+              message="Errore nel caricamento delle stazioni"
+              onRetry={() => refetchStations()}
+            />
+          ) : stations && stations.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left p-4 font-medium">Nome</th>
+                    <th className="text-left p-4 font-medium">Potenza</th>
+                    <th className="text-left p-4 font-medium">Connettore</th>
+                    <th className="text-left p-4 font-medium">Stato</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {stations.map((station) => (
+                    <tr
+                      key={station.id}
+                      className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
+                      onClick={() => navigate(`/condominio/${id}/stazione/${station.id}`)}
+                    >
+                      <td className="p-4 font-medium">{station.nome}</td>
+                      <td className="p-4">{formatPower(station.potenza)}</td>
+                      <td className="p-4">{station.tipo_connettore}</td>
+                      <td className="p-4" onClick={(e) => e.stopPropagation()}>
+                        <Select
+                          value={station.stato}
+                          onValueChange={(value) => handleStatoChange(station.id, value)}
+                        >
+                          <SelectTrigger className="w-[160px]">
+                            <Badge variant={getBadgeVariant(station.stato) as any}>
+                              {formatStationStatus(station.stato)}
+                            </Badge>
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="disponibile">
+                              <Badge variant="libero">Disponibile</Badge>
+                            </SelectItem>
+                            <SelectItem value="in_uso">
+                              <Badge variant="in-uso">In uso</Badge>
+                            </SelectItem>
+                            <SelectItem value="manutenzione">
+                              <Badge variant="manutenzione">Manutenzione</Badge>
+                            </SelectItem>
+                            <SelectItem value="offline">
+                              <Badge variant="non-attivo">Offline</Badge>
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-center p-12 text-muted-foreground">
+              Nessuna stazione di ricarica trovata
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
