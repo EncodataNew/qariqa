@@ -1,0 +1,148 @@
+Overview of Integration Scope
+
+  Frontend: Modern React 18 + TypeScript admin dashboard (currently mock data)
+  Backend: Odoo 18.0 with comprehensive REST API + JWT authentication
+  Goal: Full API integration with authentication and real-time data
+
+  ---
+  📊 Development Breakdown
+
+  Phase 1: Authentication & API Infrastructure (Estimated: 4-6 hours with Claude Code)
+
+  Tasks:
+  1. JWT Authentication Setup
+    - Login/logout flow with /v1/auth/login and /v1/auth/logout
+    - Token storage (localStorage/sessionStorage)
+    - Axios/Fetch client with Authorization header interceptor
+    - Auto token refresh with /v1/auth/refresh
+    - Protected route wrapper
+  2. API Client Configuration
+    - Create API service layer with base URL configuration
+    - Error handling middleware
+    - Response/request interceptors
+    - TypeScript types for API responses
+
+  Files to Create/Modify:
+  - src/lib/api.ts - Axios/fetch client setup
+  - src/lib/auth.ts - Authentication utilities
+  - src/contexts/AuthContext.tsx - Auth state management
+  - src/pages/Login.tsx - New login page
+  - src/App.tsx - Protected routes wrapper
+
+  Complexity: Medium (straightforward with existing React Query setup)
+
+  ---
+  Phase 2: Data Model Mapping (Estimated: 2-3 hours with Claude Code)
+
+  Tasks:
+  1. Map Odoo models to existing TypeScript interfaces
+  2. Update type definitions for API response structures
+  3. Create transformation utilities for data normalization
+
+  Key Mappings:
+  Frontend ↔ Odoo Backend
+  - Condominio ↔ condominium.condominium
+  - Building ↔ building.building
+  - ChargingStation ↔ charging.station
+  - Utente ↔ res.partner (with wallbox_user=True)
+  - StoricoMensile ↔ wallbox.charging.session (aggregated)
+
+  Files to Modify:
+  - src/types/types.ts - Update interfaces
+  - src/lib/transformers.ts - Data mapping utilities
+
+  Complexity: Low (mostly TypeScript interface updates)
+
+  ---
+  Phase 3: React Query Integration (Estimated: 6-8 hours with Claude Code)
+
+  Tasks:
+  1. Dashboard APIs
+    - GET condominiums list
+    - GET summary statistics (custom endpoint or computed)
+    - GET recent charging sessions
+  2. Condominio Detail APIs
+    - GET condominium by ID with buildings
+    - GET charging stations for condominium
+    - UPDATE charging station status
+    - GET charging sessions history
+  3. Stazione Detail APIs
+    - GET station details with ongoing sessions
+    - GET historical sessions for station
+    - GET monthly/quarterly aggregated data
+  4. Utente Detail APIs
+    - GET user/partner details
+    - GET user vehicles
+    - GET user charging history
+  5. Mutations Setup
+    - Update CP status with optimistic updates
+    - Cache invalidation strategies
+    - Error handling with toast notifications
+
+  Files to Create/Modify:
+  - src/hooks/useCondominiums.ts
+  - src/hooks/useChargingStations.ts
+  - src/hooks/useChargingSessions.ts
+  - src/hooks/useUsers.ts
+  - src/pages/Dashboard.tsx - Replace mock data
+  - src/pages/CondominioDetail.tsx - API integration
+  - src/pages/StazioneDetail.tsx - API integration
+  - src/pages/UtenteDetail.tsx - API integration
+
+  Complexity: Medium-High (most time-consuming but repetitive)
+
+  ---
+  Phase 4: Loading States & Error Handling (Estimated: 2-3 hours with Claude Code)
+
+  Tasks:
+  1. Add loading skeletons/spinners
+  2. Error boundaries for components
+  3. Toast notifications for errors
+  4. Retry logic for failed requests
+  5. Offline state handling
+
+  Files to Modify:
+  - All page components
+  - src/components/LoadingState.tsx (new)
+  - src/components/ErrorState.tsx (new)
+
+  Complexity: Low-Medium (UI polish)
+
+  ---
+  Phase 5: Admin-Specific Features (Estimated: 3-4 hours with Claude Code)
+
+  Tasks:
+  1. Dashboard statistics endpoint (may need custom Odoo controller)
+  2. Report generation integration
+  3. Real-time status updates (polling or WebSocket)
+  4. User role management (admin vs regular user)
+
+  Potential Backend Work:
+  - Custom Odoo endpoint for admin dashboard stats: /v1/admin/dashboard (if not exists)
+  - Report generation endpoint (PDF/Excel exports)
+
+  Complexity: Medium (depends on backend readiness)
+
+  ---
+  Phase 6: Testing & Refinement (Estimated: 2-3 hours with Claude Code)
+
+  Tasks:
+  1. Test all CRUD operations
+  2. Test authentication flows
+  3. Test error scenarios
+  4. Cross-browser testing
+  5. Mobile responsiveness verification
+  
+  ---
+  📋 Recommended Implementation Order
+
+  1. ✅ Start with Authentication (foundational)
+  2. ✅ Implement Dashboard read-only (validate connection)
+  3. ✅ Add Condominio Detail with CP list
+  4. ✅ Add CP status updates (first mutation)
+  5. ✅ Complete Stazione Detail with sessions
+  6. ✅ Complete Utente Detail
+  7. ✅ Polish with loading states and error handling
+  8. ✅ Add admin-specific features
+
+
