@@ -233,6 +233,9 @@ export async function login(username: string, password: string): Promise<LoginRe
     const odooUrl = import.meta.env.VITE_API_BASE_URL || 'https://qariqa-staging.qariqa.com';
     const odooDatabase = import.meta.env.VITE_ODOO_DATABASE || 'main';
 
+    console.log('%c📊 Odoo Configuration', 'background: #9C27B0; color: white; font-weight: bold; padding: 4px;');
+    console.log(`  URL: ${odooUrl}`);
+    console.log(`  Database: ${odooDatabase} ${import.meta.env.VITE_ODOO_DATABASE ? '(from env)' : '⚠️ (using fallback - env var not set!)'}`);
     console.log(`[API] Logging in to Odoo at ${odooUrl}, database: ${odooDatabase}`);
 
     // Use the new Odoo API
