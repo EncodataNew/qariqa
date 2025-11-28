@@ -20,6 +20,12 @@
   to = "/.netlify/functions/odoo-call"
   status = 200
 
+# Admin dashboard API
+[[redirects]]
+  from = "/api/admin/dashboard"
+  to = "/.netlify/functions/dashboard"
+  status = 200
+
 # Legacy API proxy route (keeping for backwards compatibility)
 [[redirects]]
   from = "/api/proxy"
