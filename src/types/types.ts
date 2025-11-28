@@ -16,6 +16,8 @@ export interface Building {
   name: string;
   condominium_id: number;
   address?: string;
+  number_of_parking_spaces?: number;
+  number_of_charging_stations?: number;
 }
 
 // Odoo Backend Model: charging.station

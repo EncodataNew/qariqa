@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import CondominioDetail from "./pages/CondominioDetail";
 import StazioneDetail from "./pages/StazioneDetail";
 import UtenteDetail from "./pages/UtenteDetail";
+import Buildings from "./pages/Buildings";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
@@ -47,7 +48,7 @@ const App = () => (
                             <Route path="/condominio/:id/utente/:userId" element={<UtenteDetail />} />
                             <Route
                               path="/condomini"
-                              element={<Placeholder title="Condomini" description="Gestione completa dei condomini" />}
+                              element={<Buildings />}
                             />
                             <Route
                               path="/fatturazione"

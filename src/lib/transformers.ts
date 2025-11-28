@@ -36,9 +36,11 @@ export function transformOdooCondominium(odooData: any): Condominio {
 export function transformOdooBuilding(odooData: any): Building {
   return {
     id: odooData.id,
-    name: odooData.name || '',
+    name: odooData.building_name || odooData.name || '',
     condominium_id: odooData.condominium_id?.[0] || odooData.condominium_id || 0,
-    address: odooData.address || odooData.street,
+    address: odooData.address || odooData.street || '',
+    number_of_parking_spaces: odooData.number_of_parking_spaces || 0,
+    number_of_charging_stations: odooData.number_of_charging_stations || 0,
   };
 }
 
