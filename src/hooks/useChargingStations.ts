@@ -3,7 +3,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import apiClient from '@/lib/api';
+import { callOdoo } from '@/lib/odoo-api';
 import { transformOdooChargingStation, transformArray } from '@/lib/transformers';
 import type { ChargingStation } from '@/types/types';
 import { toast } from 'sonner';
@@ -15,10 +15,10 @@ export function useChargingStations(condominiumId?: number | string) {
   return useQuery({
     queryKey: condominiumId ? ['charging-stations', 'condominium', condominiumId] : ['charging-stations'],
     queryFn: async () => {
-      const url = condominiumId
-        ? `/v1/charging-stations?condominium_id=${condominiumId}`
-        : '/v1/charging-stations';
-      const { data } = await apiClient.get(url);
+      const domain = condominiumId ? [['condominium_id', '=', Number(condominiumId)]] : [];
+      const data = await callOdoo('charging.station', 'search_read', [domain], {
+        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+      });
       return transformArray(data, transformOdooChargingStation);
     },
     staleTime: 2 * 60 * 1000, // 2 minutes (shorter for real-time status)
@@ -32,8 +32,10 @@ export function useChargingStation(id: number | string | undefined) {
   return useQuery({
     queryKey: ['charging-station', id],
     queryFn: async () => {
-      const { data } = await apiClient.get(`/v1/charging-stations/${id}`);
-      return transformOdooChargingStation(data);
+      const data = await callOdoo('charging.station', 'read', [[Number(id)]], {
+        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+      });
+      return transformOdooChargingStation(data[0]);
     },
     enabled: !!id,
     staleTime: 2 * 60 * 1000, // 2 minutes
@@ -48,7 +50,11 @@ export function useChargingStationsByBuilding(buildingId: number | string | unde
   return useQuery({
     queryKey: ['charging-stations', 'building', buildingId],
     queryFn: async () => {
-      const { data } = await apiClient.get(`/v1/charging-stations?building_id=${buildingId}`);
+      const data = await callOdoo('charging.station', 'search_read', [
+        [['building_id', '=', Number(buildingId)]]
+      ], {
+        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+      });
       return transformArray(data, transformOdooChargingStation);
     },
     enabled: !!buildingId,
@@ -64,8 +70,14 @@ export function useUpdateChargingStation() {
 
   return useMutation({
     mutationFn: async ({ id, updates }: { id: number; updates: Partial<ChargingStation> }) => {
-      const { data } = await apiClient.put(`/v1/charging-stations/${id}`, updates);
-      return transformOdooChargingStation(data);
+      await callOdoo('charging.station', 'write', [[id], {
+        name: updates.nome,
+        status: updates.stato,
+        power: updates.potenza,
+        connector_type: updates.tipo_connettore,
+      }], {});
+      const data = await callOdoo('charging.station', 'read', [[id]], {});
+      return transformOdooChargingStation(data[0]);
     },
     onSuccess: (data) => {
       // Invalidate related queries
