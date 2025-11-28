@@ -79,12 +79,12 @@ exports.handler = async (event, context) => {
     // Fetch data from multiple Odoo models in parallel
     const [stations, sessions, users, condominiums] = await Promise.all([
       // Charging stations
-      callOdoo(baseUrl, cookies, 'x_charging_station', 'search_read', [[]], {
+      callOdoo(baseUrl, cookies, 'charging.station', 'search_read', [[]], {
         fields: ['status', 'name']
       }).catch(() => []),
 
       // Active charging sessions
-      callOdoo(baseUrl, cookies, 'x_charging_session', 'search_count', [
+      callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_count', [
         [['status', '=', 'in_corso']]
       ]).catch(() => 0),
 
@@ -94,12 +94,12 @@ exports.handler = async (event, context) => {
       ]).catch(() => 0),
 
       // Total condominiums
-      callOdoo(baseUrl, cookies, 'x_condominium', 'search_count', [[]]).catch(() => 0),
+      callOdoo(baseUrl, cookies, 'condominium.condominium', 'search_count', [[]]).catch(() => 0),
     ]);
 
     // Calculate monthly kWh (from this month's sessions)
     const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
-    const monthlySessions = await callOdoo(baseUrl, cookies, 'x_charging_session', 'search_read', [
+    const monthlySessions = await callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_read', [
       [['start_time', '>=', `${currentMonth}-01`]]
     ], {
       fields: ['kwh_delivered']
