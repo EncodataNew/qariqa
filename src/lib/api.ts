@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { getAccessToken, getRefreshToken, setTokens, clearTokens, isTokenExpired } from './auth';
+import { loginOdoo, logoutOdoo, isAuthenticated as isOdooAuth } from './odoo-api';
 
 // API Response Types
 export interface ApiResponse<T = any> {
@@ -224,61 +225,37 @@ async function refreshAccessToken(): Promise<string> {
 // API Methods
 
 /**
- * Login user and get JWT tokens
+ * Login user using Odoo authentication
  */
 export async function login(username: string, password: string): Promise<LoginResponse> {
   try {
-    // Note: Backend expects 'email' field, not 'username'
-    const response = await apiClient.post('/v1/auth/login', {
-      email: username,
-      password,
-    });
+    // Get Odoo URL and database from environment variables
+    const odooUrl = import.meta.env.VITE_API_BASE_URL || 'https://qariqa-staging.qariqa.com';
+    const odooDatabase = import.meta.env.VITE_ODOO_DATABASE || 'main';
 
-    // Handle JSON-RPC response format
-    const data = response.data;
+    console.log(`[API] Logging in to Odoo at ${odooUrl}, database: ${odooDatabase}`);
 
-    // Check for JSON-RPC error
-    if (data.result && data.result.status === false && data.result.error) {
-      throw new ApiError(data.result.error.message || 'Authentication failed');
-    }
+    // Use the new Odoo API
+    const response = await loginOdoo(odooUrl, odooDatabase, username, password);
 
-    // Extract tokens from successful response
-    const { access_token, refresh_token, user } = data.result || data;
-
-    if (!access_token || !refresh_token || !user) {
-      throw new ApiError('Invalid response from server');
-    }
-
-    setTokens(access_token, refresh_token, user);
-
-    return { access_token, refresh_token, user };
+    // The response is already in the format we need
+    return response;
   } catch (error: any) {
     console.error('Login error:', error);
-
-    if (error instanceof ApiError) {
-      throw error;
-    }
-
-    // Handle axios errors
-    if (error.response?.data?.result?.error) {
-      throw new ApiError(error.response.data.result.error.message || 'Login failed');
-    }
-
     throw new ApiError(error.message || 'Login failed. Please check your credentials.');
   }
 }
 
 /**
- * Logout user and clear tokens
+ * Logout user and clear Odoo session
  */
 export async function logout(): Promise<void> {
   try {
-    await apiClient.post('/v1/auth/logout');
+    await logoutOdoo();
   } catch (error) {
-    // Continue with logout even if API call fails
-    console.error('Logout API error:', error);
+    console.error('Logout error:', error);
   } finally {
-    clearTokens();
+    clearTokens(); // Clear JWT tokens too (for backwards compatibility)
   }
 }
 
@@ -286,6 +263,12 @@ export async function logout(): Promise<void> {
  * Check if user is authenticated
  */
 export function isAuthenticated(): boolean {
+  // Check Odoo authentication first
+  if (isOdooAuth()) {
+    return true;
+  }
+
+  // Fallback to JWT token check (for backwards compatibility)
   const token = getAccessToken();
   if (!token) return false;
 

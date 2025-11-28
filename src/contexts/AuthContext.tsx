@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, getStoredUser, isAuthenticated as checkAuth, clearTokens } from '@/lib/auth';
+import { getOdooUser, isOdooAuthenticated, clearOdooSession } from '@/lib/odoo-auth';
 import { login as apiLogin, logout as apiLogout } from '@/lib/api';
 import { toast } from 'sonner';
 
@@ -25,6 +26,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initAuth = () => {
       try {
+        // Check Odoo authentication first
+        if (isOdooAuthenticated()) {
+          const odooUser = getOdooUser();
+          setUser(odooUser);
+          return;
+        }
+
+        // Fallback to JWT auth (backwards compatibility)
         const isAuth = checkAuth();
         if (isAuth) {
           const storedUser = getStoredUser();
@@ -32,6 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         } else {
           setUser(null);
           clearTokens();
+          clearOdooSession();
         }
       } catch (error) {
         console.error('Error initializing auth:', error);

@@ -9,7 +9,18 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# API proxy routes - MUST come before catch-all route
+# Odoo API routes - MUST come before catch-all route
+[[redirects]]
+  from = "/api/odoo/auth"
+  to = "/.netlify/functions/odoo/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/odoo/call"
+  to = "/.netlify/functions/odoo/call"
+  status = 200
+
+# Legacy API proxy route (keeping for backwards compatibility)
 [[redirects]]
   from = "/api/proxy"
   to = "/.netlify/functions/proxy"
@@ -28,4 +39,4 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Client-Session-Id"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Client-Session-Id, X-Odoo-Cookies, X-Odoo-Url"
