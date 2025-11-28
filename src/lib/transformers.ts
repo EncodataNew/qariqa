@@ -20,8 +20,8 @@ import type {
 export function transformOdooCondominium(odooData: any): Condominio {
   return {
     id: odooData.id,
-    nome: odooData.name || odooData.nome || '',
-    indirizzo: odooData.street || odooData.indirizzo || '',
+    nome: odooData.condominium_name || odooData.name || odooData.nome || '',
+    indirizzo: odooData.address || odooData.street || odooData.indirizzo || '',
     citta: odooData.city || odooData.citta || '',
     provincia: odooData.state_id?.[1] || odooData.provincia || '',
     cap: odooData.zip || odooData.cap || '',

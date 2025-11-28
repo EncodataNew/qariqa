@@ -16,7 +16,7 @@ export function useCondominiums() {
     queryKey: ['condominiums'],
     queryFn: async () => {
       const data = await callOdoo('condominium.condominium', 'search_read', [[]], {
-        fields: ['name', 'street', 'city', 'zip', 'state_id']
+        fields: ['condominium_name', 'address', 'owner_id', 'manager_id', 'type_of_condominium']
       });
       return transformArray(data, transformOdooCondominium);
     },
@@ -32,7 +32,7 @@ export function useCondominium(id: number | string | undefined) {
     queryKey: ['condominium', id],
     queryFn: async () => {
       const data = await callOdoo('condominium.condominium', 'read', [[Number(id)]], {
-        fields: ['name', 'street', 'city', 'zip', 'state_id', 'building_ids']
+        fields: ['condominium_name', 'address', 'owner_id', 'manager_id', 'type_of_condominium', 'building_ids', 'number_of_buildings', 'number_of_parking_spaces', 'number_of_users']
       });
       return transformOdooCondominium(data[0]);
     },
@@ -50,10 +50,8 @@ export function useCreateCondominium() {
   return useMutation({
     mutationFn: async (condominiumData: Partial<Condominio>) => {
       const id = await callOdoo('condominium.condominium', 'create', [{
-        name: condominiumData.nome,
-        street: condominiumData.indirizzo,
-        city: condominiumData.citta,
-        zip: condominiumData.cap,
+        condominium_name: condominiumData.nome,
+        address: condominiumData.indirizzo,
       }], {});
       const data = await callOdoo('condominium.condominium', 'read', [[id]], {});
       return transformOdooCondominium(data[0]);
@@ -77,10 +75,8 @@ export function useUpdateCondominium() {
   return useMutation({
     mutationFn: async ({ id, updates }: { id: number; updates: Partial<Condominio> }) => {
       await callOdoo('condominium.condominium', 'write', [[id], {
-        name: updates.nome,
-        street: updates.indirizzo,
-        city: updates.citta,
-        zip: updates.cap,
+        condominium_name: updates.nome,
+        address: updates.indirizzo,
       }], {});
       const data = await callOdoo('condominium.condominium', 'read', [[id]], {});
       return transformOdooCondominium(data[0]);
