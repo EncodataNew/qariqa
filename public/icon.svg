@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Black background -->
+  <rect width="512" height="512" fill="#000000"/>
+
+  <!-- Red Q -->
+  <g fill="#EF4444" transform="translate(256, 256)">
+    <!-- Outer circle of Q -->
+    <path d="M 0,-140 A 140,140 0 1,1 0,140 A 140,140 0 1,1 0,-140 Z M 0,-80 A 80,80 0 1,0 0,80 A 80,80 0 1,0 0,-80 Z"/>
+
+    <!-- Tail of Q -->
+    <rect x="50" y="80" width="60" height="80" rx="10" transform="rotate(45 80 120)"/>
+  </g>
+</svg>
