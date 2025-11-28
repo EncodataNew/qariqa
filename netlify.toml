@@ -12,12 +12,12 @@
 # Odoo API routes - MUST come before catch-all route
 [[redirects]]
   from = "/api/odoo/auth"
-  to = "/.netlify/functions/odoo/auth"
+  to = "/.netlify/functions/odoo-auth"
   status = 200
 
 [[redirects]]
   from = "/api/odoo/call"
-  to = "/.netlify/functions/odoo/call"
+  to = "/.netlify/functions/odoo-call"
   status = 200
 
 # Legacy API proxy route (keeping for backwards compatibility)

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { parseCookies } = require('./session');
+const { parseCookies } = require('./utils/session');
 
 // CORS headers helper
 const setCorsHeaders = () => ({
