@@ -32,7 +32,9 @@ export async function loginOdoo(
   password: string
 ): Promise<any> {
   try {
+    console.log('🚀 [QARIQA v2.0] Using NEW Odoo Authentication via Netlify Functions');
     console.log('[ODOO-API] Logging in to Odoo...');
+    console.log('[ODOO-API] Target:', { url, database, username });
 
     const response = await apiClient.post('/api/odoo/auth', {
       url,

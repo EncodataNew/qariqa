@@ -26,8 +26,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initAuth = () => {
       try {
+        console.log('🚀 [QARIQA v2.0 - BUILD: 2025-01-28] Initializing with NEW Odoo Auth System');
+
         // Check Odoo authentication first
         if (isOdooAuthenticated()) {
+          console.log('✅ [AUTH] Using Odoo authentication session');
           const odooUser = getOdooUser();
           setUser(odooUser);
           return;
