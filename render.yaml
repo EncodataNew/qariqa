@@ -1,0 +1,26 @@
+# Render Blueprint for Wallbox Dashboard
+# Deploys as a single web service with both frontend and proxy
+
+services:
+  # Web Service - Serves React app + CORS proxy
+  - type: web
+    name: wallbox-dashboard
+    env: node
+    region: frankfurt  # Choose your preferred region
+    plan: free  # Free tier
+    buildCommand: npm install && npm run build
+    startCommand: node railway-server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: VITE_USE_CORS_PROXY
+        value: true
+      - key: VITE_CORS_PROXY_URL
+        value: /api/proxy
+      - key: VITE_API_BASE_URL
+        sync: false  # Set this manually in Render dashboard
+      - key: VITE_API_TIMEOUT
+        value: 30000
+      - key: VITE_TOKEN_REFRESH_INTERVAL
+        value: 300000
