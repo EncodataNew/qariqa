@@ -154,37 +154,83 @@ exports.handler = async (event, context) => {
       }
     });
 
-    // Calculate revenue chart data (last 7 days)
-    const last7Days = [];
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      const dateStr = date.toISOString().split('T')[0];
-      const daySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(dateStr));
-      const dayRevenue = daySessions.reduce((sum, s) => sum + (s.cost || 0), 0);
-      last7Days.push({
-        date: dateStr,
-        revenue: Math.round(dayRevenue * 100) / 100
+    // Calculate revenue chart data - use actual session dates if we have sessions
+    let revenueChartData = [];
+
+    if (allSessions && allSessions.length > 0) {
+      // Group sessions by date
+      const sessionsByDate = {};
+      allSessions.forEach(session => {
+        if (session.start_time) {
+          const dateStr = session.start_time.split(' ')[0]; // Handle both 'YYYY-MM-DD' and 'YYYY-MM-DD HH:MM:SS' formats
+          if (!sessionsByDate[dateStr]) {
+            sessionsByDate[dateStr] = 0;
+          }
+          sessionsByDate[dateStr] += (session.cost || 0);
+        }
       });
+
+      // Convert to array and sort by date
+      revenueChartData = Object.entries(sessionsByDate)
+        .map(([date, revenue]) => ({
+          date,
+          revenue: Math.round(revenue * 100) / 100
+        }))
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(-30); // Show last 30 dates with data
+    } else {
+      // Fallback to last 7 days with zeros if no sessions
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        revenueChartData.push({
+          date: dateStr,
+          revenue: 0
+        });
+      }
     }
 
-    console.log('[DASHBOARD] Revenue chart (last 7 days):', JSON.stringify(last7Days, null, 2));
+    console.log('[DASHBOARD] Revenue chart data:', JSON.stringify(revenueChartData, null, 2));
 
-    // Energy consumption data (last 30 days)
-    const last30Days = [];
-    for (let i = 29; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      const dateStr = date.toISOString().split('T')[0];
-      const daySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(dateStr));
-      const dayEnergy = daySessions.reduce((sum, s) => sum + ((s.total_energy || 0) / 1000), 0);
-      last30Days.push({
-        date: dateStr,
-        energy: Math.round(dayEnergy * 100) / 100
+    // Energy consumption data - use actual session dates if we have sessions
+    let energyChartData = [];
+
+    if (allSessions && allSessions.length > 0) {
+      // Group sessions by date
+      const energyByDate = {};
+      allSessions.forEach(session => {
+        if (session.start_time && session.total_energy) {
+          const dateStr = session.start_time.split(' ')[0];
+          if (!energyByDate[dateStr]) {
+            energyByDate[dateStr] = 0;
+          }
+          energyByDate[dateStr] += (session.total_energy || 0) / 1000; // Convert Wh to kWh
+        }
       });
+
+      // Convert to array and sort by date
+      energyChartData = Object.entries(energyByDate)
+        .map(([date, energy]) => ({
+          date,
+          energy: Math.round(energy * 100) / 100
+        }))
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(-30); // Show last 30 dates with data
+    } else {
+      // Fallback to last 30 days with zeros if no sessions
+      for (let i = 29; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        energyChartData.push({
+          date: dateStr,
+          energy: 0
+        });
+      }
     }
 
-    console.log('[DASHBOARD] Energy consumption chart sample (first 5 days):', JSON.stringify(last30Days.slice(0, 5), null, 2));
+    console.log('[DASHBOARD] Energy consumption chart data (sample):', JSON.stringify(energyChartData.slice(0, 5), null, 2));
     console.log('[DASHBOARD] Stations by status:', JSON.stringify(stationsByStatus, null, 2));
 
     // Get current user info to filter sessions
@@ -225,8 +271,8 @@ exports.handler = async (event, context) => {
       guest_charging_requests: guestRequestsCount,
       guest_charging_cost: Math.round(guestRequestsCost * 100) / 100,
       stations_by_status: stationsByStatus,
-      revenue_chart: last7Days,
-      energy_consumption_chart: last30Days,
+      revenue_chart: revenueChartData,
+      energy_consumption_chart: energyChartData,
       distribution_data: distributionData,
       installation_status: {
         completed: stations.filter(s => s.installation_date).length,
