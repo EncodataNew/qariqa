@@ -1,10 +1,15 @@
+import { useTranslation } from 'react-i18next';
 import { useChargingSessions } from "@/hooks/useChargingSessions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, Zap, User, Clock, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Loader2, Download } from "lucide-react";
 import { format } from "date-fns";
+import * as XLSX from 'xlsx';
 
 export default function ChargingSessions() {
+  const { t } = useTranslation();
   const { data: sessions, isLoading, error } = useChargingSessions();
 
   if (isLoading) {
@@ -55,88 +60,132 @@ export default function ChargingSessions() {
     return `${wh} Wh`;
   };
 
+  const exportToExcel = () => {
+    if (!sessions || sessions.length === 0) return;
+
+    const exportData = sessions.map(session => ({
+      'ID Transazione': session.transaction_id,
+      'Stazione': session.charging_station_name || '',
+      'Cliente': session.customer_name || '',
+      'Inizio': session.start_time ? format(new Date(session.start_time), 'dd/MM/yyyy HH:mm') : '',
+      'Fine': session.end_time ? format(new Date(session.end_time), 'dd/MM/yyyy HH:mm') : '',
+      'Durata': session.total_duration || '',
+      'Energia (Wh)': session.total_energy || 0,
+      'Energia (kWh)': session.total_energy ? (session.total_energy / 1000).toFixed(2) : '0.00',
+      'Costo (€)': session.cost ? session.cost.toFixed(2) : '0.00',
+      'Stato': session.status,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sessioni di Ricarica');
+
+    // Set column widths
+    const colWidths = [
+      { wch: 25 }, // ID Transazione
+      { wch: 20 }, // Stazione
+      { wch: 20 }, // Cliente
+      { wch: 18 }, // Inizio
+      { wch: 18 }, // Fine
+      { wch: 12 }, // Durata
+      { wch: 12 }, // Energia (Wh)
+      { wch: 12 }, // Energia (kWh)
+      { wch: 10 }, // Costo
+      { wch: 10 }, // Stato
+    ];
+    worksheet['!cols'] = colWidths;
+
+    const fileName = `sessioni_ricarica_${format(new Date(), 'yyyy-MM-dd_HHmmss')}.xlsx`;
+    XLSX.writeFile(workbook, fileName);
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Sessioni di Ricarica</h1>
-        <p className="text-muted-foreground">
-          Storico delle sessioni di ricarica
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{t('chargingSessions.title')}</h1>
+          <p className="text-muted-foreground">
+            {t('chargingSessions.subtitle')}
+          </p>
+        </div>
+        {sessions && sessions.length > 0 && (
+          <Button onClick={exportToExcel} variant="outline" className="gap-2">
+            <Download className="h-4 w-4" />
+            {t('chargingSessions.exportExcel')}
+          </Button>
+        )}
       </div>
 
       {!sessions || sessions.length === 0 ? (
         <Card>
           <CardHeader>
-            <CardTitle>Nessuna sessione trovata</CardTitle>
+            <CardTitle>{t('chargingSessions.noData')}</CardTitle>
             <CardDescription>
-              Non ci sono sessioni da visualizzare al momento.
+              {t('chargingSessions.noDataDescription')}
             </CardDescription>
           </CardHeader>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {sessions.map((session) => (
-            <Card key={session.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Activity className="h-5 w-5 text-primary" />
-                    <CardTitle className="text-lg">
-                      {session.transaction_id.substring(0, 12)}...
-                    </CardTitle>
-                  </div>
-                  <Badge className={getStatusColor(session.status)}>
-                    {session.status}
-                  </Badge>
-                </div>
-                <CardDescription className="space-y-1">
-                  {session.charging_station_name && (
-                    <div className="flex items-center gap-2">
-                      <Zap className="h-3 w-3" />
-                      <span>{session.charging_station_name}</span>
-                    </div>
-                  )}
-                  {session.customer_name && (
-                    <div className="flex items-center gap-2">
-                      <User className="h-3 w-3" />
-                      <span>{session.customer_name}</span>
-                    </div>
-                  )}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {session.start_time && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <Clock className="h-3 w-3 text-muted-foreground" />
-                      <span className="text-muted-foreground">
-                        {format(new Date(session.start_time), 'dd/MM/yyyy HH:mm')}
-                      </span>
-                    </div>
-                  )}
-                  {session.total_duration && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Durata:</span>
-                      <span className="font-medium">{session.total_duration}</span>
-                    </div>
-                  )}
-                  {session.total_energy !== undefined && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Energia:</span>
-                      <span className="font-medium">{formatEnergy(session.total_energy)}</span>
-                    </div>
-                  )}
-                  {session.cost !== undefined && session.cost > 0 && (
-                    <div className="flex justify-between text-sm font-semibold pt-2 border-t">
-                      <span className="text-muted-foreground">Costo:</span>
-                      <span>€{session.cost.toFixed(2)}</span>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <Card>
+          <CardContent className="p-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{t('chargingSessions.transactionId')}</TableHead>
+                  <TableHead>{t('chargingSessions.station')}</TableHead>
+                  <TableHead>{t('chargingSessions.customer')}</TableHead>
+                  <TableHead>{t('chargingSessions.start')}</TableHead>
+                  <TableHead>{t('chargingSessions.end')}</TableHead>
+                  <TableHead>{t('chargingSessions.duration')}</TableHead>
+                  <TableHead className="text-right">{t('chargingSessions.energy')}</TableHead>
+                  <TableHead className="text-right">{t('chargingSessions.cost')}</TableHead>
+                  <TableHead>{t('chargingSessions.status')}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sessions.map((session) => (
+                  <TableRow key={session.id}>
+                    <TableCell className="font-medium">
+                      {session.transaction_id.substring(0, 20)}...
+                    </TableCell>
+                    <TableCell>{session.charging_station_name || '-'}</TableCell>
+                    <TableCell>{session.customer_name || '-'}</TableCell>
+                    <TableCell>
+                      {session.start_time
+                        ? format(new Date(session.start_time), 'dd/MM/yyyy HH:mm')
+                        : '-'
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {session.end_time
+                        ? format(new Date(session.end_time), 'dd/MM/yyyy HH:mm')
+                        : '-'
+                      }
+                    </TableCell>
+                    <TableCell>{session.total_duration || '-'}</TableCell>
+                    <TableCell className="text-right">
+                      {session.total_energy !== undefined
+                        ? formatEnergy(session.total_energy)
+                        : '-'
+                      }
+                    </TableCell>
+                    <TableCell className="text-right font-medium">
+                      {session.cost !== undefined && session.cost > 0
+                        ? `€${session.cost.toFixed(2)}`
+                        : '-'
+                      }
+                    </TableCell>
+                    <TableCell>
+                      <Badge className={getStatusColor(session.status)}>
+                        {session.status}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
       )}
     </div>
   );

@@ -1,0 +1,102 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "condominiums": "Condominiums",
+    "buildings": "Buildings",
+    "parkingSpaces": "Parking Spaces",
+    "chargingStations": "Charging Stations",
+    "chargingSessions": "Charging Sessions",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Complete overview of charging infrastructure",
+    "totalCondominiums": "Total Condominiums",
+    "chargingStations": "Charging Stations",
+    "inUse": "in use",
+    "monthlyEnergy": "Monthly Energy",
+    "currentMonth": "Current month",
+    "activeUsers": "Active Users",
+    "totalUsers": "Total registered users",
+    "condominiumsSection": "Condominiums",
+    "noCondominiums": "No condominiums found"
+  },
+  "condominiums": {
+    "title": "Condominiums",
+    "subtitle": "Complete condominium management",
+    "noData": "No condominiums found",
+    "noDataDescription": "There are no condominiums to display at this time.",
+    "buildings": "Buildings",
+    "building": "Building"
+  },
+  "buildings": {
+    "title": "Buildings",
+    "subtitle": "Complete building management",
+    "noData": "No buildings found",
+    "noDataDescription": "There are no buildings to display at this time.",
+    "parkingSpaces": "Parking Spaces",
+    "stations": "Stations"
+  },
+  "parkingSpaces": {
+    "title": "Parking Spaces",
+    "subtitle": "Parking space management",
+    "noData": "No parking spaces found",
+    "noDataDescription": "There are no parking spaces to display at this time.",
+    "type": "Type",
+    "capacity": "Capacity",
+    "vehicles": "vehicles",
+    "stations": "Stations"
+  },
+  "chargingStations": {
+    "title": "Charging Stations",
+    "subtitle": "Charging station management",
+    "noData": "No stations found",
+    "noDataDescription": "There are no stations to display at this time.",
+    "power": "Power",
+    "connector": "Connector",
+    "price": "Price/kWh",
+    "sessions": "Sessions"
+  },
+  "chargingSessions": {
+    "title": "Charging Sessions",
+    "subtitle": "Charging session history",
+    "noData": "No sessions found",
+    "noDataDescription": "There are no sessions to display at this time.",
+    "exportExcel": "Export to Excel",
+    "transactionId": "Transaction ID",
+    "station": "Station",
+    "customer": "Customer",
+    "start": "Start",
+    "end": "End",
+    "duration": "Duration",
+    "energy": "Energy",
+    "cost": "Cost",
+    "status": "Status"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "User profile and configurations",
+    "userProfile": "User Profile",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "language": "Language",
+    "languageDescription": "Select interface language",
+    "noData": "User data not available"
+  },
+  "common": {
+    "error": "Error",
+    "loading": "Loading...",
+    "details": "Details",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import"
+  }
+}

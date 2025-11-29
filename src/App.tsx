@@ -17,7 +17,7 @@ import Buildings from "./pages/Buildings";
 import ParkingSpaces from "./pages/ParkingSpaces";
 import ChargingStations from "./pages/ChargingStations";
 import ChargingSessions from "./pages/ChargingSessions";
-import Placeholder from "./pages/Placeholder";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 
@@ -55,14 +55,7 @@ const App = () => (
                             <Route path="/parking-spaces" element={<ParkingSpaces />} />
                             <Route path="/charging-stations" element={<ChargingStations />} />
                             <Route path="/charging-sessions" element={<ChargingSessions />} />
-                            <Route
-                              path="/fatturazione"
-                              element={<Placeholder title="Fatturazione" description="Centro fatturazione centralizzato" />}
-                            />
-                            <Route
-                              path="/impostazioni"
-                              element={<Placeholder title="Impostazioni" description="Configurazione della piattaforma" />}
-                            />
+                            <Route path="/settings" element={<Settings />} />
                             <Route path="*" element={<NotFound />} />
                           </Routes>
                         </main>

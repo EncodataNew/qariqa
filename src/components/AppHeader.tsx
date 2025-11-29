@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { LanguageSelector } from "./LanguageSelector";
 
 export function AppHeader() {
   const { user, logout } = useAuth();
@@ -34,6 +35,7 @@ export function AppHeader() {
     <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6">
       <div className="flex-1"></div>
       <div className="flex items-center gap-3">
+        <LanguageSelector />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-3">

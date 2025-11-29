@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import "./i18n";
 
 // Version marker for deployment verification
 console.log('%c🚀 QARIQA v2.0 - BUILD: 2025-01-28 15:30 UTC', 'background: #4CAF50; color: white; font-size: 16px; font-weight: bold; padding: 8px;');

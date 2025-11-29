@@ -1,5 +1,6 @@
-import { LayoutDashboard, Home, Building2, ParkingSquare, Zap, Activity, FileText, Settings } from "lucide-react";
+import { LayoutDashboard, Home, Building2, ParkingSquare, Zap, Activity, Settings } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import {
   Sidebar,
   SidebarContent,
@@ -12,18 +13,19 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 
-const menuItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Condominiums", url: "/condominiums", icon: Home },
-  { title: "Buildings", url: "/buildings", icon: Building2 },
-  { title: "Parking Spaces", url: "/parking-spaces", icon: ParkingSquare },
-  { title: "Charging Stations", url: "/charging-stations", icon: Zap },
-  { title: "Charging Sessions", url: "/charging-sessions", icon: Activity },
-  { title: "Gestione", url: "/fatturazione", icon: FileText },
-  { title: "Impostazioni", url: "/impostazioni", icon: Settings },
-];
-
 export function AppSidebar() {
+  const { t } = useTranslation();
+
+  const menuItems = [
+    { titleKey: "menu.dashboard", url: "/", icon: LayoutDashboard },
+    { titleKey: "menu.condominiums", url: "/condominiums", icon: Home },
+    { titleKey: "menu.buildings", url: "/buildings", icon: Building2 },
+    { titleKey: "menu.parkingSpaces", url: "/parking-spaces", icon: ParkingSquare },
+    { titleKey: "menu.chargingStations", url: "/charging-stations", icon: Zap },
+    { titleKey: "menu.chargingSessions", url: "/charging-sessions", icon: Activity },
+    { titleKey: "menu.settings", url: "/settings", icon: Settings },
+  ];
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-6">
@@ -35,7 +37,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.titleKey}>
                   <SidebarMenuButton asChild>
                     <NavLink
                       to={item.url}
@@ -47,7 +49,7 @@ export function AppSidebar() {
                       }
                     >
                       <item.icon className="h-5 w-5" />
-                      <span>{item.title}</span>
+                      <span>{t(item.titleKey)}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

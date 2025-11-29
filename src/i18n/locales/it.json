@@ -1,0 +1,102 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "condominiums": "Condomini",
+    "buildings": "Edifici",
+    "parkingSpaces": "Parcheggi",
+    "chargingStations": "Stazioni di Ricarica",
+    "chargingSessions": "Sessioni di Ricarica",
+    "settings": "Impostazioni"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Panoramica completa dell'infrastruttura di ricarica",
+    "totalCondominiums": "Totale Condomini",
+    "chargingStations": "Stazioni di Ricarica",
+    "inUse": "in uso",
+    "monthlyEnergy": "Energia del Mese",
+    "currentMonth": "Mese corrente",
+    "activeUsers": "Utenti Attivi",
+    "totalUsers": "Totale utenti registrati",
+    "condominiumsSection": "Condomini",
+    "noCondominiums": "Nessun condominio trovato"
+  },
+  "condominiums": {
+    "title": "Condomini",
+    "subtitle": "Gestione completa dei condomini",
+    "noData": "Nessun condominio trovato",
+    "noDataDescription": "Non ci sono condomini da visualizzare al momento.",
+    "buildings": "Edifici",
+    "building": "Edificio"
+  },
+  "buildings": {
+    "title": "Edifici",
+    "subtitle": "Gestione completa degli edifici",
+    "noData": "Nessun edificio trovato",
+    "noDataDescription": "Non ci sono edifici da visualizzare al momento.",
+    "parkingSpaces": "Parcheggi",
+    "stations": "Stazioni"
+  },
+  "parkingSpaces": {
+    "title": "Parcheggi",
+    "subtitle": "Gestione degli spazi di parcheggio",
+    "noData": "Nessun parcheggio trovato",
+    "noDataDescription": "Non ci sono parcheggi da visualizzare al momento.",
+    "type": "Tipo",
+    "capacity": "Capacità",
+    "vehicles": "veicoli",
+    "stations": "Stazioni"
+  },
+  "chargingStations": {
+    "title": "Stazioni di Ricarica",
+    "subtitle": "Gestione delle stazioni di ricarica",
+    "noData": "Nessuna stazione trovata",
+    "noDataDescription": "Non ci sono stazioni da visualizzare al momento.",
+    "power": "Potenza",
+    "connector": "Connettore",
+    "price": "Prezzo/kWh",
+    "sessions": "Sessioni"
+  },
+  "chargingSessions": {
+    "title": "Sessioni di Ricarica",
+    "subtitle": "Storico delle sessioni di ricarica",
+    "noData": "Nessuna sessione trovata",
+    "noDataDescription": "Non ci sono sessioni da visualizzare al momento.",
+    "exportExcel": "Esporta in Excel",
+    "transactionId": "ID Transazione",
+    "station": "Stazione",
+    "customer": "Cliente",
+    "start": "Inizio",
+    "end": "Fine",
+    "duration": "Durata",
+    "energy": "Energia",
+    "cost": "Costo",
+    "status": "Stato"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "subtitle": "Profilo utente e configurazioni",
+    "userProfile": "Profilo Utente",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono",
+    "role": "Ruolo",
+    "language": "Lingua",
+    "languageDescription": "Seleziona la lingua dell'interfaccia",
+    "noData": "Dati utente non disponibili"
+  },
+  "common": {
+    "error": "Errore",
+    "loading": "Caricamento...",
+    "details": "Dettagli",
+    "back": "Indietro",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "export": "Esporta",
+    "import": "Importa"
+  }
+}
