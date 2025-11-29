@@ -154,7 +154,7 @@ exports.handler = async (event, context) => {
       }
     });
 
-    // Calculate revenue chart data - use actual session dates if we have sessions
+    // Calculate revenue chart data - SHOW ALL DATA
     let revenueChartData = [];
 
     if (allSessions && allSessions.length > 0) {
@@ -170,30 +170,23 @@ exports.handler = async (event, context) => {
         }
       });
 
-      // Convert to array and sort by date
+      // Convert to array and sort by date - SHOW ALL DATES
       revenueChartData = Object.entries(sessionsByDate)
         .map(([date, revenue]) => ({
           date,
           revenue: Math.round(revenue * 100) / 100
         }))
-        .sort((a, b) => a.date.localeCompare(b.date))
-        .slice(-30); // Show last 30 dates with data
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+      console.log('[DASHBOARD] Revenue chart - Total dates with data:', revenueChartData.length);
     } else {
-      // Fallback to last 7 days with zeros if no sessions
-      for (let i = 6; i >= 0; i--) {
-        const date = new Date();
-        date.setDate(date.getDate() - i);
-        const dateStr = date.toISOString().split('T')[0];
-        revenueChartData.push({
-          date: dateStr,
-          revenue: 0
-        });
-      }
+      console.log('[DASHBOARD] No sessions found for revenue chart');
     }
 
-    console.log('[DASHBOARD] Revenue chart data:', JSON.stringify(revenueChartData, null, 2));
+    console.log('[DASHBOARD] Revenue chart data (first 5):', JSON.stringify(revenueChartData.slice(0, 5), null, 2));
+    console.log('[DASHBOARD] Revenue chart data (last 5):', JSON.stringify(revenueChartData.slice(-5), null, 2));
 
-    // Energy consumption data - use actual session dates if we have sessions
+    // Energy consumption data - SHOW ALL DATA
     let energyChartData = [];
 
     if (allSessions && allSessions.length > 0) {
@@ -209,28 +202,21 @@ exports.handler = async (event, context) => {
         }
       });
 
-      // Convert to array and sort by date
+      // Convert to array and sort by date - SHOW ALL DATES
       energyChartData = Object.entries(energyByDate)
         .map(([date, energy]) => ({
           date,
           energy: Math.round(energy * 100) / 100
         }))
-        .sort((a, b) => a.date.localeCompare(b.date))
-        .slice(-30); // Show last 30 dates with data
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+      console.log('[DASHBOARD] Energy chart - Total dates with data:', energyChartData.length);
     } else {
-      // Fallback to last 30 days with zeros if no sessions
-      for (let i = 29; i >= 0; i--) {
-        const date = new Date();
-        date.setDate(date.getDate() - i);
-        const dateStr = date.toISOString().split('T')[0];
-        energyChartData.push({
-          date: dateStr,
-          energy: 0
-        });
-      }
+      console.log('[DASHBOARD] No sessions found for energy chart');
     }
 
-    console.log('[DASHBOARD] Energy consumption chart data (sample):', JSON.stringify(energyChartData.slice(0, 5), null, 2));
+    console.log('[DASHBOARD] Energy consumption chart data (first 5):', JSON.stringify(energyChartData.slice(0, 5), null, 2));
+    console.log('[DASHBOARD] Energy consumption chart data (last 5):', JSON.stringify(energyChartData.slice(-5), null, 2));
     console.log('[DASHBOARD] Stations by status:', JSON.stringify(stationsByStatus, null, 2));
 
     // Get current user info to filter sessions
@@ -259,6 +245,17 @@ exports.handler = async (event, context) => {
       { name: 'Parking Space', value: parkingSpaces }
     ];
 
+    console.log('[DASHBOARD] Distribution data:', JSON.stringify(distributionData, null, 2));
+
+    // Installation status
+    const completedInstallations = stations.filter(s => s.installation_date).length;
+    const installationStatus = {
+      completed: completedInstallations,
+      pending: pendingInstallations
+    };
+
+    console.log('[DASHBOARD] Installation status:', JSON.stringify(installationStatus, null, 2));
+
     const dashboardStats = {
       total_stations: stations.length,
       active_sessions: activeSessions,
@@ -274,10 +271,7 @@ exports.handler = async (event, context) => {
       revenue_chart: revenueChartData,
       energy_consumption_chart: energyChartData,
       distribution_data: distributionData,
-      installation_status: {
-        completed: stations.filter(s => s.installation_date).length,
-        pending: pendingInstallations
-      }
+      installation_status: installationStatus
     };
 
     console.log('[DASHBOARD] Stats calculated:', dashboardStats);
