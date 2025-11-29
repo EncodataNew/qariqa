@@ -77,7 +77,7 @@ exports.handler = async (event, context) => {
     console.log('[DASHBOARD] Fetching dashboard stats from Odoo');
 
     // Fetch data from multiple Odoo models in parallel
-    const [stations, activeSessions, users, condominiums, pendingInstallations, allSessions] = await Promise.all([
+    const [stations, activeSessions, users, condominiums, buildings, parkingSpaces, pendingInstallations, allSessions] = await Promise.all([
       // Charging stations
       callOdoo(baseUrl, cookies, 'charging.station', 'search_read', [[]], {
         fields: ['status', 'name', 'installation_date']
@@ -95,6 +95,12 @@ exports.handler = async (event, context) => {
 
       // Total condominiums
       callOdoo(baseUrl, cookies, 'condominium.condominium', 'search_count', [[]]).catch(() => 0),
+
+      // Total buildings
+      callOdoo(baseUrl, cookies, 'building.building', 'search_count', [[]]).catch(() => 0),
+
+      // Total parking spaces
+      callOdoo(baseUrl, cookies, 'parking.space', 'search_count', [[]]).catch(() => 0),
 
       // Pending installations (wallbox.order with state != 'done')
       callOdoo(baseUrl, cookies, 'wallbox.order', 'search_count', [
@@ -179,6 +185,13 @@ exports.handler = async (event, context) => {
     const guestRequestsCount = guestSessions.length;
     const guestRequestsCost = guestSessions.reduce((sum, s) => sum + (s.cost || 0), 0);
 
+    // Distribution data
+    const distributionData = [
+      { name: 'Condominium', value: condominiums },
+      { name: 'Building', value: buildings },
+      { name: 'Parking Space', value: parkingSpaces }
+    ];
+
     const dashboardStats = {
       total_stations: stations.length,
       active_sessions: activeSessions,
@@ -193,6 +206,7 @@ exports.handler = async (event, context) => {
       stations_by_status: stationsByStatus,
       revenue_chart: last7Days,
       energy_consumption_chart: last30Days,
+      distribution_data: distributionData,
       installation_status: {
         completed: stations.filter(s => s.installation_date).length,
         pending: pendingInstallations

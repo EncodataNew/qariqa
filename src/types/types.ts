@@ -130,6 +130,10 @@ export interface DashboardStats {
     date: string;
     energy: number;
   }>;
+  distribution_data: Array<{
+    name: string;
+    value: number;
+  }>;
   installation_status: {
     completed: number;
     pending: number;

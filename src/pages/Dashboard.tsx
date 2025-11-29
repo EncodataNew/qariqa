@@ -27,6 +27,7 @@ export default function Dashboard() {
   // Pie chart colors
   const INSTALLATION_COLORS = ['#3b82f6', '#93c5fd'];
   const STATION_COLORS = ['#3b82f6', '#10b981', '#06b6d4', '#f59e0b'];
+  const DISTRIBUTION_COLORS = ['#10b981', '#f59e0b', '#3b82f6'];
 
   // Format installation status data
   const installationData = stats?.installation_status ? [
@@ -155,13 +156,25 @@ export default function Dashboard() {
             <CardTitle className="text-sm text-muted-foreground">Distribution</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[200px] flex items-center justify-center">
-              <div className="text-center">
-                <Building2 className="h-16 w-16 mx-auto mb-2 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Overview</p>
-              </div>
-            </div>
-            <div className="flex justify-center gap-4 mt-4 text-xs">
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={stats?.distribution_data || []}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {(stats?.distribution_data || []).map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={DISTRIBUTION_COLORS[index % DISTRIBUTION_COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center gap-4 mt-2 text-xs">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded"></div>
                 <span className="text-muted-foreground">Condominium</span>
@@ -226,7 +239,11 @@ export default function Dashboard() {
             <div className="flex justify-center gap-4 mt-2 text-xs">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                <span className="text-muted-foreground">completed</span>
+                <span className="text-muted-foreground">Completed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-300 rounded"></div>
+                <span className="text-muted-foreground">Pending</span>
               </div>
             </div>
           </CardContent>
@@ -270,7 +287,7 @@ export default function Dashboard() {
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-yellow-500 rounded"></div>
-                <span>false</span>
+                <span>Faulted</span>
               </div>
             </div>
           </CardContent>
