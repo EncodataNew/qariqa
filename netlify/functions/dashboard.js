@@ -75,6 +75,8 @@ exports.handler = async (event, context) => {
     const cookies = JSON.parse(cookiesHeader);
 
     console.log('[DASHBOARD] Fetching dashboard stats from Odoo');
+    console.log('[DASHBOARD] Base URL:', baseUrl);
+    console.log('[DASHBOARD] User ID:', cookies.uid);
 
     // Fetch data from multiple Odoo models in parallel
     const [stations, activeSessions, users, condominiums, buildings, parkingSpaces, pendingInstallations, allSessions] = await Promise.all([
@@ -115,6 +117,20 @@ exports.handler = async (event, context) => {
       }).catch(() => []),
     ]);
 
+    console.log('[DASHBOARD] Fetched data counts:');
+    console.log('  - Stations:', stations?.length || 0);
+    console.log('  - Active sessions:', activeSessions);
+    console.log('  - Users:', users);
+    console.log('  - Condominiums:', condominiums);
+    console.log('  - Buildings:', buildings);
+    console.log('  - Parking spaces:', parkingSpaces);
+    console.log('  - Pending installations:', pendingInstallations);
+    console.log('  - All sessions:', allSessions?.length || 0);
+
+    if (allSessions && allSessions.length > 0) {
+      console.log('[DASHBOARD] Sample session:', JSON.stringify(allSessions[0], null, 2));
+    }
+
     // Calculate monthly kWh and revenue
     const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
     const monthlySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(currentMonth));
@@ -152,6 +168,8 @@ exports.handler = async (event, context) => {
       });
     }
 
+    console.log('[DASHBOARD] Revenue chart (last 7 days):', JSON.stringify(last7Days, null, 2));
+
     // Energy consumption data (last 30 days)
     const last30Days = [];
     for (let i = 29; i >= 0; i--) {
@@ -165,6 +183,9 @@ exports.handler = async (event, context) => {
         energy: Math.round(dayEnergy * 100) / 100
       });
     }
+
+    console.log('[DASHBOARD] Energy consumption chart sample (first 5 days):', JSON.stringify(last30Days.slice(0, 5), null, 2));
+    console.log('[DASHBOARD] Stations by status:', JSON.stringify(stationsByStatus, null, 2));
 
     // Get current user info to filter sessions
     const currentUser = await callOdoo(baseUrl, cookies, 'res.users', 'search_read', [
