@@ -11,11 +11,19 @@ export default function Dashboard() {
   const { t } = useTranslation();
   const { data: stats, isLoading, error, refetch } = useDashboardStats();
 
+  // DEBUG: Log what data we're receiving
+  console.log('[DASHBOARD FRONTEND] Stats data:', stats);
+  console.log('[DASHBOARD FRONTEND] Revenue chart:', stats?.revenue_chart);
+  console.log('[DASHBOARD FRONTEND] Energy chart:', stats?.energy_consumption_chart);
+  console.log('[DASHBOARD FRONTEND] Distribution:', stats?.distribution_data);
+  console.log('[DASHBOARD FRONTEND] Stations by status:', stats?.stations_by_status);
+
   if (isLoading) {
     return <LoadingState type="spinner" message="Caricamento dashboard..." />;
   }
 
   if (error) {
+    console.error('[DASHBOARD FRONTEND] Error:', error);
     return (
       <ErrorState
         message={(error as any)?.message || 'Errore nel caricamento dei dati'}
