@@ -145,18 +145,31 @@ export function transformOdooVehicle(odooData: any): Vehicle {
  * Transform Odoo dashboard stats to frontend DashboardStats interface
  */
 export function transformOdooDashboardStats(odooData: any): DashboardStats {
+  console.log('[TRANSFORMER] Raw odooData received:', odooData);
+  console.log('[TRANSFORMER] revenue_chart from backend:', odooData.revenue_chart);
+  console.log('[TRANSFORMER] energy_consumption_chart from backend:', odooData.energy_consumption_chart);
+
   return {
     total_stations: odooData.total_stations || 0,
     active_sessions: odooData.active_sessions || 0,
     monthly_kwh: odooData.monthly_kwh || 0,
     total_users: odooData.total_users || 0,
     total_condominiums: odooData.total_condominiums || 0,
+    pending_installations: odooData.pending_installations || 0,
+    revenue: odooData.revenue || 0,
+    my_charging_requests: odooData.my_charging_requests || 0,
+    guest_charging_requests: odooData.guest_charging_requests || 0,
+    guest_charging_cost: odooData.guest_charging_cost || 0,
     stations_by_status: {
-      disponibile: odooData.stations_by_status?.disponibile || 0,
-      in_uso: odooData.stations_by_status?.in_uso || 0,
-      manutenzione: odooData.stations_by_status?.manutenzione || 0,
-      offline: odooData.stations_by_status?.offline || 0,
+      Available: odooData.stations_by_status?.Available || 0,
+      Charging: odooData.stations_by_status?.Charging || 0,
+      Unavailable: odooData.stations_by_status?.Unavailable || 0,
+      Faulted: odooData.stations_by_status?.Faulted || 0,
     },
+    revenue_chart: odooData.revenue_chart || [],
+    energy_consumption_chart: odooData.energy_consumption_chart || [],
+    distribution_data: odooData.distribution_data || [],
+    installation_status: odooData.installation_status || { completed: 0, pending: 0 },
   };
 }
 
