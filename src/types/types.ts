@@ -111,11 +111,28 @@ export interface DashboardStats {
   monthly_kwh: number;
   total_users: number;
   total_condominiums: number;
+  pending_installations: number;
+  revenue: number;
+  my_charging_requests: number;
+  guest_charging_requests: number;
+  guest_charging_cost: number;
   stations_by_status: {
-    disponibile: number;
-    in_uso: number;
-    manutenzione: number;
-    offline: number;
+    Available: number;
+    Charging: number;
+    Unavailable: number;
+    Faulted: number;
+  };
+  revenue_chart: Array<{
+    date: string;
+    revenue: number;
+  }>;
+  energy_consumption_chart: Array<{
+    date: string;
+    energy: number;
+  }>;
+  installation_status: {
+    completed: number;
+    pending: number;
   };
 }
 

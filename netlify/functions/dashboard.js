@@ -77,15 +77,15 @@ exports.handler = async (event, context) => {
     console.log('[DASHBOARD] Fetching dashboard stats from Odoo');
 
     // Fetch data from multiple Odoo models in parallel
-    const [stations, sessions, users, condominiums] = await Promise.all([
+    const [stations, activeSessions, users, condominiums, pendingInstallations, allSessions] = await Promise.all([
       // Charging stations
       callOdoo(baseUrl, cookies, 'charging.station', 'search_read', [[]], {
-        fields: ['status', 'name']
+        fields: ['status', 'name', 'installation_date']
       }).catch(() => []),
 
-      // Active charging sessions
+      // Active charging sessions (Started status)
       callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_count', [
-        [['status', '=', 'in_corso']]
+        [['status', '=', 'Started']]
       ]).catch(() => 0),
 
       // Total users (partners)
@@ -95,46 +95,108 @@ exports.handler = async (event, context) => {
 
       // Total condominiums
       callOdoo(baseUrl, cookies, 'condominium.condominium', 'search_count', [[]]).catch(() => 0),
+
+      // Pending installations (wallbox.order with state != 'done')
+      callOdoo(baseUrl, cookies, 'wallbox.order', 'search_count', [
+        [['state', '!=', 'done']]
+      ]).catch(() => 0),
+
+      // All sessions for revenue and charts
+      callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_read', [[]], {
+        fields: ['cost', 'total_energy', 'start_time', 'customer_id', 'status'],
+        limit: 1000,
+        order: 'start_time desc'
+      }).catch(() => []),
     ]);
 
-    // Calculate monthly kWh (from this month's sessions)
+    // Calculate monthly kWh and revenue
     const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
-    const monthlySessions = await callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_read', [
-      [['start_time', '>=', `${currentMonth}-01`]]
-    ], {
-      fields: ['kwh_delivered']
-    }).catch(() => []);
-
-    const monthly_kwh = monthlySessions.reduce((sum, session) => sum + (session.kwh_delivered || 0), 0);
+    const monthlySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(currentMonth));
+    const monthly_kwh = monthlySessions.reduce((sum, session) => sum + ((session.total_energy || 0) / 1000), 0);
+    const monthly_revenue = allSessions.reduce((sum, session) => sum + (session.cost || 0), 0);
 
     // Count stations by status
     const stationsByStatus = {
-      disponibile: 0,
-      in_uso: 0,
-      manutenzione: 0,
-      offline: 0,
+      Available: 0,
+      Charging: 0,
+      Unavailable: 0,
+      Faulted: 0,
     };
 
     stations.forEach(station => {
-      const status = station.status || 'offline';
-      if (status.includes('disponibile') || status.includes('available')) {
-        stationsByStatus.disponibile++;
-      } else if (status.includes('uso') || status.includes('charging')) {
-        stationsByStatus.in_uso++;
-      } else if (status.includes('manutenzione') || status.includes('maintenance')) {
-        stationsByStatus.manutenzione++;
+      const status = station.status || 'Unavailable';
+      if (stationsByStatus[status] !== undefined) {
+        stationsByStatus[status]++;
       } else {
-        stationsByStatus.offline++;
+        stationsByStatus.Unavailable++;
       }
     });
 
+    // Calculate revenue chart data (last 7 days)
+    const last7Days = [];
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      const daySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(dateStr));
+      const dayRevenue = daySessions.reduce((sum, s) => sum + (s.cost || 0), 0);
+      last7Days.push({
+        date: dateStr,
+        revenue: Math.round(dayRevenue * 100) / 100
+      });
+    }
+
+    // Energy consumption data (last 30 days)
+    const last30Days = [];
+    for (let i = 29; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      const daySessions = allSessions.filter(s => s.start_time && s.start_time.startsWith(dateStr));
+      const dayEnergy = daySessions.reduce((sum, s) => sum + ((s.total_energy || 0) / 1000), 0);
+      last30Days.push({
+        date: dateStr,
+        energy: Math.round(dayEnergy * 100) / 100
+      });
+    }
+
+    // Get current user info to filter sessions
+    const currentUser = await callOdoo(baseUrl, cookies, 'res.users', 'search_read', [
+      [['id', '=', cookies.uid || 0]]
+    ], {
+      fields: ['partner_id']
+    }).catch(() => []);
+
+    const userPartnerId = currentUser[0]?.partner_id?.[0];
+
+    // My charging requests (sessions by current user)
+    const myRequests = userPartnerId
+      ? allSessions.filter(s => s.customer_id?.[0] === userPartnerId).length
+      : 0;
+
+    // Guest charging requests (assuming guests are those without regular customer status)
+    const guestSessions = allSessions.filter(s => s.status === 'Started' || s.status === 'Ended');
+    const guestRequestsCount = guestSessions.length;
+    const guestRequestsCost = guestSessions.reduce((sum, s) => sum + (s.cost || 0), 0);
+
     const dashboardStats = {
       total_stations: stations.length,
-      active_sessions: sessions,
+      active_sessions: activeSessions,
       monthly_kwh: Math.round(monthly_kwh * 100) / 100,
       total_users: users,
       total_condominiums: condominiums,
+      pending_installations: pendingInstallations,
+      revenue: Math.round(monthly_revenue * 100) / 100,
+      my_charging_requests: myRequests,
+      guest_charging_requests: guestRequestsCount,
+      guest_charging_cost: Math.round(guestRequestsCost * 100) / 100,
       stations_by_status: stationsByStatus,
+      revenue_chart: last7Days,
+      energy_consumption_chart: last30Days,
+      installation_status: {
+        completed: stations.filter(s => s.installation_date).length,
+        pending: pendingInstallations
+      }
     };
 
     console.log('[DASHBOARD] Stats calculated:', dashboardStats);

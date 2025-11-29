@@ -1,83 +1,304 @@
-import { Building2, Zap, TrendingUp, Users } from "lucide-react";
-import { StatsCard } from "@/components/StatsCard";
-import { CondominioCard } from "@/components/CondominioCard";
+import { useTranslation } from 'react-i18next';
+import { Building2, Zap, TrendingUp, Users, Plus, AlertTriangle, DollarSign, Activity, ShoppingCart } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDashboardStats } from "@/hooks/useDashboardStats";
-import { useCondominiums } from "@/hooks/useCondominiums";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
 import { formatKwh } from "@/lib/formatters";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, LineChart, Line, XAxis, YAxis, CartesianGrid, BarChart, Bar, Legend } from 'recharts';
 
 export default function Dashboard() {
-  const { data: stats, isLoading: statsLoading, error: statsError, refetch: refetchStats } = useDashboardStats();
-  const { data: condominiums, isLoading: condominiumsLoading, error: condominiumsError, refetch: refetchCondominiums } = useCondominiums();
+  const { t } = useTranslation();
+  const { data: stats, isLoading, error, refetch } = useDashboardStats();
 
-  // Show loading state while both queries are loading
-  if (statsLoading || condominiumsLoading) {
+  if (isLoading) {
     return <LoadingState type="spinner" message="Caricamento dashboard..." />;
   }
 
-  // Show error state if either query failed
-  if (statsError || condominiumsError) {
+  if (error) {
     return (
       <ErrorState
-        message={(statsError as any)?.message || (condominiumsError as any)?.message || 'Errore nel caricamento dei dati'}
-        onRetry={() => {
-          refetchStats();
-          refetchCondominiums();
-        }}
+        message={(error as any)?.message || 'Errore nel caricamento dei dati'}
+        onRetry={() => refetch()}
       />
     );
   }
 
+  // Pie chart colors
+  const INSTALLATION_COLORS = ['#3b82f6', '#93c5fd'];
+  const STATION_COLORS = ['#3b82f6', '#10b981', '#06b6d4', '#f59e0b'];
+
+  // Format installation status data
+  const installationData = stats?.installation_status ? [
+    { name: 'Completed', value: stats.installation_status.completed },
+    { name: 'Pending', value: stats.installation_status.pending },
+  ] : [];
+
+  // Format station status data
+  const stationStatusData = stats?.stations_by_status ? [
+    { name: 'Available', value: stats.stations_by_status.Available },
+    { name: 'Charging', value: stats.stations_by_status.Charging },
+    { name: 'Unavailable', value: stats.stations_by_status.Unavailable },
+    { name: 'Faulted', value: stats.stations_by_status.Faulted },
+  ].filter(item => item.value > 0) : [];
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-bold">{t('dashboard.title')}</h1>
         <p className="text-muted-foreground mt-1">
-          Panoramica completa dell'infrastruttura di ricarica
+          {t('dashboard.subtitle')}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatsCard
-          title="Totale Condomini"
-          value={stats?.total_condominiums || 0}
-          icon={Building2}
-        />
-        <StatsCard
-          title="Stazioni di Ricarica"
-          value={stats?.total_stations || 0}
-          icon={Zap}
-          subtitle={`${stats?.active_sessions || 0} in uso`}
-        />
-        <StatsCard
-          title="Energia del Mese"
-          value={formatKwh(stats?.monthly_kwh || 0)}
-          icon={TrendingUp}
-          subtitle="Mese corrente"
-        />
-        <StatsCard
-          title="Utenti Attivi"
-          value={stats?.total_users || 0}
-          icon={Users}
-          subtitle="Totale utenti registrati"
-        />
+      {/* Top Stats Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              TOTAL CHARGING STATIONS
+            </CardTitle>
+            <Plus className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.total_stations || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              ACTIVE SESSIONS
+            </CardTitle>
+            <Zap className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.active_sessions || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              PENDING INSTALLATIONS
+            </CardTitle>
+            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.pending_installations || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              REVENUE
+            </CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">€{stats?.revenue?.toFixed(2) || '0.00'}</div>
+          </CardContent>
+        </Card>
       </div>
 
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Condomini</h2>
-        {condominiums && condominiums.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {condominiums.map((condominio) => (
-              <CondominioCard key={condominio.id} condominio={condominio} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center p-12 bg-muted/50 rounded-lg">
-            <Building2 className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-muted-foreground">Nessun condominio trovato</p>
-          </div>
-        )}
+      {/* Second Row - User Requests and Revenue Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              MY CHARGING REQUESTS
+            </CardTitle>
+            <Activity className="h-4 w-4 text-yellow-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.my_charging_requests || 0}</div>
+            <p className="text-xs text-muted-foreground mt-1">0</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-red-50 dark:bg-red-950/20">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-red-700 dark:text-red-400">
+              GUEST CHARGING REQUESTS
+            </CardTitle>
+            <ShoppingCart className="h-4 w-4 text-red-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-red-700 dark:text-red-400">
+              €{stats?.guest_charging_cost?.toFixed(2) || '0.00'}
+            </div>
+            <p className="text-xs text-red-600 dark:text-red-500 mt-1">
+              {stats?.guest_charging_requests || 0}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              USERS
+            </CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats?.total_users || 0}</div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Donut Chart - Condominium/Building/Parking */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground">Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[200px] flex items-center justify-center">
+              <div className="text-center">
+                <Building2 className="h-16 w-16 mx-auto mb-2 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Overview</p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-4 mt-4 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded"></div>
+                <span className="text-muted-foreground">Condominium</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-yellow-500 rounded"></div>
+                <span className="text-muted-foreground">Building</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                <span className="text-muted-foreground">Parking Space</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Revenue Chart */}
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground">Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={200}>
+              <LineChart data={stats?.revenue_chart || []}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Tooltip />
+                <Line type="monotone" dataKey="revenue" stroke="#ef4444" strokeWidth={2} name="Revenue" />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Bottom Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        {/* Installation Status */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground">Installation Status</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={installationData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {installationData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={INSTALLATION_COLORS[index % INSTALLATION_COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center gap-4 mt-2 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                <span className="text-muted-foreground">completed</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Station Status */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground">Station Status</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={stationStatusData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  dataKey="value"
+                  label
+                >
+                  {stationStatusData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={STATION_COLORS[index % STATION_COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center gap-2 mt-2 text-xs flex-wrap">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                <span>Available</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-green-500 rounded"></div>
+                <span>Charging</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-cyan-500 rounded"></div>
+                <span>Unavailable</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-yellow-500 rounded"></div>
+                <span>false</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Energy Consumption */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm text-muted-foreground">Energy Consumption</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={stats?.energy_consumption_chart || []}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" hide />
+                <YAxis hide />
+                <Tooltip />
+                <Bar dataKey="energy" fill="#3b82f6" name="Energy (kWh)" />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center mt-2">
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                <span className="text-muted-foreground">Energy Consumption (kWh)</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
