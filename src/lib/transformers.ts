@@ -6,6 +6,7 @@
 import type {
   Condominio,
   Building,
+  ParkingSpace,
   ChargingStation,
   SessioneRicarica,
   Utente,
@@ -38,9 +39,30 @@ export function transformOdooBuilding(odooData: any): Building {
     id: odooData.id,
     name: odooData.building_name || odooData.name || '',
     condominium_id: odooData.condominium_id?.[0] || odooData.condominium_id || 0,
+    condominium_name: odooData.condominium_id?.[1] || '',
     address: odooData.address || odooData.street || '',
     number_of_parking_spaces: odooData.number_of_parking_spaces || 0,
     number_of_charging_stations: odooData.number_of_charging_stations || 0,
+  };
+}
+
+/**
+ * Transform Odoo parking space data to frontend ParkingSpace interface
+ */
+export function transformOdooParkingSpace(odooData: any): ParkingSpace {
+  return {
+    id: odooData.id,
+    name: odooData.name || '',
+    building_id: odooData.building_id?.[0] || odooData.building_id || 0,
+    building_name: odooData.building_id?.[1] || '',
+    condominium_id: odooData.condominium_id?.[0] || odooData.condominium_id || 0,
+    condominium_name: odooData.condominium_id?.[1] || '',
+    parking_type: odooData.parking_type,
+    capacity: odooData.capacity || 0,
+    assigned_or_shared: odooData.assigned_or_shared,
+    number_of_charging_stations: odooData.number_of_charging_stations || 0,
+    rental_status: odooData.rental_status,
+    monthly_fee: odooData.monthly_fee || 0,
   };
 }
 
@@ -52,11 +74,18 @@ export function transformOdooChargingStation(odooData: any): ChargingStation {
     id: odooData.id,
     nome: odooData.name || odooData.nome || '',
     building_id: odooData.building_id?.[0] || odooData.building_id || 0,
+    building_name: odooData.building_id?.[1] || '',
     condominium_id: odooData.condominium_id?.[0] || odooData.condominium_id || 0,
-    potenza: odooData.power || odooData.potenza || 0,
-    stato: normalizeStationStatus(odooData.status || odooData.stato),
-    tipo_connettore: odooData.connector_type || odooData.tipo_connettore || 'Type 2',
-    ultimi_dati: odooData.latest_data || odooData.ultimi_dati,
+    condominium_name: odooData.condominium_id?.[1] || '',
+    parking_space_id: odooData.parking_space_id?.[0] || odooData.parking_space_id || 0,
+    parking_space_name: odooData.parking_space_id?.[1] || '',
+    potenza: odooData.charging_power || odooData.power || odooData.potenza || 0,
+    stato: odooData.status || odooData.stato || 'Unavailable',
+    tipo_connettore: odooData.connector_type || odooData.tipo_connettore || 'type2',
+    price_per_kwh: odooData.price_per_kwh || 0,
+    number_of_charging_sessions: odooData.number_of_charging_sessions || 0,
+    total_energy: odooData.total_energy || 0,
+    total_recharged_cost: odooData.total_recharged_cost || 0,
   };
 }
 
@@ -66,15 +95,21 @@ export function transformOdooChargingStation(odooData: any): ChargingStation {
 export function transformOdooChargingSession(odooData: any): SessioneRicarica {
   return {
     id: odooData.id,
-    station_id: odooData.station_id?.[0] || odooData.station_id || 0,
-    user_id: odooData.user_id?.[0] || odooData.user_id || 0,
-    user_name: odooData.user_name || odooData.user_id?.[1] || '',
-    vehicle_plate: odooData.vehicle_plate || odooData.targa || '',
-    start_time: odooData.start_time || odooData.start_datetime || '',
-    end_time: odooData.end_time || odooData.end_datetime,
-    kwh_erogati: odooData.kwh_delivered || odooData.kwh_erogati || 0,
-    costo: odooData.cost || odooData.costo,
-    stato: normalizeSessionStatus(odooData.status || odooData.stato),
+    transaction_id: odooData.transaction_id || '',
+    charging_station_id: odooData.charging_station_id?.[0] || odooData.charging_station_id || 0,
+    charging_station_name: odooData.charging_station_id?.[1] || '',
+    customer_id: odooData.customer_id?.[0] || odooData.customer_id || 0,
+    customer_name: odooData.customer_id?.[1] || '',
+    vehicle_id: odooData.vehicle_id?.[0] || odooData.vehicle_id,
+    start_time: odooData.start_time || '',
+    end_time: odooData.end_time || '',
+    total_duration: odooData.total_duration || '',
+    start_meter: odooData.start_meter || 0,
+    stop_meter: odooData.stop_meter || 0,
+    total_energy: odooData.total_energy || 0,
+    cost: odooData.cost || 0,
+    status: odooData.status || 'Started',
+    max_amount_limit: odooData.max_amount_limit || 0,
   };
 }
 

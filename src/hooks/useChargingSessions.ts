@@ -3,34 +3,21 @@
  */
 
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '@/lib/api';
+import { callOdoo } from '@/lib/odoo-api';
 import { transformOdooChargingSession, transformArray } from '@/lib/transformers';
 
-interface ChargingSessionFilters {
-  station_id?: number | string;
-  user_id?: number | string;
-  start_date?: string;
-  end_date?: string;
-  status?: string;
-}
-
 /**
- * Fetch charging sessions with optional filters
+ * Fetch all charging sessions
  */
-export function useChargingSessions(filters?: ChargingSessionFilters) {
+export function useChargingSessions() {
   return useQuery({
-    queryKey: ['charging-sessions', filters],
+    queryKey: ['charging-sessions'],
     queryFn: async () => {
-      const params = new URLSearchParams();
-
-      if (filters?.station_id) params.append('station_id', String(filters.station_id));
-      if (filters?.user_id) params.append('user_id', String(filters.user_id));
-      if (filters?.start_date) params.append('start_date', filters.start_date);
-      if (filters?.end_date) params.append('end_date', filters.end_date);
-      if (filters?.status) params.append('status', filters.status);
-
-      const url = `/v1/charging-sessions${params.toString() ? `?${params.toString()}` : ''}`;
-      const { data } = await apiClient.get(url);
+      const data = await callOdoo('wallbox.charging.session', 'search_read', [[]], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
+        limit: 100,
+        order: 'id desc'
+      });
       return transformArray(data, transformOdooChargingSession);
     },
     staleTime: 1 * 60 * 1000, // 1 minute (short for real-time data)
@@ -44,8 +31,10 @@ export function useChargingSession(id: number | string | undefined) {
   return useQuery({
     queryKey: ['charging-session', id],
     queryFn: async () => {
-      const { data } = await apiClient.get(`/v1/charging-sessions/${id}`);
-      return transformOdooChargingSession(data);
+      const data = await callOdoo('wallbox.charging.session', 'read', [[Number(id)]], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'start_meter', 'stop_meter', 'total_energy', 'cost', 'status', 'max_amount_limit']
+      });
+      return transformOdooChargingSession(data[0]);
     },
     enabled: !!id,
     staleTime: 1 * 60 * 1000, // 1 minute
@@ -53,13 +42,37 @@ export function useChargingSession(id: number | string | undefined) {
 }
 
 /**
- * Fetch active charging sessions (in_corso)
+ * Fetch charging sessions by charging station ID
+ */
+export function useChargingSessionsByStation(stationId: number | string | undefined) {
+  return useQuery({
+    queryKey: ['charging-sessions', 'station', stationId],
+    queryFn: async () => {
+      const data = await callOdoo('wallbox.charging.session', 'search_read', [
+        [['charging_station_id', '=', Number(stationId)]]
+      ], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
+        order: 'id desc'
+      });
+      return transformArray(data, transformOdooChargingSession);
+    },
+    enabled: !!stationId,
+    staleTime: 1 * 60 * 1000, // 1 minute
+  });
+}
+
+/**
+ * Fetch active charging sessions (Started)
  */
 export function useActiveChargingSessions() {
   return useQuery({
     queryKey: ['charging-sessions', 'active'],
     queryFn: async () => {
-      const { data } = await apiClient.get('/v1/charging-sessions?status=in_corso');
+      const data = await callOdoo('wallbox.charging.session', 'search_read', [
+        [['status', '=', 'Started']]
+      ], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'total_duration', 'total_energy', 'cost', 'status']
+      });
       return transformArray(data, transformOdooChargingSession);
     },
     staleTime: 30 * 1000, // 30 seconds
@@ -74,7 +87,11 @@ export function useRecentChargingSessions(limit: number = 10) {
   return useQuery({
     queryKey: ['charging-sessions', 'recent', limit],
     queryFn: async () => {
-      const { data } = await apiClient.get(`/v1/charging-sessions?limit=${limit}`);
+      const data = await callOdoo('wallbox.charging.session', 'search_read', [[]], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'start_time', 'end_time', 'total_energy', 'cost', 'status'],
+        limit: limit,
+        order: 'id desc'
+      });
       return transformArray(data, transformOdooChargingSession);
     },
     staleTime: 2 * 60 * 1000, // 2 minutes

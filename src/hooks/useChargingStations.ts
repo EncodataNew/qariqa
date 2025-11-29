@@ -17,7 +17,7 @@ export function useChargingStations(condominiumId?: number | string) {
     queryFn: async () => {
       const domain = condominiumId ? [['condominium_id', '=', Number(condominiumId)]] : [];
       const data = await callOdoo('charging.station', 'search_read', [domain], {
-        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions']
       });
       return transformArray(data, transformOdooChargingStation);
     },
@@ -33,7 +33,7 @@ export function useChargingStation(id: number | string | undefined) {
     queryKey: ['charging-station', id],
     queryFn: async () => {
       const data = await callOdoo('charging.station', 'read', [[Number(id)]], {
-        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions', 'total_energy', 'total_recharged_cost']
       });
       return transformOdooChargingStation(data[0]);
     },
@@ -53,11 +53,30 @@ export function useChargingStationsByBuilding(buildingId: number | string | unde
       const data = await callOdoo('charging.station', 'search_read', [
         [['building_id', '=', Number(buildingId)]]
       ], {
-        fields: ['name', 'status', 'power', 'connector_type', 'building_id', 'condominium_id']
+        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions']
       });
       return transformArray(data, transformOdooChargingStation);
     },
     enabled: !!buildingId,
+    staleTime: 2 * 60 * 1000, // 2 minutes
+  });
+}
+
+/**
+ * Fetch charging stations by parking space ID
+ */
+export function useChargingStationsByParkingSpace(parkingSpaceId: number | string | undefined) {
+  return useQuery({
+    queryKey: ['charging-stations', 'parking-space', parkingSpaceId],
+    queryFn: async () => {
+      const data = await callOdoo('charging.station', 'search_read', [
+        [['parking_space_id', '=', Number(parkingSpaceId)]]
+      ], {
+        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions']
+      });
+      return transformArray(data, transformOdooChargingStation);
+    },
+    enabled: !!parkingSpaceId,
     staleTime: 2 * 60 * 1000, // 2 minutes
   });
 }

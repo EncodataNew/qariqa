@@ -1,4 +1,4 @@
-import { LayoutDashboard, Building2, FileText, Settings } from "lucide-react";
+import { LayoutDashboard, Home, Building2, ParkingSquare, Zap, Activity, FileText, Settings } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -14,7 +14,11 @@ import {
 
 const menuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Buildings", url: "/condomini", icon: Building2 },
+  { title: "Condominiums", url: "/condominiums", icon: Home },
+  { title: "Buildings", url: "/buildings", icon: Building2 },
+  { title: "Parking Spaces", url: "/parking-spaces", icon: ParkingSquare },
+  { title: "Charging Stations", url: "/charging-stations", icon: Zap },
+  { title: "Charging Sessions", url: "/charging-sessions", icon: Activity },
   { title: "Gestione", url: "/fatturazione", icon: FileText },
   { title: "Impostazioni", url: "/impostazioni", icon: Settings },
 ];

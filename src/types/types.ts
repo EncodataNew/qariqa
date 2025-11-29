@@ -15,9 +15,26 @@ export interface Building {
   id: number;
   name: string;
   condominium_id: number;
+  condominium_name?: string;
   address?: string;
   number_of_parking_spaces?: number;
   number_of_charging_stations?: number;
+}
+
+// Odoo Backend Model: parking.space
+export interface ParkingSpace {
+  id: number;
+  name: string;
+  building_id: number;
+  building_name?: string;
+  condominium_id: number;
+  condominium_name?: string;
+  parking_type?: 'indoor' | 'outdoor' | 'underground';
+  capacity?: number;
+  assigned_or_shared?: 'assigned' | 'shared';
+  number_of_charging_stations?: number;
+  rental_status?: 'owned' | 'rented';
+  monthly_fee?: number;
 }
 
 // Odoo Backend Model: charging.station
@@ -25,28 +42,38 @@ export interface ChargingStation {
   id: number;
   nome: string;
   building_id: number;
+  building_name?: string;
   condominium_id: number;
-  potenza: number; // kW
-  stato: 'disponibile' | 'in_uso' | 'manutenzione' | 'offline';
-  tipo_connettore: string;
-  ultimi_dati?: {
-    timestamp: string;
-    sessione_attiva?: SessioneRicarica;
-  };
+  condominium_name?: string;
+  parking_space_id: number;
+  parking_space_name?: string;
+  potenza: number; // kW (charging_power)
+  stato: 'Available' | 'Preparing' | 'Charging' | 'SuspendedEVSE' | 'SuspendedEV' | 'Finishing' | 'Reserved' | 'Unavailable' | 'Faulted';
+  tipo_connettore: string; // connector_type
+  price_per_kwh?: number;
+  number_of_charging_sessions?: number;
+  total_energy?: number;
+  total_recharged_cost?: number;
 }
 
 // Odoo Backend Model: wallbox.charging.session
 export interface SessioneRicarica {
   id: number;
-  station_id: number;
-  user_id: number;
-  user_name?: string;
-  vehicle_plate?: string;
-  start_time: string; // ISO datetime
+  transaction_id: string;
+  charging_station_id: number;
+  charging_station_name?: string;
+  customer_id: number;
+  customer_name?: string;
+  vehicle_id?: number;
+  start_time?: string; // ISO datetime
   end_time?: string; // ISO datetime
-  kwh_erogati: number;
-  costo?: number;
-  stato: 'in_corso' | 'completata' | 'interrotta';
+  total_duration?: string;
+  start_meter?: number; // Wh
+  stop_meter?: number; // Wh
+  total_energy?: number; // Wh
+  cost?: number;
+  status: 'Started' | 'Ended' | 'Failed';
+  max_amount_limit?: number;
 }
 
 // Odoo Backend Model: res.partner (filtered by wallbox_user=True)

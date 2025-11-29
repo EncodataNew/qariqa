@@ -12,7 +12,11 @@ import Dashboard from "./pages/Dashboard";
 import CondominioDetail from "./pages/CondominioDetail";
 import StazioneDetail from "./pages/StazioneDetail";
 import UtenteDetail from "./pages/UtenteDetail";
+import Condominiums from "./pages/Condominiums";
 import Buildings from "./pages/Buildings";
+import ParkingSpaces from "./pages/ParkingSpaces";
+import ChargingStations from "./pages/ChargingStations";
+import ChargingSessions from "./pages/ChargingSessions";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
@@ -46,10 +50,11 @@ const App = () => (
                             <Route path="/condominio/:id" element={<CondominioDetail />} />
                             <Route path="/condominio/:id/stazione/:stationId" element={<StazioneDetail />} />
                             <Route path="/condominio/:id/utente/:userId" element={<UtenteDetail />} />
-                            <Route
-                              path="/condomini"
-                              element={<Buildings />}
-                            />
+                            <Route path="/condominiums" element={<Condominiums />} />
+                            <Route path="/buildings" element={<Buildings />} />
+                            <Route path="/parking-spaces" element={<ParkingSpaces />} />
+                            <Route path="/charging-stations" element={<ChargingStations />} />
+                            <Route path="/charging-sessions" element={<ChargingSessions />} />
                             <Route
                               path="/fatturazione"
                               element={<Placeholder title="Fatturazione" description="Centro fatturazione centralizzato" />}
