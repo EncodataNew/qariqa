@@ -92,6 +92,7 @@
                             </div>
                         </div>
 
+                        <!-- Hidden: Pending Installations
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100">
                                 <div class="card-body">
@@ -110,6 +111,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
 
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100">
@@ -132,6 +134,7 @@
                     </div>
 
                     <div class="row mb-2 align-items-stretch">
+                        <!-- Hidden: Distribution Chart (taskStatusChart)
                         <div class="col-xl-3 col-lg-6 mb-4">
                             <div class="card shadow h-100">
                                 <div class="card-body">
@@ -141,6 +144,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
                         <!-- <div class="col-xl-3 col-md-6 mb-4">
                             <div class="row mb-4">
                                 <div class="col-xl-12">
@@ -203,6 +207,7 @@
                                 </div>
                             </div>
                         </div> -->
+                        <!-- Hidden: My Charging Requests, Guest Charging Requests, and Users panels
                         <div class="col-xl-3 col-md-6 mb-4 align-items-stretch">
                                 <div class="row mb-4">
                                     <div class="col-xl-12">
@@ -271,6 +276,8 @@
                                     </div>
                                 </div>
                         </div>
+                        -->
+                        <!-- Hidden: Revenue Chart
                         <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
@@ -284,6 +291,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
                     <!-- <div class="row mb-2">
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -459,7 +467,7 @@
 
                     <!-- Charts Row -->
                     <div class="row mb-4">
-                        <!-- Installation Status -->
+                        <!-- Hidden: Installation Status
                         <div class="col-xl-4 col-lg-6 mb-4">
                             <div class="card shadow h-100">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
@@ -472,6 +480,7 @@
                                 </div>
                             </div>
                         </div>
+                        -->
 
                         <!-- Station Status -->
                         <div class="col-xl-4 col-lg-6 mb-4">
