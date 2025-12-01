@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCondominium } from "@/hooks/useCondominiums";
+import { useBuildingsByCondominium } from "@/hooks/useBuildings";
 import { useChargingStations, useUpdateChargingStation } from "@/hooks/useChargingStations";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
@@ -22,10 +23,11 @@ export default function CondominioDetail() {
   const navigate = useNavigate();
 
   const { data: condominio, isLoading: condominioLoading, error: condominioError, refetch: refetchCondominium } = useCondominium(Number(id));
+  const { data: buildings, isLoading: buildingsLoading, error: buildingsError } = useBuildingsByCondominium(Number(id));
   const { data: stations, isLoading: stationsLoading, error: stationsError, refetch: refetchStations } = useChargingStations(Number(id));
   const updateStation = useUpdateChargingStation();
 
-  if (condominioLoading || stationsLoading) {
+  if (condominioLoading || buildingsLoading || stationsLoading) {
     return <LoadingState type="details" message="Caricamento dettagli condominio..." />;
   }
 
@@ -93,7 +95,7 @@ export default function CondominioDetail() {
         </Button>
       </div>
 
-      {condominio.buildings && condominio.buildings.length > 0 && (
+      {buildings && buildings.length > 0 && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -103,8 +105,12 @@ export default function CondominioDetail() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {condominio.buildings.map((building) => (
-                <div key={building.id} className="p-4 border rounded-lg">
+              {buildings.map((building) => (
+                <div
+                  key={building.id}
+                  className="p-4 border rounded-lg cursor-pointer hover:shadow-md transition-shadow"
+                  onClick={() => navigate(`/edificio/${building.id}`)}
+                >
                   <p className="font-medium">{building.name}</p>
                   {building.address && (
                     <p className="text-sm text-muted-foreground mt-1">{building.address}</p>

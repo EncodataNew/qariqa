@@ -7,6 +7,7 @@ export interface Condominio {
   provincia: string;
   cap: string;
   buildings?: Building[];
+  number_of_buildings?: number; // Count of buildings
   stazioni?: number; // Count of charging stations
 }
 

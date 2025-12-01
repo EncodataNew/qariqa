@@ -16,7 +16,7 @@ export function useCondominiums() {
     queryKey: ['condominiums'],
     queryFn: async () => {
       const data = await callOdoo('condominium.condominium', 'search_read', [[]], {
-        fields: ['condominium_name', 'address', 'owner_id', 'manager_id', 'type_of_condominium']
+        fields: ['condominium_name', 'address', 'owner_id', 'manager_id', 'type_of_condominium', 'number_of_buildings']
       });
       return transformArray(data, transformOdooCondominium);
     },

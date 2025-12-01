@@ -27,6 +27,7 @@ export function transformOdooCondominium(odooData: any): Condominio {
     provincia: odooData.state_id?.[1] || odooData.provincia || '',
     cap: odooData.zip || odooData.cap || '',
     buildings: odooData.building_ids?.map(transformOdooBuilding) || odooData.buildings,
+    number_of_buildings: odooData.number_of_buildings || 0,
     stazioni: odooData.charging_station_count || odooData.stazioni || 0,
   };
 }

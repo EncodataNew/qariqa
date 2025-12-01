@@ -84,7 +84,7 @@ export default function Condominiums() {
                     <div>
                       <p className="text-sm text-muted-foreground">Edifici</p>
                       <p className="text-lg font-semibold">
-                        {condominio.buildings?.length || 0}
+                        {condominio.number_of_buildings || 0}
                       </p>
                     </div>
                   </div>
