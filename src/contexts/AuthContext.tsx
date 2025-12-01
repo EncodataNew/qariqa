@@ -3,6 +3,7 @@ import { User, getStoredUser, isAuthenticated as checkAuth, clearTokens } from '
 import { getOdooUser, isOdooAuthenticated, clearOdooSession } from '@/lib/odoo-auth';
 import { login as apiLogin, logout as apiLogout } from '@/lib/api';
 import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface AuthContextType {
   user: User | null;
@@ -21,6 +22,7 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const queryClient = useQueryClient();
 
   // Check authentication status on mount
   useEffect(() => {
@@ -61,6 +63,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const login = async (username: string, password: string) => {
     try {
       setIsLoading(true);
+      // Clear cache before login to ensure fresh data for new user
+      queryClient.clear();
       const response = await apiLogin(username, password);
       setUser(response.user);
       toast.success('Login effettuato con successo!');
@@ -78,11 +82,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       setIsLoading(true);
       await apiLogout();
+      // Clear React Query cache to remove all cached data
+      queryClient.clear();
       setUser(null);
       toast.success('Logout effettuato con successo!');
     } catch (error: any) {
       console.error('Logout error:', error);
-      // Still clear local state even if API call fails
+      // Still clear local state and cache even if API call fails
+      queryClient.clear();
       setUser(null);
       toast.error('Errore durante il logout.');
     } finally {
