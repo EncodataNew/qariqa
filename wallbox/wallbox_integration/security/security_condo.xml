@@ -10,7 +10,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('owner_id', '=', user.partner_id.id), ('manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Wallbox Order - own condominium -->
@@ -22,7 +22,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Wallbox Installation -->
@@ -34,7 +34,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Building -->
@@ -46,7 +46,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Parking Space -->
@@ -58,7 +58,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Charging Station -->
@@ -70,7 +70,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Charging Session -->
@@ -82,7 +82,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('charging_station_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('charging_station_id.condominium_id.owner_id', '=', user.partner_id.id), ('charging_station_id.condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
 </odoo>

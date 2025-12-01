@@ -57,7 +57,7 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('wallbox_order_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('wallbox_order_id.condominium_id.owner_id', '=', user.partner_id.id), ('wallbox_order_id.condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <!-- Condominium Owner: Wallbox Sale Order -->
@@ -69,7 +69,7 @@
         <field name="perm_write" eval="0"/>
         <field name="perm_create" eval="0"/>
         <field name="perm_unlink" eval="0"/>
-        <field name="domain_force">[('request_charging_id.condominium_id.owner_id', '=', user.partner_id.id), ('request_charging_id', '!=', False)]</field>
+        <field name="domain_force">['&', '|', ('request_charging_id.condominium_id.owner_id', '=', user.partner_id.id), ('request_charging_id.condominium_id.manager_id', '=', user.partner_id.id), ('request_charging_id', '!=', False)]</field>
     </record>
 
     <!-- wallbox user can see sale orders in which he is set as customer or user_id (salesperson) -->
@@ -96,7 +96,7 @@
         <field name="perm_write" eval="0"/>
         <field name="perm_create" eval="0"/>
         <field name="perm_unlink" eval="0"/>
-        <field name="domain_force">[('charging_station_id.owner_id.condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('charging_station_id.owner_id.condominium_id.owner_id', '=', user.partner_id.id), ('charging_station_id.owner_id.condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
     <record id="condo_owner_all_wallbox_request_charging_record" model="ir.rule">
@@ -107,7 +107,7 @@
         <field name="perm_write" eval="0"/>
         <field name="perm_create" eval="0"/>
         <field name="perm_unlink" eval="0"/>
-        <field name="domain_force">[('condominium_id.owner_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">['|', ('condominium_id.owner_id', '=', user.partner_id.id), ('condominium_id.manager_id', '=', user.partner_id.id)]</field>
     </record>
 
 </odoo>
