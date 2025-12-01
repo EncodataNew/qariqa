@@ -2,9 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Zap, FileText } from "lucide-react";
-import { getStazioneById, getCondominioById } from "@/data/mockData";
-import { toast } from "@/hooks/use-toast";
+import { ArrowLeft, Zap, FileText, User, Calendar, Battery } from "lucide-react";
+import { useChargingStation } from "@/hooks/useChargingStations";
+import { useChargingSessionsByStation } from "@/hooks/useChargingSessions";
+import LoadingState from "@/components/LoadingState";
+import ErrorState from "@/components/ErrorState";
+import { toast } from "sonner";
 import {
   Table,
   TableBody,
@@ -13,130 +16,216 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { formatPower, formatStationStatus } from "@/lib/formatters";
 
 export default function StazioneDetail() {
-  const { id, stationId } = useParams();
+  const { stationId } = useParams();
   const navigate = useNavigate();
-  const chargingPoint = getStazioneById(stationId!);
-  const condominio = getCondominioById(id!);
 
-  if (!chargingPoint || !condominio) {
-    return <div>Charging Point non trovato</div>;
+  const { data: station, isLoading: stationLoading, error: stationError, refetch: refetchStation } = useChargingStation(Number(stationId));
+  const { data: sessions, isLoading: sessionsLoading, error: sessionsError } = useChargingSessionsByStation(Number(stationId));
+
+  if (stationLoading || sessionsLoading) {
+    return <LoadingState type="details" message="Caricamento stazione di ricarica..." />;
+  }
+
+  if (stationError || !station) {
+    return (
+      <ErrorState
+        title="Stazione non trovata"
+        message="Impossibile caricare i dettagli della stazione di ricarica."
+        onRetry={() => refetchStation()}
+        showHomeButton
+      />
+    );
   }
 
   const getStatoBadgeVariant = (stato: string) => {
-    switch (stato) {
-      case "In uso":
-        return "destructive";
-      case "Libero":
-        return "secondary";
+    switch (stato?.toLowerCase()) {
+      case "charging":
+      case "in_uso":
+        return "in-uso";
+      case "available":
+      case "disponibile":
+        return "libero";
+      case "unavailable":
+      case "offline":
+        return "non-attivo";
+      case "faulted":
+      case "manutenzione":
+        return "manutenzione";
+      default:
+        return "default";
+    }
+  };
+
+  const getSessionStatusBadge = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case "started":
+        return "in-uso";
+      case "ended":
+      case "completed":
+        return "libero";
       default:
         return "default";
     }
   };
 
   const handleGeneraReport = () => {
-    toast({
-      title: "Report generato",
-      description: "Il report trimestrale è stato generato con successo.",
+    toast.success("Report generato con successo!", {
+      description: "Il report è stato scaricato.",
     });
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" onClick={() => navigate(`/condominio/${id}`)}>
+        <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <div className="flex-1">
           <h1 className="text-3xl font-bold flex items-center gap-2">
             <Zap className="h-8 w-8 text-primary" />
-            Charging Point {chargingPoint.id}
+            {station.nome}
           </h1>
-          <p className="text-muted-foreground">{condominio.nome}</p>
+          <p className="text-muted-foreground">{station.condominium_name}</p>
         </div>
         <Button onClick={handleGeneraReport}>
           <FileText className="mr-2 h-4 w-4" />
-          Genera Report Trimestrale
+          Genera Report
         </Button>
+      </div>
+
+      {/* Statistics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Potenza</CardTitle>
+            <Zap className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{formatPower(station.potenza)}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Stato</CardTitle>
+            <Battery className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <Badge variant={getStatoBadgeVariant(station.stato) as any}>
+              {formatStationStatus(station.stato)}
+            </Badge>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Sessioni Totali</CardTitle>
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{station.number_of_charging_sessions || 0}</div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Energia Totale</CardTitle>
+            <Battery className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{(station.total_energy || 0).toFixed(1)} kWh</div>
+          </CardContent>
+        </Card>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Informazioni Charging Point</CardTitle>
+          <CardTitle>Informazioni Stazione</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div>
-            <p className="text-sm text-muted-foreground">ID Charging Point</p>
-            <p className="font-semibold">{chargingPoint.id}</p>
+            <p className="text-sm text-muted-foreground">Condominio</p>
+            <p className="font-semibold">{station.condominium_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Assegnata a</p>
-            <p className="font-semibold">
-              {chargingPoint.assegnataA || (
-                <span className="text-muted-foreground">Nessun owner</span>
-              )}
-            </p>
+            <p className="text-sm text-muted-foreground">Edificio</p>
+            <p className="font-semibold">{station.building_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Posizione</p>
-            <p className="font-semibold">{chargingPoint.posizione}</p>
+            <p className="text-sm text-muted-foreground">Posto Auto</p>
+            <p className="font-semibold">{station.parking_space_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Potenza Max</p>
-            <p className="font-semibold">{chargingPoint.potenza} kW</p>
+            <p className="text-sm text-muted-foreground">Tipo Connettore</p>
+            <p className="font-semibold">{station.tipo_connettore || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Posto auto assegnato</p>
-            <p className="font-semibold">{chargingPoint.postoAuto}</p>
+            <p className="text-sm text-muted-foreground">Prezzo per kWh</p>
+            <p className="font-semibold">€{(station.price_per_kwh || 0).toFixed(2)}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Stato</p>
-            <Badge variant={getStatoBadgeVariant(chargingPoint.stato)}>{chargingPoint.stato}</Badge>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Consumo trimestre</p>
-            <p className="font-semibold">{chargingPoint.consumoTrimestre.toFixed(1)} kWh</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Valore consumi</p>
-            <p className="font-semibold text-primary">€ {chargingPoint.valoreTrimestre.toFixed(2)}</p>
+            <p className="text-sm text-muted-foreground">Costo Totale</p>
+            <p className="font-semibold text-primary">€{(station.total_recharged_cost || 0).toFixed(2)}</p>
           </div>
         </CardContent>
       </Card>
 
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Storico Trimestrale</h2>
-        <Card>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Trimestre</TableHead>
-                <TableHead>Consumi (kWh)</TableHead>
-                <TableHead>Valore consumi (€)</TableHead>
-                <TableHead>Report Trimestrale</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {chargingPoint.storicoTrimestrale.map((record) => (
-                <TableRow key={record.trimestre}>
-                  <TableCell className="font-medium">{record.trimestre}</TableCell>
-                  <TableCell>{record.consumo.toFixed(1)} kWh</TableCell>
-                  <TableCell>€ {record.valore.toFixed(2)}</TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href={record.reportUrl} target="_blank" rel="noopener noreferrer">
-                        <FileText className="h-4 w-4 mr-2" />
-                        Scarica
-                      </a>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Card>
-      </div>
+      {/* Charging Sessions */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <User className="h-5 w-5" />
+            Sessioni di Ricarica
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {sessionsError ? (
+            <ErrorState message="Errore nel caricamento delle sessioni" />
+          ) : sessions && sessions.length > 0 ? (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Transaction ID</TableHead>
+                    <TableHead>Cliente</TableHead>
+                    <TableHead>Inizio</TableHead>
+                    <TableHead>Fine</TableHead>
+                    <TableHead>Durata</TableHead>
+                    <TableHead>Energia (kWh)</TableHead>
+                    <TableHead>Costo (€)</TableHead>
+                    <TableHead>Stato</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {sessions.map((session) => (
+                    <TableRow key={session.id}>
+                      <TableCell className="font-medium">{session.transaction_id || session.id}</TableCell>
+                      <TableCell>{session.customer_name || 'N/A'}</TableCell>
+                      <TableCell>{session.start_time ? new Date(session.start_time).toLocaleString('it-IT') : 'N/A'}</TableCell>
+                      <TableCell>{session.end_time ? new Date(session.end_time).toLocaleString('it-IT') : '-'}</TableCell>
+                      <TableCell>{session.total_duration || '-'}</TableCell>
+                      <TableCell>{((session.total_energy || 0) / 1000).toFixed(2)}</TableCell>
+                      <TableCell>€{(session.cost || 0).toFixed(2)}</TableCell>
+                      <TableCell>
+                        <Badge variant={getSessionStatusBadge(session.status) as any}>
+                          {session.status}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          ) : (
+            <div className="text-center p-12 text-muted-foreground">
+              Nessuna sessione di ricarica trovata
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

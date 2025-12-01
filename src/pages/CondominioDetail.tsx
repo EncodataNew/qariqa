@@ -148,7 +148,7 @@ export default function CondominioDetail() {
                     <tr
                       key={station.id}
                       className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
-                      onClick={() => navigate(`/condominio/${id}/stazione/${station.id}`)}
+                      onClick={() => navigate(`/stazione/${station.id}`)}
                     >
                       <td className="p-4 font-medium">{station.nome}</td>
                       <td className="p-4">{formatPower(station.potenza)}</td>
