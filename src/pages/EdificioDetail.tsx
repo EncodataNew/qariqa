@@ -111,6 +111,7 @@ export default function EdificioDetail() {
                     <tr
                       key={parking.id}
                       className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
+                      onClick={() => navigate(`/parcheggio/${parking.id}`)}
                     >
                       <td className="p-4 font-medium">{parking.name}</td>
                       <td className="p-4">{parking.parking_type || 'N/A'}</td>

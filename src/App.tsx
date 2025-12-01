@@ -11,6 +11,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import CondominioDetail from "./pages/CondominioDetail";
 import EdificioDetail from "./pages/EdificioDetail";
+import ParcheggiDetail from "./pages/ParcheggiDetail";
 import StazioneDetail from "./pages/StazioneDetail";
 import UtenteDetail from "./pages/UtenteDetail";
 import Condominiums from "./pages/Condominiums";
@@ -49,9 +50,10 @@ const App = () => (
                           <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/condominio/:id" element={<CondominioDetail />} />
+                            <Route path="/edificio/:id" element={<EdificioDetail />} />
+                            <Route path="/parcheggio/:id" element={<ParcheggiDetail />} />
                             <Route path="/stazione/:stationId" element={<StazioneDetail />} />
                             <Route path="/condominio/:id/utente/:userId" element={<UtenteDetail />} />
-                            <Route path="/edificio/:id" element={<EdificioDetail />} />
                             <Route path="/condominiums" element={<Condominiums />} />
                             <Route path="/buildings" element={<Buildings />} />
                             <Route path="/parking-spaces" element={<ParkingSpaces />} />

@@ -1,9 +1,11 @@
 import { useParkingSpaces } from "@/hooks/useParkingSpaces";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ParkingSquare, Building2, Home, Zap, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ParkingSpaces() {
   const { data: parkingSpaces, isLoading, error } = useParkingSpaces();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -54,7 +56,11 @@ export default function ParkingSpaces() {
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {parkingSpaces.map((parking) => (
-            <Card key={parking.id} className="hover:shadow-lg transition-shadow">
+            <Card
+              key={parking.id}
+              className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => navigate(`/parcheggio/${parking.id}`)}
+            >
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <ParkingSquare className="h-5 w-5 text-primary" />
