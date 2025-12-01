@@ -86,6 +86,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+{/* Hidden: Pending Installations
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -97,6 +98,7 @@ export default function Dashboard() {
             <div className="text-2xl font-bold">{stats?.pending_installations || 0}</div>
           </CardContent>
         </Card>
+        */}
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -111,7 +113,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Second Row - User Requests and Revenue Chart */}
+{/* Hidden: Second Row - User Requests
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -155,10 +157,10 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+      */}
 
-      {/* Charts Section */}
+{/* Hidden: Charts Section - Distribution and Revenue
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Donut Chart - Condominium/Building/Parking */}
         <Card>
           <CardHeader>
             <CardTitle className="text-sm text-muted-foreground">Distribution</CardTitle>
@@ -199,7 +201,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Revenue Chart */}
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle className="text-sm text-muted-foreground">Revenue</CardTitle>
@@ -217,10 +218,11 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+      */}
 
       {/* Bottom Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Installation Status */}
+{/* Hidden: Installation Status
         <Card>
           <CardHeader>
             <CardTitle className="text-sm text-muted-foreground">Installation Status</CardTitle>
@@ -256,6 +258,7 @@ export default function Dashboard() {
             </div>
           </CardContent>
         </Card>
+        */}
 
         {/* Station Status */}
         <Card>
