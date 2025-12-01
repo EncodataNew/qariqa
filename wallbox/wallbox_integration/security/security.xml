@@ -89,7 +89,7 @@
     </record>
 
     <record id="wallbox_user_charging_station_rule" model="ir.rule">
-        <field name="name">Wallbox User: access to own and allowed charging stations</field>
+        <field name="name">Wallbox User: access to own and allowed charging stations in own condominium</field>
         <field name="model_id" ref="model_charging_station"/>
         <field name="groups" eval="[(4, ref('wallbox_integration.group_wallbox_user'))]"/>
         <field name="perm_read" eval="1"/>
@@ -97,9 +97,11 @@
         <field name="perm_create" eval="0"/>
         <field name="perm_unlink" eval="0"/>
         <field name="domain_force">[
+            '&',
             '|',
-            ('owner_id', '=', user.partner_id.id),
-            ('allowed_partner_ids', 'in', [user.partner_id.id])
+                ('owner_id', '=', user.partner_id.id),
+                ('allowed_partner_ids', 'in', [user.partner_id.id]),
+            ('condominium_id.id', '=', user.partner_id.condominium_id.id)
         ]</field>
     </record>
 
