@@ -1,16 +1,26 @@
 import { useTranslation } from 'react-i18next';
+import { useState, useMemo } from 'react';
 import { useChargingSessions } from "@/hooks/useChargingSessions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Download } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Loader2, Download, Filter, X } from "lucide-react";
 import { format } from "date-fns";
 import * as XLSX from 'xlsx';
 
 export default function ChargingSessions() {
   const { t } = useTranslation();
   const { data: sessions, isLoading, error } = useChargingSessions();
+
+  // Filter states
+  const [selectedCustomer, setSelectedCustomer] = useState<string>('all');
+  const [selectedStation, setSelectedStation] = useState<string>('all');
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
 
   if (isLoading) {
     return (
@@ -60,10 +70,82 @@ export default function ChargingSessions() {
     return `${wh} Wh`;
   };
 
-  const exportToExcel = () => {
-    if (!sessions || sessions.length === 0) return;
+  // Extract unique customers and stations for filter dropdowns
+  const customers = useMemo(() => {
+    if (!sessions) return [];
+    const uniqueCustomers = new Map();
+    sessions.forEach(session => {
+      if (session.customer_id && session.customer_name) {
+        uniqueCustomers.set(session.customer_id, session.customer_name);
+      }
+    });
+    return Array.from(uniqueCustomers.entries()).map(([id, name]) => ({ id, name }));
+  }, [sessions]);
 
-    const exportData = sessions.map(session => ({
+  const stations = useMemo(() => {
+    if (!sessions) return [];
+    const uniqueStations = new Map();
+    sessions.forEach(session => {
+      if (session.charging_station_id && session.charging_station_name) {
+        uniqueStations.set(session.charging_station_id, session.charging_station_name);
+      }
+    });
+    return Array.from(uniqueStations.entries()).map(([id, name]) => ({ id, name }));
+  }, [sessions]);
+
+  // Filter sessions based on selected filters
+  const filteredSessions = useMemo(() => {
+    if (!sessions) return [];
+
+    return sessions.filter(session => {
+      // Customer filter
+      if (selectedCustomer !== 'all' && session.customer_id !== Number(selectedCustomer)) {
+        return false;
+      }
+
+      // Station filter
+      if (selectedStation !== 'all' && session.charging_station_id !== Number(selectedStation)) {
+        return false;
+      }
+
+      // Start date filter
+      if (startDate && session.start_time) {
+        const sessionDate = new Date(session.start_time);
+        const filterDate = new Date(startDate);
+        if (sessionDate < filterDate) {
+          return false;
+        }
+      }
+
+      // End date filter
+      if (endDate && session.start_time) {
+        const sessionDate = new Date(session.start_time);
+        const filterDate = new Date(endDate);
+        // Set to end of day for end date
+        filterDate.setHours(23, 59, 59, 999);
+        if (sessionDate > filterDate) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [sessions, selectedCustomer, selectedStation, startDate, endDate]);
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSelectedCustomer('all');
+    setSelectedStation('all');
+    setStartDate('');
+    setEndDate('');
+  };
+
+  const hasActiveFilters = selectedCustomer !== 'all' || selectedStation !== 'all' || startDate || endDate;
+
+  const exportToExcel = () => {
+    if (!filteredSessions || filteredSessions.length === 0) return;
+
+    const exportData = filteredSessions.map(session => ({
       'ID Transazione': session.transaction_id,
       'Stazione': session.charging_station_name || '',
       'Cliente': session.customer_name || '',
@@ -108,7 +190,7 @@ export default function ChargingSessions() {
             {t('chargingSessions.subtitle')}
           </p>
         </div>
-        {sessions && sessions.length > 0 && (
+        {filteredSessions && filteredSessions.length > 0 && (
           <Button onClick={exportToExcel} variant="outline" className="gap-2">
             <Download className="h-4 w-4" />
             {t('chargingSessions.exportExcel')}
@@ -116,12 +198,108 @@ export default function ChargingSessions() {
         )}
       </div>
 
+      {/* Filters */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Filter className="h-5 w-5" />
+              Filtri
+            </CardTitle>
+            {hasActiveFilters && (
+              <Button variant="ghost" size="sm" onClick={clearFilters} className="gap-2">
+                <X className="h-4 w-4" />
+                Cancella Filtri
+              </Button>
+            )}
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Customer Filter */}
+            <div className="space-y-2">
+              <Label htmlFor="customer-filter">Cliente</Label>
+              <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
+                <SelectTrigger id="customer-filter">
+                  <SelectValue placeholder="Tutti i clienti" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tutti i clienti</SelectItem>
+                  {customers.map(customer => (
+                    <SelectItem key={customer.id} value={String(customer.id)}>
+                      {customer.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Station Filter */}
+            <div className="space-y-2">
+              <Label htmlFor="station-filter">Stazione di Ricarica</Label>
+              <Select value={selectedStation} onValueChange={setSelectedStation}>
+                <SelectTrigger id="station-filter">
+                  <SelectValue placeholder="Tutte le stazioni" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tutte le stazioni</SelectItem>
+                  {stations.map(station => (
+                    <SelectItem key={station.id} value={String(station.id)}>
+                      {station.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Start Date Filter */}
+            <div className="space-y-2">
+              <Label htmlFor="start-date">Data Inizio</Label>
+              <Input
+                id="start-date"
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </div>
+
+            {/* End Date Filter */}
+            <div className="space-y-2">
+              <Label htmlFor="end-date">Data Fine</Label>
+              <Input
+                id="end-date"
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {hasActiveFilters && (
+            <div className="mt-4 text-sm text-muted-foreground">
+              Mostrando {filteredSessions.length} di {sessions?.length || 0} sessioni
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {!sessions || sessions.length === 0 ? (
         <Card>
           <CardHeader>
             <CardTitle>{t('chargingSessions.noData')}</CardTitle>
             <CardDescription>
               {t('chargingSessions.noDataDescription')}
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      ) : filteredSessions.length === 0 ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Nessuna sessione trovata</CardTitle>
+            <CardDescription>
+              {hasActiveFilters
+                ? 'Nessuna sessione corrisponde ai filtri selezionati.'
+                : 'Non ci sono sessioni da visualizzare al momento.'}
             </CardDescription>
           </CardHeader>
         </Card>
@@ -143,7 +321,7 @@ export default function ChargingSessions() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {sessions.map((session) => (
+                {filteredSessions.map((session) => (
                   <TableRow key={session.id}>
                     <TableCell className="font-medium">
                       {session.transaction_id.substring(0, 20)}...
