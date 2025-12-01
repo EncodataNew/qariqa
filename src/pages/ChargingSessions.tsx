@@ -22,54 +22,6 @@ export default function ChargingSessions() {
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <Card className="max-w-md">
-          <CardHeader>
-            <CardTitle className="text-destructive">Errore</CardTitle>
-            <CardDescription>
-              Si è verificato un errore durante il caricamento delle sessioni.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              {error instanceof Error ? error.message : "Errore sconosciuto"}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Started':
-        return 'bg-blue-500';
-      case 'Ended':
-        return 'bg-green-500';
-      case 'Failed':
-        return 'bg-red-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
-
-  const formatEnergy = (wh: number) => {
-    if (wh >= 1000) {
-      return `${(wh / 1000).toFixed(2)} kWh`;
-    }
-    return `${wh} Wh`;
-  };
-
   // Extract unique customers and stations for filter dropdowns
   const customers = useMemo(() => {
     if (!sessions) return [];
@@ -131,6 +83,55 @@ export default function ChargingSessions() {
       return true;
     });
   }, [sessions, selectedCustomer, selectedStation, startDate, endDate]);
+
+  // Now check loading/error states after all hooks are called
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <Card className="max-w-md">
+          <CardHeader>
+            <CardTitle className="text-destructive">Errore</CardTitle>
+            <CardDescription>
+              Si è verificato un errore durante il caricamento delle sessioni.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              {error instanceof Error ? error.message : "Errore sconosciuto"}
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Started':
+        return 'bg-blue-500';
+      case 'Ended':
+        return 'bg-green-500';
+      case 'Failed':
+        return 'bg-red-500';
+      default:
+        return 'bg-gray-500';
+    }
+  };
+
+  const formatEnergy = (wh: number) => {
+    if (wh >= 1000) {
+      return `${(wh / 1000).toFixed(2)} kWh`;
+    }
+    return `${wh} Wh`;
+  };
 
   // Clear all filters
   const clearFilters = () => {
