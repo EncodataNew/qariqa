@@ -2,12 +2,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Zap, FileText, User, Calendar, Battery } from "lucide-react";
+import { ArrowLeft, Zap, User, Calendar, Battery } from "lucide-react";
 import { useChargingStation } from "@/hooks/useChargingStations";
 import { useChargingSessionsByStation } from "@/hooks/useChargingSessions";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
-import { toast } from "sonner";
 import {
   Table,
   TableBody,
@@ -71,12 +70,6 @@ export default function StazioneDetail() {
     }
   };
 
-  const handleGeneraReport = () => {
-    toast.success("Report generato con successo!", {
-      description: "Il report è stato scaricato.",
-    });
-  };
-
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -90,10 +83,6 @@ export default function StazioneDetail() {
           </h1>
           <p className="text-muted-foreground">{station.condominium_name}</p>
         </div>
-        <Button onClick={handleGeneraReport}>
-          <FileText className="mr-2 h-4 w-4" />
-          Genera Report
-        </Button>
       </div>
 
       {/* Statistics Cards */}
