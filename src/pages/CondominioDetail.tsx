@@ -2,8 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileDown, ArrowLeft, MapPin, Building2 } from "lucide-react";
-import { toast } from "sonner";
+import { ArrowLeft, MapPin, Building2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -42,21 +41,22 @@ export default function CondominioDetail() {
     );
   }
 
-  const handleEsportaReport = () => {
-    toast.success("Report trimestrale generato con successo!", {
-      description: "Il file PDF è stato scaricato.",
-    });
-  };
-
   const getBadgeVariant = (stato: string) => {
-    switch (stato) {
+    const statoLower = stato.toLowerCase();
+    switch (statoLower) {
       case "in_uso":
+      case "charging":
+      case "in uso":
         return "in-uso";
       case "disponibile":
+      case "available":
         return "libero";
       case "manutenzione":
+      case "maintenance":
         return "manutenzione";
       case "offline":
+      case "unavailable":
+      case "faulted":
         return "non-attivo";
       default:
         return "default";
@@ -89,10 +89,6 @@ export default function CondominioDetail() {
             <p>{fullAddress}</p>
           </div>
         </div>
-        <Button onClick={handleEsportaReport}>
-          <FileDown className="h-4 w-4 mr-2" />
-          Esporta report
-        </Button>
       </div>
 
       {buildings && buildings.length > 0 && (
