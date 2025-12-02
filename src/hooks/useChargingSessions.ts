@@ -13,12 +13,48 @@ export function useChargingSessions() {
   return useQuery({
     queryKey: ['charging-sessions'],
     queryFn: async () => {
-      const data = await callOdoo('wallbox.charging.session', 'search_read', [[]], {
-        fields: ['transaction_id', 'charging_station_id', 'parking_space_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
+      // First, fetch charging sessions
+      const sessions = await callOdoo('wallbox.charging.session', 'search_read', [[]], {
+        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
         limit: 100,
         order: 'id desc'
       });
-      return transformArray(data, transformOdooChargingSession);
+
+      // Extract unique charging station IDs
+      const stationIds = [...new Set(sessions.map((s: any) => s.charging_station_id?.[0]).filter(Boolean))];
+
+      // Fetch charging stations with parking space info
+      const stations = stationIds.length > 0
+        ? await callOdoo('charging.station', 'search_read', [
+            [['id', 'in', stationIds]]
+          ], {
+            fields: ['id', 'parking_space_id']
+          })
+        : [];
+
+      // Create a map of station_id -> parking_space info
+      const stationParkingMap = new Map(
+        stations.map((station: any) => [
+          station.id,
+          {
+            parking_space_id: station.parking_space_id?.[0] || 0,
+            parking_space_name: station.parking_space_id?.[1] || ''
+          }
+        ])
+      );
+
+      // Merge parking space data into sessions
+      const enrichedSessions = sessions.map((session: any) => {
+        const stationId = session.charging_station_id?.[0];
+        const parkingInfo = stationParkingMap.get(stationId);
+        return {
+          ...session,
+          parking_space_id: parkingInfo?.parking_space_id,
+          parking_space_name: parkingInfo?.parking_space_name
+        };
+      });
+
+      return transformArray(enrichedSessions, transformOdooChargingSession);
     },
     staleTime: 1 * 60 * 1000, // 1 minute (short for real-time data)
   });
