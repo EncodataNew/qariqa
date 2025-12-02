@@ -1,7 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, MapPin, ParkingSquare, Zap, Building2 } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ArrowLeft, MapPin, ParkingSquare, Zap, Building2, ChevronDown } from "lucide-react";
 import { useBuilding } from "@/hooks/useBuildings";
 import { useParkingSpacesByBuilding } from "@/hooks/useParkingSpaces";
 import { useChargingStationsByBuilding } from "@/hooks/useChargingStations";
@@ -11,6 +13,7 @@ import ErrorState from "@/components/ErrorState";
 export default function EdificioDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isParkingOpen, setIsParkingOpen] = useState(false);
 
   const { data: building, isLoading: buildingLoading, error: buildingError, refetch: refetchBuilding } = useBuilding(Number(id));
   const { data: parkingSpaces, isLoading: parkingLoading, error: parkingError } = useParkingSpacesByBuilding(Number(id));
@@ -82,54 +85,61 @@ export default function EdificioDetail() {
       </div>
 
       {/* Parking Spaces */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <ParkingSquare className="h-5 w-5" />
-            Posti Auto
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {parkingError ? (
-            <ErrorState
-              message="Errore nel caricamento dei posti auto"
-            />
-          ) : parkingSpaces && parkingSpaces.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-4 font-medium">Nome</th>
-                    <th className="text-left p-4 font-medium">Tipo</th>
-                    <th className="text-left p-4 font-medium">Capacità</th>
-                    <th className="text-left p-4 font-medium">Stato</th>
-                    <th className="text-left p-4 font-medium">Stazioni</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {parkingSpaces.map((parking) => (
-                    <tr
-                      key={parking.id}
-                      className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
-                      onClick={() => navigate(`/parcheggio/${parking.id}`)}
-                    >
-                      <td className="p-4 font-medium">{parking.name}</td>
-                      <td className="p-4">{parking.parking_type || 'N/A'}</td>
-                      <td className="p-4">{parking.capacity || 0}</td>
-                      <td className="p-4">{parking.assigned_or_shared || 'N/A'}</td>
-                      <td className="p-4">{parking.number_of_charging_stations || 0}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="text-center p-12 text-muted-foreground">
-              Nessun posto auto trovato
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <Collapsible open={isParkingOpen} onOpenChange={setIsParkingOpen}>
+        <Card>
+          <CardHeader>
+            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity">
+              <CardTitle className="flex items-center gap-2">
+                <ParkingSquare className="h-5 w-5" />
+                Posti Auto
+              </CardTitle>
+              <ChevronDown className={`h-5 w-5 transition-transform ${isParkingOpen ? 'transform rotate-180' : ''}`} />
+            </CollapsibleTrigger>
+          </CardHeader>
+          <CollapsibleContent>
+            <CardContent>
+              {parkingError ? (
+                <ErrorState
+                  message="Errore nel caricamento dei posti auto"
+                />
+              ) : parkingSpaces && parkingSpaces.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-4 font-medium">Nome</th>
+                        <th className="text-left p-4 font-medium">Tipo</th>
+                        <th className="text-left p-4 font-medium">Capacità</th>
+                        <th className="text-left p-4 font-medium">Stato</th>
+                        <th className="text-left p-4 font-medium">Stazioni</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {parkingSpaces.map((parking) => (
+                        <tr
+                          key={parking.id}
+                          className="border-b hover:bg-muted/50 cursor-pointer transition-colors"
+                          onClick={() => navigate(`/parcheggio/${parking.id}`)}
+                        >
+                          <td className="p-4 font-medium">{parking.name}</td>
+                          <td className="p-4">{parking.parking_type || 'N/A'}</td>
+                          <td className="p-4">{parking.capacity || 0}</td>
+                          <td className="p-4">{parking.assigned_or_shared || 'N/A'}</td>
+                          <td className="p-4">{parking.number_of_charging_stations || 0}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="text-center p-12 text-muted-foreground">
+                  Nessun posto auto trovato
+                </div>
+              )}
+            </CardContent>
+          </CollapsibleContent>
+        </Card>
+      </Collapsible>
 
       {/* Charging Stations */}
       <Card>
