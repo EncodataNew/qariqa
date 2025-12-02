@@ -14,7 +14,7 @@ export function useChargingSessions() {
     queryKey: ['charging-sessions'],
     queryFn: async () => {
       const data = await callOdoo('wallbox.charging.session', 'search_read', [[]], {
-        fields: ['transaction_id', 'charging_station_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
+        fields: ['transaction_id', 'charging_station_id', 'parking_space_id', 'customer_id', 'vehicle_id', 'start_time', 'end_time', 'total_duration', 'total_energy', 'cost', 'status'],
         limit: 100,
         order: 'id desc'
       });

@@ -2,7 +2,7 @@
   "menu": {
     "dashboard": "Dashboard",
     "condominiums": "Condomini",
-    "buildings": "Edifici",
+    "buildings": "Buildings",
     "parkingSpaces": "Parcheggi",
     "chargingStations": "Stazioni di Ricarica",
     "chargingSessions": "Sessioni di Ricarica",
@@ -26,14 +26,14 @@
     "subtitle": "Gestione completa dei condomini",
     "noData": "Nessun condominio trovato",
     "noDataDescription": "Non ci sono condomini da visualizzare al momento.",
-    "buildings": "Edifici",
-    "building": "Edificio"
+    "buildings": "Buildings",
+    "building": "Building"
   },
   "buildings": {
-    "title": "Edifici",
-    "subtitle": "Gestione completa degli edifici",
-    "noData": "Nessun edificio trovato",
-    "noDataDescription": "Non ci sono edifici da visualizzare al momento.",
+    "title": "Buildings",
+    "subtitle": "Gestione completa dei buildings",
+    "noData": "Nessun building trovato",
+    "noDataDescription": "Non ci sono buildings da visualizzare al momento.",
     "parkingSpaces": "Parcheggi",
     "stations": "Stazioni"
   },
@@ -65,6 +65,7 @@
     "exportExcel": "Esporta in Excel",
     "transactionId": "ID Transazione",
     "station": "Stazione",
+    "parkingSpace": "Parcheggio",
     "customer": "Cliente",
     "start": "Inizio",
     "end": "Fine",

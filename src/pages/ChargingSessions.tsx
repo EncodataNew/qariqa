@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Loader2, Download, Filter, X } from "lucide-react";
 import { format } from "date-fns";
 import * as XLSX from 'xlsx';
@@ -21,6 +23,10 @@ export default function ChargingSessions() {
   const [selectedStation, setSelectedStation] = useState<string>('all');
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
+
+  // Export dialog state
+  const [showExportDialog, setShowExportDialog] = useState<boolean>(false);
+  const [decimalSeparator, setDecimalSeparator] = useState<'dot' | 'comma'>('dot');
 
   // Extract unique customers and stations for filter dropdowns
   const customers = useMemo(() => {
@@ -146,16 +152,22 @@ export default function ChargingSessions() {
   const exportToExcel = () => {
     if (!filteredSessions || filteredSessions.length === 0) return;
 
+    const formatNumber = (num: number, decimals: number = 2): string => {
+      const fixed = num.toFixed(decimals);
+      return decimalSeparator === 'comma' ? fixed.replace('.', ',') : fixed;
+    };
+
     const exportData = filteredSessions.map(session => ({
       'ID Transazione': session.transaction_id,
       'Stazione': session.charging_station_name || '',
+      'Parcheggio': session.parking_space_name || '',
       'Cliente': session.customer_name || '',
       'Inizio': session.start_time ? format(new Date(session.start_time), 'dd/MM/yyyy HH:mm') : '',
       'Fine': session.end_time ? format(new Date(session.end_time), 'dd/MM/yyyy HH:mm') : '',
       'Durata': session.total_duration || '',
       'Energia (Wh)': session.total_energy || 0,
-      'Energia (kWh)': session.total_energy ? (session.total_energy / 1000).toFixed(2) : '0.00',
-      'Costo (€)': session.cost ? session.cost.toFixed(2) : '0.00',
+      'Energia (kWh)': session.total_energy ? formatNumber(session.total_energy / 1000) : formatNumber(0),
+      'Costo (€)': session.cost ? formatNumber(session.cost) : formatNumber(0),
       'Stato': session.status,
     }));
 
@@ -167,6 +179,7 @@ export default function ChargingSessions() {
     const colWidths = [
       { wch: 25 }, // ID Transazione
       { wch: 20 }, // Stazione
+      { wch: 20 }, // Parcheggio
       { wch: 20 }, // Cliente
       { wch: 18 }, // Inizio
       { wch: 18 }, // Fine
@@ -180,6 +193,7 @@ export default function ChargingSessions() {
 
     const fileName = `sessioni_ricarica_${format(new Date(), 'yyyy-MM-dd_HHmmss')}.xlsx`;
     XLSX.writeFile(workbook, fileName);
+    setShowExportDialog(false);
   };
 
   return (
@@ -192,7 +206,7 @@ export default function ChargingSessions() {
           </p>
         </div>
         {filteredSessions && filteredSessions.length > 0 && (
-          <Button onClick={exportToExcel} variant="outline" className="gap-2">
+          <Button onClick={() => setShowExportDialog(true)} variant="outline" className="gap-2">
             <Download className="h-4 w-4" />
             {t('chargingSessions.exportExcel')}
           </Button>
@@ -312,6 +326,7 @@ export default function ChargingSessions() {
                 <TableRow>
                   <TableHead>{t('chargingSessions.transactionId')}</TableHead>
                   <TableHead>{t('chargingSessions.station')}</TableHead>
+                  <TableHead>{t('chargingSessions.parkingSpace')}</TableHead>
                   <TableHead>{t('chargingSessions.customer')}</TableHead>
                   <TableHead>{t('chargingSessions.start')}</TableHead>
                   <TableHead>{t('chargingSessions.end')}</TableHead>
@@ -328,6 +343,7 @@ export default function ChargingSessions() {
                       {session.transaction_id.substring(0, 20)}...
                     </TableCell>
                     <TableCell>{session.charging_station_name || '-'}</TableCell>
+                    <TableCell>{session.parking_space_name || '-'}</TableCell>
                     <TableCell>{session.customer_name || '-'}</TableCell>
                     <TableCell>
                       {session.start_time
@@ -366,6 +382,43 @@ export default function ChargingSessions() {
           </CardContent>
         </Card>
       )}
+
+      {/* Export Dialog */}
+      <Dialog open={showExportDialog} onOpenChange={setShowExportDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Esporta in Excel</DialogTitle>
+            <DialogDescription>
+              Seleziona il separatore decimale da utilizzare per i numeri nel file Excel.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <RadioGroup value={decimalSeparator} onValueChange={(value) => setDecimalSeparator(value as 'dot' | 'comma')}>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="dot" id="dot" />
+                <Label htmlFor="dot" className="cursor-pointer">
+                  Punto (.) - es: 12.50
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="comma" id="comma" />
+                <Label htmlFor="comma" className="cursor-pointer">
+                  Virgola (,) - es: 12,50
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowExportDialog(false)}>
+              Annulla
+            </Button>
+            <Button onClick={exportToExcel}>
+              <Download className="h-4 w-4 mr-2" />
+              Esporta
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

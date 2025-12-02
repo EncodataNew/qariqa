@@ -18,10 +18,7 @@ export function AppSidebar() {
 
   const menuItems = [
     { titleKey: "menu.dashboard", url: "/", icon: LayoutDashboard },
-    { titleKey: "menu.condominiums", url: "/condominiums", icon: Home },
     { titleKey: "menu.buildings", url: "/buildings", icon: Building2 },
-    { titleKey: "menu.parkingSpaces", url: "/parking-spaces", icon: ParkingSquare },
-    { titleKey: "menu.chargingStations", url: "/charging-stations", icon: Zap },
     { titleKey: "menu.chargingSessions", url: "/charging-sessions", icon: Activity },
     { titleKey: "menu.settings", url: "/settings", icon: Settings },
   ];

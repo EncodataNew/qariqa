@@ -63,6 +63,8 @@ export interface SessioneRicarica {
   transaction_id: string;
   charging_station_id: number;
   charging_station_name?: string;
+  parking_space_id?: number;
+  parking_space_name?: string;
   customer_id: number;
   customer_name?: string;
   vehicle_id?: number;
