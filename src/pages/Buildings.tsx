@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { useBuildings } from "@/hooks/useBuildings";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, MapPin, ParkingSquare, Zap, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Buildings() {
+  const { t } = useTranslation();
   const { data: buildings, isLoading, error } = useBuildings();
   const navigate = useNavigate();
 
@@ -38,9 +40,9 @@ export default function Buildings() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Buildings</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t('buildings.title')}</h1>
         <p className="text-muted-foreground">
-          Complete building management
+          {t('buildings.subtitle')}
         </p>
       </div>
 

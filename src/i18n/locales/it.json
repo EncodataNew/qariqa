@@ -72,7 +72,18 @@
     "duration": "Durata",
     "energy": "Energia",
     "cost": "Costo",
-    "status": "Stato"
+    "status": "Stato",
+    "filters": "Filtri",
+    "clearFilters": "Cancella Filtri",
+    "customerFilter": "Cliente",
+    "allCustomers": "Tutti i clienti",
+    "stationFilter": "Stazione di Ricarica",
+    "allStations": "Tutte le stazioni",
+    "startDate": "Data Inizio",
+    "endDate": "Data Fine",
+    "showing": "Mostrando",
+    "of": "di",
+    "sessions": "sessioni"
   },
   "settings": {
     "title": "Impostazioni",

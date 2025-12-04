@@ -217,12 +217,12 @@ export default function ChargingSessions() {
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <Filter className="h-5 w-5" />
-              Filters
+              {t('chargingSessions.filters')}
             </CardTitle>
             {hasActiveFilters && (
               <Button variant="ghost" size="sm" onClick={clearFilters} className="gap-2">
                 <X className="h-4 w-4" />
-                Clear Filters
+                {t('chargingSessions.clearFilters')}
               </Button>
             )}
           </div>
@@ -231,13 +231,13 @@ export default function ChargingSessions() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Customer Filter */}
             <div className="space-y-2">
-              <Label htmlFor="customer-filter">Customer</Label>
+              <Label htmlFor="customer-filter">{t('chargingSessions.customerFilter')}</Label>
               <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
                 <SelectTrigger id="customer-filter">
-                  <SelectValue placeholder="All customers" />
+                  <SelectValue placeholder={t('chargingSessions.allCustomers')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All customers</SelectItem>
+                  <SelectItem value="all">{t('chargingSessions.allCustomers')}</SelectItem>
                   {customers.map(customer => (
                     <SelectItem key={customer.id} value={String(customer.id)}>
                       {customer.name}
@@ -249,13 +249,13 @@ export default function ChargingSessions() {
 
             {/* Station Filter */}
             <div className="space-y-2">
-              <Label htmlFor="station-filter">Charging Station</Label>
+              <Label htmlFor="station-filter">{t('chargingSessions.stationFilter')}</Label>
               <Select value={selectedStation} onValueChange={setSelectedStation}>
                 <SelectTrigger id="station-filter">
-                  <SelectValue placeholder="All stations" />
+                  <SelectValue placeholder={t('chargingSessions.allStations')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All stations</SelectItem>
+                  <SelectItem value="all">{t('chargingSessions.allStations')}</SelectItem>
                   {stations.map(station => (
                     <SelectItem key={station.id} value={String(station.id)}>
                       {station.name}
@@ -267,7 +267,7 @@ export default function ChargingSessions() {
 
             {/* Start Date Filter */}
             <div className="space-y-2">
-              <Label htmlFor="start-date">Start Date</Label>
+              <Label htmlFor="start-date">{t('chargingSessions.startDate')}</Label>
               <Input
                 id="start-date"
                 type="date"
@@ -278,7 +278,7 @@ export default function ChargingSessions() {
 
             {/* End Date Filter */}
             <div className="space-y-2">
-              <Label htmlFor="end-date">End Date</Label>
+              <Label htmlFor="end-date">{t('chargingSessions.endDate')}</Label>
               <Input
                 id="end-date"
                 type="date"
@@ -290,7 +290,7 @@ export default function ChargingSessions() {
 
           {hasActiveFilters && (
             <div className="mt-4 text-sm text-muted-foreground">
-              Showing {filteredSessions.length} of {sessions?.length || 0} sessions
+              {t('chargingSessions.showing')} {filteredSessions.length} {t('chargingSessions.of')} {sessions?.length || 0} {t('chargingSessions.sessions')}
             </div>
           )}
         </CardContent>
