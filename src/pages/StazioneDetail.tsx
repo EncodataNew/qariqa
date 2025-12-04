@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +19,7 @@ import {
 import { formatPower, formatStationStatus } from "@/lib/formatters";
 
 export default function StazioneDetail() {
+  const { t } = useTranslation();
   const { stationId } = useParams();
   const navigate = useNavigate();
 
@@ -25,14 +27,14 @@ export default function StazioneDetail() {
   const { data: sessions, isLoading: sessionsLoading, error: sessionsError } = useChargingSessionsByStation(Number(stationId));
 
   if (stationLoading || sessionsLoading) {
-    return <LoadingState type="details" message="Caricamento stazione di ricarica..." />;
+    return <LoadingState type="details" message={t('stationDetail.loading')} />;
   }
 
   if (stationError || !station) {
     return (
       <ErrorState
-        title="Stazione non trovata"
-        message="Impossibile caricare i dettagli della stazione di ricarica."
+        title={t('stationDetail.notFound')}
+        message={t('stationDetail.errorLoading')}
         onRetry={() => refetchStation()}
         showHomeButton
       />
@@ -89,7 +91,7 @@ export default function StazioneDetail() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Potenza</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stationDetail.power')}</CardTitle>
             <Zap className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -99,7 +101,7 @@ export default function StazioneDetail() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Stato</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stationDetail.status')}</CardTitle>
             <Battery className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -111,7 +113,7 @@ export default function StazioneDetail() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sessioni Totali</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stationDetail.totalSessions')}</CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -121,7 +123,7 @@ export default function StazioneDetail() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Energia Totale</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stationDetail.totalEnergy')}</CardTitle>
             <Battery className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -132,31 +134,31 @@ export default function StazioneDetail() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Informazioni Stazione</CardTitle>
+          <CardTitle>{t('stationDetail.stationInfo')}</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div>
-            <p className="text-sm text-muted-foreground">Condominio</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.condominium')}</p>
             <p className="font-semibold">{station.condominium_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Edificio</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.building')}</p>
             <p className="font-semibold">{station.building_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Posto Auto</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.parkingSpace')}</p>
             <p className="font-semibold">{station.parking_space_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Tipo Connettore</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.connectorType')}</p>
             <p className="font-semibold">{station.tipo_connettore || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Prezzo per kWh</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.pricePerKwh')}</p>
             <p className="font-semibold">€{(station.price_per_kwh || 0).toFixed(2)}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Costo Totale</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.totalCost')}</p>
             <p className="font-semibold text-primary">€{(station.total_recharged_cost || 0).toFixed(2)}</p>
           </div>
         </CardContent>
@@ -167,25 +169,25 @@ export default function StazioneDetail() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <User className="h-5 w-5" />
-            Sessioni di Ricarica
+            {t('stationDetail.chargingSessions')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {sessionsError ? (
-            <ErrorState message="Errore nel caricamento delle sessioni" />
+            <ErrorState message={t('stationDetail.errorLoadingSessions')} />
           ) : sessions && sessions.length > 0 ? (
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Transaction ID</TableHead>
-                    <TableHead>Cliente</TableHead>
-                    <TableHead>Inizio</TableHead>
-                    <TableHead>Fine</TableHead>
-                    <TableHead>Durata</TableHead>
-                    <TableHead>Energia (kWh)</TableHead>
-                    <TableHead>Costo (€)</TableHead>
-                    <TableHead>Stato</TableHead>
+                    <TableHead>{t('stationDetail.transactionId')}</TableHead>
+                    <TableHead>{t('stationDetail.customer')}</TableHead>
+                    <TableHead>{t('stationDetail.start')}</TableHead>
+                    <TableHead>{t('stationDetail.end')}</TableHead>
+                    <TableHead>{t('stationDetail.duration')}</TableHead>
+                    <TableHead>{t('stationDetail.energy')}</TableHead>
+                    <TableHead>{t('stationDetail.cost')}</TableHead>
+                    <TableHead>{t('stationDetail.status')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -210,7 +212,7 @@ export default function StazioneDetail() {
             </div>
           ) : (
             <div className="text-center p-12 text-muted-foreground">
-              Nessuna sessione di ricarica trovata
+              {t('stationDetail.noSessionsFound')}
             </div>
           )}
         </CardContent>
