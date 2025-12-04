@@ -37,6 +37,19 @@
     "parkingSpaces": "Parking Spaces",
     "stations": "Stations"
   },
+  "buildingDetail": {
+    "loading": "Loading building details...",
+    "notFound": "Building not found",
+    "errorLoading": "Unable to load building details.",
+    "chargingStations": "Charging Stations",
+    "condominium": "Condominium",
+    "name": "Name",
+    "parkingSpace": "Parking Space",
+    "power": "Power",
+    "status": "Status",
+    "errorLoadingStations": "Error loading stations",
+    "noStationsFound": "No charging stations found"
+  },
   "parkingSpaces": {
     "title": "Parking Spaces",
     "subtitle": "Parking space management",

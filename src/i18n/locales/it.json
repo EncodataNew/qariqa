@@ -37,6 +37,19 @@
     "parkingSpaces": "Parcheggi",
     "stations": "Stazioni"
   },
+  "buildingDetail": {
+    "loading": "Caricamento dettagli edificio...",
+    "notFound": "Edificio non trovato",
+    "errorLoading": "Impossibile caricare i dettagli dell'edificio.",
+    "chargingStations": "Stazioni di Ricarica",
+    "condominium": "Condominio",
+    "name": "Nome",
+    "parkingSpace": "Posto Auto",
+    "power": "Potenza",
+    "status": "Stato",
+    "errorLoadingStations": "Errore nel caricamento delle stazioni",
+    "noStationsFound": "Nessuna stazione di ricarica trovata"
+  },
   "parkingSpaces": {
     "title": "Parcheggi",
     "subtitle": "Gestione degli spazi di parcheggio",

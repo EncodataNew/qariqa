@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, MapPin, Zap, Building2 } from "lucide-react";
@@ -8,6 +9,7 @@ import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
 
 export default function EdificioDetail() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -15,14 +17,14 @@ export default function EdificioDetail() {
   const { data: chargingStations, isLoading: stationsLoading, error: stationsError } = useChargingStationsByBuilding(Number(id));
 
   if (buildingLoading || stationsLoading) {
-    return <LoadingState type="details" message="Caricamento dettagli edificio..." />;
+    return <LoadingState type="details" message={t('buildingDetail.loading')} />;
   }
 
   if (buildingError || !building) {
     return (
       <ErrorState
-        title="Edificio non trovato"
-        message="Impossibile caricare i dettagli dell'edificio."
+        title={t('buildingDetail.notFound')}
+        message={t('buildingDetail.errorLoading')}
         onRetry={() => refetchBuilding()}
         showHomeButton
       />
@@ -50,7 +52,7 @@ export default function EdificioDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Stazioni di Ricarica</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('buildingDetail.chargingStations')}</CardTitle>
             <Zap className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -60,7 +62,7 @@ export default function EdificioDetail() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Condominio</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('buildingDetail.condominium')}</CardTitle>
             <Building2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -74,23 +76,23 @@ export default function EdificioDetail() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5" />
-            Stazioni di Ricarica
+            {t('buildingDetail.chargingStations')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {stationsError ? (
             <ErrorState
-              message="Errore nel caricamento delle stazioni"
+              message={t('buildingDetail.errorLoadingStations')}
             />
           ) : chargingStations && chargingStations.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left p-4 font-medium">Nome</th>
-                    <th className="text-left p-4 font-medium">Posto Auto</th>
-                    <th className="text-left p-4 font-medium">Potenza</th>
-                    <th className="text-left p-4 font-medium">Stato</th>
+                    <th className="text-left p-4 font-medium">{t('buildingDetail.name')}</th>
+                    <th className="text-left p-4 font-medium">{t('buildingDetail.parkingSpace')}</th>
+                    <th className="text-left p-4 font-medium">{t('buildingDetail.power')}</th>
+                    <th className="text-left p-4 font-medium">{t('buildingDetail.status')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,7 +113,7 @@ export default function EdificioDetail() {
             </div>
           ) : (
             <div className="text-center p-12 text-muted-foreground">
-              Nessuna stazione di ricarica trovata
+              {t('buildingDetail.noStationsFound')}
             </div>
           )}
         </CardContent>
