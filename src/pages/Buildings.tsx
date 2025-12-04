@@ -40,7 +40,7 @@ export default function Buildings() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Buildings</h1>
         <p className="text-muted-foreground">
-          Gestione completa degli edifici
+          Complete building management
         </p>
       </div>
 

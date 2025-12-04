@@ -165,7 +165,6 @@ export default function ChargingSessions() {
       'Inizio': session.start_time ? format(new Date(session.start_time), 'dd/MM/yyyy HH:mm') : '',
       'Fine': session.end_time ? format(new Date(session.end_time), 'dd/MM/yyyy HH:mm') : '',
       'Durata': session.total_duration || '',
-      'Energia (Wh)': session.total_energy || 0,
       'Energia (kWh)': session.total_energy ? formatNumber(session.total_energy / 1000) : formatNumber(0),
       'Costo (€)': session.cost ? formatNumber(session.cost) : formatNumber(0),
       'Stato': session.status,
@@ -184,7 +183,6 @@ export default function ChargingSessions() {
       { wch: 18 }, // Inizio
       { wch: 18 }, // Fine
       { wch: 12 }, // Durata
-      { wch: 12 }, // Energia (Wh)
       { wch: 12 }, // Energia (kWh)
       { wch: 10 }, // Costo
       { wch: 10 }, // Stato
@@ -219,12 +217,12 @@ export default function ChargingSessions() {
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <Filter className="h-5 w-5" />
-              Filtri
+              Filters
             </CardTitle>
             {hasActiveFilters && (
               <Button variant="ghost" size="sm" onClick={clearFilters} className="gap-2">
                 <X className="h-4 w-4" />
-                Cancella Filtri
+                Clear Filters
               </Button>
             )}
           </div>
@@ -233,13 +231,13 @@ export default function ChargingSessions() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Customer Filter */}
             <div className="space-y-2">
-              <Label htmlFor="customer-filter">Cliente</Label>
+              <Label htmlFor="customer-filter">Customer</Label>
               <Select value={selectedCustomer} onValueChange={setSelectedCustomer}>
                 <SelectTrigger id="customer-filter">
-                  <SelectValue placeholder="Tutti i clienti" />
+                  <SelectValue placeholder="All customers" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Tutti i clienti</SelectItem>
+                  <SelectItem value="all">All customers</SelectItem>
                   {customers.map(customer => (
                     <SelectItem key={customer.id} value={String(customer.id)}>
                       {customer.name}
@@ -251,13 +249,13 @@ export default function ChargingSessions() {
 
             {/* Station Filter */}
             <div className="space-y-2">
-              <Label htmlFor="station-filter">Stazione di Ricarica</Label>
+              <Label htmlFor="station-filter">Charging Station</Label>
               <Select value={selectedStation} onValueChange={setSelectedStation}>
                 <SelectTrigger id="station-filter">
-                  <SelectValue placeholder="Tutte le stazioni" />
+                  <SelectValue placeholder="All stations" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Tutte le stazioni</SelectItem>
+                  <SelectItem value="all">All stations</SelectItem>
                   {stations.map(station => (
                     <SelectItem key={station.id} value={String(station.id)}>
                       {station.name}
@@ -269,7 +267,7 @@ export default function ChargingSessions() {
 
             {/* Start Date Filter */}
             <div className="space-y-2">
-              <Label htmlFor="start-date">Data Inizio</Label>
+              <Label htmlFor="start-date">Start Date</Label>
               <Input
                 id="start-date"
                 type="date"
@@ -280,7 +278,7 @@ export default function ChargingSessions() {
 
             {/* End Date Filter */}
             <div className="space-y-2">
-              <Label htmlFor="end-date">Data Fine</Label>
+              <Label htmlFor="end-date">End Date</Label>
               <Input
                 id="end-date"
                 type="date"
@@ -292,7 +290,7 @@ export default function ChargingSessions() {
 
           {hasActiveFilters && (
             <div className="mt-4 text-sm text-muted-foreground">
-              Mostrando {filteredSessions.length} di {sessions?.length || 0} sessioni
+              Showing {filteredSessions.length} of {sessions?.length || 0} sessions
             </div>
           )}
         </CardContent>
