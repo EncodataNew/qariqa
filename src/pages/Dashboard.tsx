@@ -19,14 +19,14 @@ export default function Dashboard() {
   console.log('[DASHBOARD FRONTEND] Stations by status:', stats?.stations_by_status);
 
   if (isLoading) {
-    return <LoadingState type="spinner" message="Caricamento dashboard..." />;
+    return <LoadingState type="spinner" message={t('dashboard.loading')} />;
   }
 
   if (error) {
     console.error('[DASHBOARD FRONTEND] Error:', error);
     return (
       <ErrorState
-        message={(error as any)?.message || 'Errore nel caricamento dei dati'}
+        message={(error as any)?.message || t('dashboard.error')}
         onRetry={() => refetch()}
       />
     );
@@ -65,7 +65,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              TOTAL CHARGING STATIONS
+              {t('dashboard.totalStations')}
             </CardTitle>
             <Plus className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -77,7 +77,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              ACTIVE SESSIONS
+              {t('dashboard.activeSessions')}
             </CardTitle>
             <Zap className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -103,7 +103,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              REVENUE
+              {t('dashboard.revenue')}
             </CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -263,7 +263,7 @@ export default function Dashboard() {
         {/* Station Status */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm text-muted-foreground">Station Status</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">{t('dashboard.stationStatus')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={200}>
@@ -286,19 +286,19 @@ export default function Dashboard() {
             <div className="flex justify-center gap-2 mt-2 text-xs flex-wrap">
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                <span>Available</span>
+                <span>{t('dashboard.available')}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-green-500 rounded"></div>
-                <span>Charging</span>
+                <span>{t('dashboard.charging')}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-cyan-500 rounded"></div>
-                <span>Unavailable</span>
+                <span>{t('dashboard.unavailable')}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-3 h-3 bg-yellow-500 rounded"></div>
-                <span>Faulted</span>
+                <span>{t('dashboard.faulted')}</span>
               </div>
             </div>
           </CardContent>
@@ -307,7 +307,7 @@ export default function Dashboard() {
         {/* Energy Consumption */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm text-muted-foreground">Energy Consumption</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">{t('dashboard.energyConsumption')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={200}>
@@ -322,7 +322,7 @@ export default function Dashboard() {
             <div className="flex justify-center mt-2">
               <div className="flex items-center gap-2 text-xs">
                 <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                <span className="text-muted-foreground">Energy Consumption (kWh)</span>
+                <span className="text-muted-foreground">{t('dashboard.energyConsumptionKwh')}</span>
               </div>
             </div>
           </CardContent>
