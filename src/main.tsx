@@ -9,7 +9,7 @@ console.log('%c✨ NEW: Odoo Authentication via Netlify Functions (No CORS!)', '
 console.log('%cIf you see this message, you are running the LATEST version with NEW auth system', 'color: #4CAF50; font-weight: bold;');
 console.log('');
 console.log('%c📊 Environment Configuration', 'background: #9C27B0; color: white; font-weight: bold; padding: 4px;');
-console.log(`  API Base URL: ${import.meta.env.VITE_API_BASE_URL || 'https://qariqa-staging.qariqa.com (default)'}`);
+console.log(`  API Base URL: ${import.meta.env.VITE_API_BASE_URL || 'https://qariqa.qariqa.com (default)'}`);
 console.log(`  Odoo Database: ${import.meta.env.VITE_ODOO_DATABASE || 'main (default)'} ${import.meta.env.VITE_ODOO_DATABASE ? '✅' : '⚠️ ENV VAR NOT SET - using fallback!'}`);
 console.log('');
 
