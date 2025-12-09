@@ -22,14 +22,14 @@ export default function Buildings() {
       <div className="flex items-center justify-center h-96">
         <Card className="max-w-md">
           <CardHeader>
-            <CardTitle className="text-destructive">Errore</CardTitle>
+            <CardTitle className="text-destructive">{t('common.error')}</CardTitle>
             <CardDescription>
-              Si è verificato un errore durante il caricamento degli edifici.
+              {t('buildings.noDataDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              {error instanceof Error ? error.message : "Errore sconosciuto"}
+              {error instanceof Error ? error.message : t('common.error')}
             </p>
           </CardContent>
         </Card>
@@ -49,9 +49,9 @@ export default function Buildings() {
       {!buildings || buildings.length === 0 ? (
         <Card>
           <CardHeader>
-            <CardTitle>Nessun edificio trovato</CardTitle>
+            <CardTitle>{t('buildings.noData')}</CardTitle>
             <CardDescription>
-              Non ci sono edifici da visualizzare al momento.
+              {t('buildings.noDataDescription')}
             </CardDescription>
           </CardHeader>
         </Card>
@@ -85,7 +85,7 @@ export default function Buildings() {
                       <p className="text-2xl font-bold">
                         {building.number_of_parking_spaces || 0}
                       </p>
-                      <p className="text-xs text-muted-foreground">Parcheggi</p>
+                      <p className="text-xs text-muted-foreground">{t('buildings.parkingSpaces')}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function Buildings() {
                       <p className="text-2xl font-bold">
                         {building.number_of_charging_stations || 0}
                       </p>
-                      <p className="text-xs text-muted-foreground">Stazioni</p>
+                      <p className="text-xs text-muted-foreground">{t('buildings.stations')}</p>
                     </div>
                   </div>
                 </div>

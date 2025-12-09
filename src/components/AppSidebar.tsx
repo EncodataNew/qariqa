@@ -26,7 +26,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-6">
-        <h1 className="text-2xl font-bold text-primary">qariqa.com</h1>
+        <img src="/qariqa_logo_white.png" alt="Qariqa" className="h-8 w-auto" />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
