@@ -231,7 +231,7 @@ export async function login(username: string, password: string): Promise<LoginRe
   try {
     // Get Odoo URL and database from environment variables
     const odooUrl = import.meta.env.VITE_API_BASE_URL || 'https://qariqa.qariqa.com';
-    const odooDatabase = import.meta.env.VITE_ODOO_DATABASE || 'main';
+    const odooDatabase = import.meta.env.VITE_ODOO_DATABASE || 'production';
 
     console.log('%c📊 Odoo Configuration', 'background: #9C27B0; color: white; font-weight: bold; padding: 4px;');
     console.log(`  URL: ${odooUrl}`);

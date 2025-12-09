@@ -10,7 +10,7 @@ console.log('%cIf you see this message, you are running the LATEST version with 
 console.log('');
 console.log('%c📊 Environment Configuration', 'background: #9C27B0; color: white; font-weight: bold; padding: 4px;');
 console.log(`  API Base URL: ${import.meta.env.VITE_API_BASE_URL || 'https://qariqa.qariqa.com (default)'}`);
-console.log(`  Odoo Database: ${import.meta.env.VITE_ODOO_DATABASE || 'main (default)'} ${import.meta.env.VITE_ODOO_DATABASE ? '✅' : '⚠️ ENV VAR NOT SET - using fallback!'}`);
+console.log(`  Odoo Database: ${import.meta.env.VITE_ODOO_DATABASE || 'production (default)'} ${import.meta.env.VITE_ODOO_DATABASE ? '✅' : '⚠️ ENV VAR NOT SET - using fallback!'}`);
 console.log('');
 
 createRoot(document.getElementById("root")!).render(<App />);
