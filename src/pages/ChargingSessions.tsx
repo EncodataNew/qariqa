@@ -152,10 +152,11 @@ export default function ChargingSessions() {
   const exportToExcel = () => {
     if (!filteredSessions || filteredSessions.length === 0) return;
 
-    // Filter out Started and Failed sessions from export
-    const sessionsToExport = filteredSessions.filter(
-      session => session.status !== 'Started' && session.status !== 'Failed'
-    );
+    // Filter to only export Ended sessions (exclude Started and Failed)
+    const sessionsToExport = filteredSessions.filter(session => {
+      const status = (session.status || '').toString().toLowerCase().trim();
+      return status === 'ended';
+    });
 
     if (sessionsToExport.length === 0) {
       alert('Nessuna sessione da esportare. Le sessioni con stato "Started" e "Failed" sono escluse dall\'esportazione.');
