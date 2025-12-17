@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +26,15 @@ export default function StazioneDetail() {
 
   const { data: station, isLoading: stationLoading, error: stationError, refetch: refetchStation } = useChargingStation(Number(stationId));
   const { data: sessions, isLoading: sessionsLoading, error: sessionsError } = useChargingSessionsByStation(Number(stationId));
+
+  // Filter sessions to show only Ended status
+  const filteredSessions = useMemo(() => {
+    if (!sessions) return [];
+    return sessions.filter(session => {
+      const status = (session.status || '').toString().toLowerCase().trim();
+      return status === 'ended';
+    });
+  }, [sessions]);
 
   if (stationLoading || sessionsLoading) {
     return <LoadingState type="details" message={t('stationDetail.loading')} />;
@@ -127,7 +137,7 @@ export default function StazioneDetail() {
             <Battery className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{(station.total_energy || 0).toFixed(1)} kWh</div>
+            <div className="text-2xl font-bold">{(station.total_energy || 0).toFixed(1)} Wh</div>
           </CardContent>
         </Card>
       </div>
@@ -175,7 +185,7 @@ export default function StazioneDetail() {
         <CardContent>
           {sessionsError ? (
             <ErrorState message={t('stationDetail.errorLoadingSessions')} />
-          ) : sessions && sessions.length > 0 ? (
+          ) : filteredSessions && filteredSessions.length > 0 ? (
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -191,7 +201,7 @@ export default function StazioneDetail() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {sessions.map((session) => (
+                  {filteredSessions.map((session) => (
                     <TableRow key={session.id}>
                       <TableCell className="font-medium">{session.transaction_id || session.id}</TableCell>
                       <TableCell>{session.customer_name || 'N/A'}</TableCell>

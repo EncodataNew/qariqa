@@ -16,7 +16,12 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git rm:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(ls:*)",
+      "Bash(copy:*)",
+      "Bash(cmd /c copy \"D:\\Github\\qariqa\\qariqa_logo_white.png\" \"D:\\Github\\qariqa\\public\\qariqa_logo_white.png\")",
+      "Bash(powershell -Command:*)",
+      "Bash(npx netlify-cli:*)"
     ],
     "deny": [],
     "ask": []
