@@ -56,6 +56,12 @@ export default function ChargingSessions() {
     if (!sessions) return [];
 
     return sessions.filter(session => {
+      // Status filter - only show Ended sessions
+      const status = (session.status || '').toString().toLowerCase().trim();
+      if (status !== 'ended') {
+        return false;
+      }
+
       // Customer filter
       if (selectedCustomer !== 'all' && session.customer_id !== Number(selectedCustomer)) {
         return false;
