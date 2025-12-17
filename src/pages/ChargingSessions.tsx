@@ -152,12 +152,18 @@ export default function ChargingSessions() {
   const exportToExcel = () => {
     if (!filteredSessions || filteredSessions.length === 0) return;
 
-    const formatNumber = (num: number, decimals: number = 2): string => {
-      const fixed = num.toFixed(decimals);
-      return decimalSeparator === 'comma' ? fixed.replace('.', ',') : fixed;
-    };
+    // Filter out Started and Failed sessions from export
+    const sessionsToExport = filteredSessions.filter(
+      session => session.status !== 'Started' && session.status !== 'Failed'
+    );
 
-    const exportData = filteredSessions.map(session => ({
+    if (sessionsToExport.length === 0) {
+      alert('Nessuna sessione da esportare. Le sessioni con stato "Started" e "Failed" sono escluse dall\'esportazione.');
+      setShowExportDialog(false);
+      return;
+    }
+
+    const exportData = sessionsToExport.map(session => ({
       'ID Transazione': session.transaction_id,
       'Stazione': session.charging_station_name || '',
       'Parcheggio': session.parking_space_name || '',
@@ -165,8 +171,8 @@ export default function ChargingSessions() {
       'Inizio': session.start_time ? format(new Date(session.start_time), 'dd/MM/yyyy HH:mm') : '',
       'Fine': session.end_time ? format(new Date(session.end_time), 'dd/MM/yyyy HH:mm') : '',
       'Durata': session.total_duration || '',
-      'Energia (kWh)': session.total_energy ? formatNumber(session.total_energy / 1000) : formatNumber(0),
-      'Costo (€)': session.cost ? formatNumber(session.cost) : formatNumber(0),
+      'Energia (kWh)': session.total_energy ? session.total_energy / 1000 : 0,
+      'Costo (€)': session.cost || 0,
       'Stato': session.status,
     }));
 
@@ -188,6 +194,27 @@ export default function ChargingSessions() {
       { wch: 10 }, // Stato
     ];
     worksheet['!cols'] = colWidths;
+
+    // Apply number formatting to numeric columns (Energia and Costo)
+    // Excel column letters: H = Energia (kWh), I = Costo (€)
+    const numberFormat = decimalSeparator === 'comma' ? '#.##0,00' : '0.00';
+    const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
+
+    for (let row = range.s.r + 1; row <= range.e.r; row++) {
+      // Format Energia (kWh) column (H = column 7)
+      const energyCell = XLSX.utils.encode_cell({ r: row, c: 7 });
+      if (worksheet[energyCell] && typeof worksheet[energyCell].v === 'number') {
+        worksheet[energyCell].z = numberFormat;
+        worksheet[energyCell].t = 'n'; // Ensure it's treated as number
+      }
+
+      // Format Costo (€) column (I = column 8)
+      const costCell = XLSX.utils.encode_cell({ r: row, c: 8 });
+      if (worksheet[costCell] && typeof worksheet[costCell].v === 'number') {
+        worksheet[costCell].z = numberFormat;
+        worksheet[costCell].t = 'n'; // Ensure it's treated as number
+      }
+    }
 
     const fileName = `sessioni_ricarica_${format(new Date(), 'yyyy-MM-dd_HHmmss')}.xlsx`;
     XLSX.writeFile(workbook, fileName);
