@@ -74,6 +74,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
+{/* Hidden: Active Sessions
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -85,6 +86,7 @@ export default function Dashboard() {
             <div className="text-2xl font-bold">{stats?.active_sessions || 0}</div>
           </CardContent>
         </Card>
+        */}
 
 {/* Hidden: Pending Installations
         <Card>
