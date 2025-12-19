@@ -151,10 +151,12 @@ export default function StazioneDetail() {
             <p className="text-sm text-muted-foreground">{t('stationDetail.condominium')}</p>
             <p className="font-semibold">{station.condominium_name || 'N/A'}</p>
           </div>
+{/* Hidden: Manager field (backend support needed)
           <div>
             <p className="text-sm text-muted-foreground">{t('stationDetail.manager')}</p>
             <p className="font-semibold">{station.manager_name || 'N/A'}</p>
           </div>
+          */}
           <div>
             <p className="text-sm text-muted-foreground">{t('stationDetail.parkingSpace')}</p>
             <p className="font-semibold">{station.parking_space_name || 'N/A'}</p>
