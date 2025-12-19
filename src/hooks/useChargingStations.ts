@@ -33,7 +33,7 @@ export function useChargingStation(id: number | string | undefined) {
     queryKey: ['charging-station', id],
     queryFn: async () => {
       const data = await callOdoo('charging.station', 'read', [[Number(id)]], {
-        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions', 'total_energy', 'total_recharged_cost']
+        fields: ['name', 'status', 'charging_power', 'connector_type', 'building_id', 'condominium_id', 'manager_id', 'parking_space_id', 'price_per_kwh', 'number_of_charging_sessions', 'total_energy', 'total_recharged_cost']
       });
       return transformOdooChargingStation(data[0]);
     },
