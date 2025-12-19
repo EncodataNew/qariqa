@@ -14,9 +14,10 @@ class ChargingStation(models.Model):
     wallbox_order_id = fields.Many2one('wallbox.order', string='Wallbox Order', readonly=True)
 
     # Property Fields
-    condominium_id = fields.Many2one('condominium.condominium', string='Condominium', related="wallbox_order_id.condominium_id") 
+    condominium_id = fields.Many2one('condominium.condominium', string='Condominium', related="wallbox_order_id.condominium_id")
     building_id = fields.Many2one('building.building', string='Building', related="wallbox_order_id.building_id")
     parking_space_id = fields.Many2one('parking.space', string='Parking Space', related="wallbox_order_id.parking_space_id")
+    manager_id = fields.Many2one('res.partner', string='Manager', related="building_id.manager_id", store=True)
 
     installation_date = fields.Date(string='Installation Date', required=True)
     location = fields.Selection([
