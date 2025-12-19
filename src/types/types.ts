@@ -17,8 +17,6 @@ export interface Building {
   name: string;
   condominium_id: number;
   condominium_name?: string;
-  manager_id?: number;
-  manager_name?: string;
   address?: string;
   number_of_parking_spaces?: number;
   number_of_charging_stations?: number;
@@ -48,8 +46,6 @@ export interface ChargingStation {
   building_name?: string;
   condominium_id: number;
   condominium_name?: string;
-  manager_id?: number;
-  manager_name?: string;
   parking_space_id: number;
   parking_space_name?: string;
   potenza: number; // kW (charging_power)

@@ -32,7 +32,7 @@ export function useBuilding(id: number | string | undefined) {
     queryKey: ['building', id],
     queryFn: async () => {
       const data = await callOdoo('building.building', 'read', [[Number(id)]], {
-        fields: ['building_name', 'address', 'condominium_id', 'manager_id', 'number_of_parking_spaces', 'number_of_charging_stations', 'number_of_users', 'parking_space_ids', 'charging_station_ids']
+        fields: ['building_name', 'address', 'condominium_id', 'number_of_parking_spaces', 'number_of_charging_stations', 'number_of_users', 'parking_space_ids', 'charging_station_ids']
       });
       return transformOdooBuilding(data[0]);
     },
