@@ -152,8 +152,8 @@ export default function StazioneDetail() {
             <p className="font-semibold">{station.condominium_name || 'N/A'}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t('stationDetail.building')}</p>
-            <p className="font-semibold">{station.building_name || 'N/A'}</p>
+            <p className="text-sm text-muted-foreground">{t('stationDetail.manager')}</p>
+            <p className="font-semibold">{station.manager_name || 'N/A'}</p>
           </div>
           <div>
             <p className="text-sm text-muted-foreground">{t('stationDetail.parkingSpace')}</p>

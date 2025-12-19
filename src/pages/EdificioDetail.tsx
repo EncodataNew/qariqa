@@ -62,11 +62,11 @@ export default function EdificioDetail() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{t('buildingDetail.condominium')}</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('buildingDetail.manager')}</CardTitle>
             <Building2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-semibold">{building.condominium_name || 'N/A'}</div>
+            <div className="text-lg font-semibold">{building.manager_name || 'N/A'}</div>
           </CardContent>
         </Card>
       </div>
