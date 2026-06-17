@@ -76,6 +76,16 @@ export function formatKwh(kwh: number | null | undefined): string {
 }
 
 /**
+ * Format Wh energy value converting to kWh for display
+ * Odoo always stores energy in Wh; this converts to kWh for consistent UI display.
+ * @param wh Energy in watt-hours (as stored in Odoo)
+ */
+export function formatWh(wh: number | null | undefined): string {
+  if (wh === null || wh === undefined) return '0 kWh';
+  return formatKwh(wh / 1000);
+}
+
+/**
  * Format power in kW
  * @param kw Power in kilowatts
  */

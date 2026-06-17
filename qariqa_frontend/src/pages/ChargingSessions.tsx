@@ -13,6 +13,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Loader2, Download, Filter, X } from "lucide-react";
 import { format } from "date-fns";
 import * as XLSX from 'xlsx';
+import { formatWh } from "@/lib/formatters";
 
 export default function ChargingSessions() {
   const { t } = useTranslation();
@@ -136,13 +137,6 @@ export default function ChargingSessions() {
       default:
         return 'bg-gray-500';
     }
-  };
-
-  const formatEnergy = (wh: number) => {
-    if (wh >= 1000) {
-      return `${(wh / 1000).toFixed(2)} kWh`;
-    }
-    return `${wh} Wh`;
   };
 
   // Clear all filters
@@ -392,7 +386,7 @@ export default function ChargingSessions() {
                     <TableCell>{session.total_duration || '-'}</TableCell>
                     <TableCell className="text-right">
                       {session.total_energy !== undefined
-                        ? formatEnergy(session.total_energy)
+                        ? formatWh(session.total_energy)
                         : '-'
                       }
                     </TableCell>

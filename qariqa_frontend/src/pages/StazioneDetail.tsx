@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatPower, formatStationStatus } from "@/lib/formatters";
+import { formatPower, formatStationStatus, formatWh } from "@/lib/formatters";
 
 export default function StazioneDetail() {
   const { t } = useTranslation();
@@ -137,7 +137,7 @@ export default function StazioneDetail() {
             <Battery className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{(station.total_energy || 0).toFixed(1)} Wh</div>
+            <div className="text-2xl font-bold">{formatWh(station.total_energy)}</div>
           </CardContent>
         </Card>
       </div>
@@ -210,7 +210,7 @@ export default function StazioneDetail() {
                       <TableCell>{session.start_time ? new Date(session.start_time).toLocaleString('it-IT') : 'N/A'}</TableCell>
                       <TableCell>{session.end_time ? new Date(session.end_time).toLocaleString('it-IT') : '-'}</TableCell>
                       <TableCell>{session.total_duration || '-'}</TableCell>
-                      <TableCell>{((session.total_energy || 0) / 1000).toFixed(2)}</TableCell>
+                      <TableCell>{formatWh(session.total_energy)}</TableCell>
                       <TableCell>€{(session.cost || 0).toFixed(2)}</TableCell>
                       <TableCell>
                         <Badge variant={getSessionStatusBadge(session.status) as any}>
