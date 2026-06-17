@@ -23,7 +23,8 @@
       "Bash(powershell -Command:*)",
       "Bash(npx netlify-cli:*)",
       "Bash(git submodule *)",
-      "Bash(cat .gitmodules)"
+      "Bash(cat .gitmodules)",
+      "Bash(git ls-tree *)"
     ],
     "deny": [],
     "ask": []
