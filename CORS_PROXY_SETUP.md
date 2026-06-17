@@ -1,53 +1,71 @@
-# CORS Proxy Setup for Odoo Integration
+# CORS and API Proxy Setup
+
+> [!NOTE]
+> **Architecture Update**: This project now uses **Netlify Functions** instead of a standalone CORS proxy.
+> The session-aware proxy functionality is implemented in `netlify/functions/`.
 
 ## Overview
 
-This project includes a **session-aware CORS proxy** to handle Odoo API requests. The proxy solves CORS (Cross-Origin Resource Sharing) issues that occur when connecting a browser-based React app to an Odoo backend.
+This project uses **Netlify Serverless Functions** to handle Odoo API requests. These functions solve CORS (Cross-Origin Resource Sharing) issues and provide specialized endpoints for Odoo integration.
 
 ## Why Do We Need This?
 
 When a browser-based app tries to connect directly to Odoo:
 
 1. **CORS Restrictions**: Browsers block cross-origin requests due to security policies
-2. **Cookie Issues**: Public CORS proxies strip session cookies, breaking Odoo authentication
+2. **Cookie Issues**: Session cookies can't be managed client-side
 3. **Session Management**: Odoo relies on session cookies that must persist across requests
 
 ## How Our Solution Works
 
 ```
-┌──────────┐    ┌────────────────┐    ┌──────────┐
-│ Browser  │───>│ Session-Aware  │───>│  Odoo    │
-│          │<───│ CORS Proxy     │<───│ Backend  │
-└──────────┘    └────────────────┘    └──────────┘
-                        │
-                 Session Store
-                 (Maps Client → Cookies)
+┌──────────┐    ┌───────────────────┐    ┌──────────┐
+│ Browser  │───>│ Netlify Functions │───>│  Odoo    │
+│          │<───│ (API Proxies)     │<───│ Backend  │
+└──────────┘    └───────────────────┘    └──────────┘
 ```
 
-### Key Features
+## Current Architecture
 
-1. **Session-Aware**: Maintains Odoo session cookies server-side
-2. **Client Tracking**: Uses `X-Client-Session-Id` header to map clients to sessions
-3. **Transparent**: Works seamlessly with existing JWT authentication
-4. **Persistent**: Sessions stored in localStorage, survive page reloads
-5. **Auto-Cleanup**: Removes expired sessions after 30 minutes
+### Netlify Functions
+
+The project uses specialized Netlify Functions for different purposes:
+
+1. **`odoo-auth.js`** - Handles Odoo authentication
+   - Route: `/api/odoo/auth`
+   - Manages session cookies server-side
+   
+2. **`odoo-call.js`** - Proxies authenticated API calls
+   - Route: `/api/odoo/call`
+   - Forwards requests with stored session cookies
+
+3. **`proxy.js`** - Legacy session-aware CORS proxy
+   - Route: `/api/proxy`
+   - General-purpose proxy for backwards compatibility
+
+4. **`dashboard.js`** - Admin dashboard data aggregation
+   - Route: `/api/admin/dashboard`
 
 ## Project Structure
 
 ```
 qariqa/
-├── cors-proxy/
-│   ├── api/
-│   │   └── proxy.js           # Session-aware proxy handler
-│   └── package.json           # Proxy dependencies
-│
-├── src/
-│   └── lib/
-│       └── api.ts             # Updated API client with session management
-│
-├── .env                       # Environment configuration
-├── .env.example               # Environment template
-└── vercel.json                # Deployment configuration
+├── qariqa_frontend/
+│   └── src/
+│       └── lib/
+│           ├── api.ts             # API client
+│           └── odoo-api.ts        # Odoo-specific API calls
+├── netlify/
+│   └── functions/
+│       ├── odoo-auth.js           # Authentication handler
+│       ├── odoo-call.js           # API proxy
+│       ├── proxy.js               # Legacy CORS proxy
+│       ├── dashboard.js           # Dashboard aggregator
+│       └── utils/
+│           └── session.js         # Session management utilities
+├── .env                           # Environment configuration
+├── .env.example                   # Environment template
+└── netlify.toml                   # Netlify deployment config
 ```
 
 ## Configuration

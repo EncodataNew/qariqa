@@ -2,8 +2,8 @@
 # Deploys React app + CORS proxy as Netlify Functions
 
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command = "cd qariqa_frontend && npm ci && npm run build"
+  publish = "qariqa_frontend/dist"
   functions = "netlify/functions"
 
 [build.environment]
