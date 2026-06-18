@@ -109,8 +109,8 @@ exports.handler = async (event, context) => {
         [['state', '!=', 'done']]
       ]).catch(() => 0),
 
-      // All sessions for revenue and charts
-      callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_read', [[]], {
+      // All completed sessions for revenue and charts (Ended only, consistent with session tables)
+      callOdoo(baseUrl, cookies, 'wallbox.charging.session', 'search_read', [[['status', '=', 'Ended']]], {
         fields: ['cost', 'total_energy', 'start_time', 'customer_id', 'status'],
         limit: 1000,
         order: 'start_time desc'
