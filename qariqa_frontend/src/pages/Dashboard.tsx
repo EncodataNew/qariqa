@@ -317,8 +317,8 @@ export default function Dashboard() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" hide />
                 <YAxis hide />
-                <Tooltip />
-                <Bar dataKey="energy" fill="#3b82f6" name="Energy (kWh)" />
+                <Tooltip formatter={(value: any) => [formatKwh(Number(value)), 'Energia']} />
+                <Bar dataKey="energy" fill="#3b82f6" name="Energia" />
               </BarChart>
             </ResponsiveContainer>
             <div className="flex justify-center mt-2">
